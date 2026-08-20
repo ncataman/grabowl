@@ -15,8 +15,13 @@ const CAPACITY = 800;
  */
 const ALLOWED_HOSTS = /(^|\.)(cdninstagram\.com|fbcdn\.net|instagram\.com)$/;
 
-function isTrustedAsset(url: string | undefined): boolean {
-  if (!url) return true; // optional fields (thumbnails) may be absent
+/**
+ * True when a URL is safe to hand to downloads.download. Enforced both here (so
+ * forged postMessage items never enter the index) and again in the background,
+ * which is the privileged context that actually issues the download.
+ */
+export function isTrustedAsset(url: string | undefined): boolean {
+  if (!url) return false; // a required download URL is never legitimately empty
   try {
     const parsed = new URL(url);
     return parsed.protocol === 'https:' && ALLOWED_HOSTS.test(parsed.hostname);

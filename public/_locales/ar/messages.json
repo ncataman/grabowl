@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "تنزيل الكل"
   },
+  "profileDownloadPfp": {
+    "message": "صورة الملف الشخصي"
+  },
   "profileCollecting": {
     "message": "جارٍ الجمع…"
-  },
-  "profileStarted": {
-    "message": "بدأ التنزيل — تابع التقدّم من أيقونة الإضافة"
   },
   "errorThumbnailOnly": {
     "message": "لا تتوفر هنا سوى معاينة؛ افتح المنشور لحفظ الملف الأصلي"

@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Tümünü indir"
   },
+  "profileDownloadPfp": {
+    "message": "Profil fotoğrafı"
+  },
   "profileCollecting": {
     "message": "Toplanıyor…"
-  },
-  "profileStarted": {
-    "message": "Başladı — ilerleme için eklenti simgesine bakın"
   },
   "errorThumbnailOnly": {
     "message": "Burada yalnızca önizleme var; orijinali kaydetmek için gönderiyi açın"

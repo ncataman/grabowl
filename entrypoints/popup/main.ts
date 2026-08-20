@@ -108,12 +108,13 @@ els.start.addEventListener('click', async () => {
     if (!collected?.ok) throw new Error(collected?.error ?? 'collection failed');
     if (!collected.value.length) throw new Error(t('popupNothingFound'));
 
-    await browser.runtime.sendMessage({
+    const started = (await browser.runtime.sendMessage({
       t: 'BULK_START',
       username,
       items: collected.value,
       options: { zip: els.zip.checked },
-    } as Message);
+    } as Message)) as { ok: boolean; error?: string } | undefined;
+    if (!started?.ok) throw new Error(started?.error ?? t('errorDownloadFailed'));
   } catch (error) {
     showError(error instanceof Error ? error.message : String(error));
     els.start.disabled = false;

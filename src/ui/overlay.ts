@@ -110,7 +110,7 @@ export function mountCornerButton(
   visibility: 'hover' | 'always' = 'hover',
 ): OverlayHandle {
   const host = document.createElement('div');
-  host.setAttribute('data-insdown-button', '');
+  host.setAttribute('data-grabowl-button', '');
   host.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:10;';
   const shadow = host.attachShadow({ mode: 'open' });
 
@@ -154,7 +154,9 @@ export function mountCornerButton(
     } finally {
       button.disabled = false;
       window.setTimeout(() => {
-        if (!button.disabled) button.innerHTML = ICON_DOWNLOAD;
+        button.innerHTML = ICON_DOWNLOAD;
+        // Clear any error left in the tooltip, back to the plain label.
+        button.title = t('overlayDownload');
       }, 1800);
     }
   });
@@ -178,7 +180,7 @@ export function mountOverlay(
   slideCount: number,
 ): OverlayHandle {
   const host = document.createElement('div');
-  host.setAttribute('data-insdown-button', '');
+  host.setAttribute('data-grabowl-button', '');
   host.style.display = 'inline-flex';
   const shadow = host.attachShadow({ mode: 'open' });
 

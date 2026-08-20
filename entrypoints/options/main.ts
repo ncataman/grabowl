@@ -1,5 +1,5 @@
 /** Options page: filename pattern with live preview, plus bulk safety limits. */
-import { buildFilename } from '../../src/core/filename';
+import { buildFilename, DEFAULT_PATTERN } from '../../src/core/filename';
 import { loadSettings, saveSettings } from '../../src/core/settings';
 import { applyI18n } from '../../src/ui/i18n-dom';
 import type { MediaItem } from '../../src/core/media-model';
@@ -35,14 +35,18 @@ function renderPreview() {
 pattern.addEventListener('input', renderPreview);
 
 $('save').addEventListener('click', async () => {
+  const trimmed = pattern.value.trim();
   await saveSettings({
-    filenamePattern: pattern.value.trim() || undefined!,
+    // Omit the pattern entirely when the field is blank, so the stored default
+    // survives instead of being overwritten with an empty (or undefined) value.
+    ...(trimmed ? { filenamePattern: trimmed } : {}),
     concurrency: Math.min(8, Math.max(1, Number(concurrency.value) || 4)),
     bulkCap: Math.min(1000, Math.max(10, Number(cap.value) || 200)),
     activePagination: activePagination.checked,
     zipBulk: zipBulk.checked,
     gridButton: gridButton.value === 'always' ? 'always' : 'hover',
   });
+  if (!trimmed) pattern.value = DEFAULT_PATTERN;
   saved.hidden = false;
   setTimeout(() => (saved.hidden = true), 2000);
 });

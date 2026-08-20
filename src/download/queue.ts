@@ -29,7 +29,13 @@ export class DownloadQueue {
   private failed = 0;
   private total = 0;
   private paused = false;
-  private listening = false;
+  /**
+   * download() calls awaiting an id. The drain check must wait for these too:
+   * otherwise the first one to reject fires onDrain while its siblings are still
+   * starting, their ids land in a queue with no listener, and their completions
+   * are never counted.
+   */
+  private starting = 0;
   /** Callbacks from enqueueAndWait; each returns true once its batch is done. */
   private waiters: (() => boolean)[] = [];
 
@@ -38,7 +44,6 @@ export class DownloadQueue {
   enqueue(specs: DownloadSpec[]): void {
     this.pending.push(...specs);
     this.total += specs.length;
-    this.listen();
     this.pump();
   }
 
@@ -86,13 +91,17 @@ export class DownloadQueue {
     return [...this.pending];
   }
 
-  private listen(): void {
-    if (this.listening) return;
-    this.listening = true;
-    browser.downloads.onChanged.addListener(this.onChanged);
+  /** True once nothing is queued, transferring, or mid-start. */
+  isIdle(): boolean {
+    return !this.pending.length && this.active.size === 0 && this.starting === 0;
   }
 
-  private onChanged = (delta: DownloadDelta): void => {
+  /**
+   * Fed by the single top-level downloads.onChanged listener in the background.
+   * A per-queue listener registered lazily would not survive MV3 worker
+   * eviction — Chrome only revives a worker for listeners bound at eval time.
+   */
+  handleChange(delta: DownloadDelta): void {
     if (!this.active.has(delta.id) || !delta.state) return;
     const state = delta.state.current;
     if (state !== 'complete' && state !== 'interrupted') return;
@@ -102,14 +111,12 @@ export class DownloadQueue {
     else this.failed++;
 
     this.settle();
-  };
+  }
 
   private settle(): void {
     this.waiters = this.waiters.filter((waiter) => !waiter());
     this.events.onProgress?.(this.done, this.failed, this.total);
-    if (!this.pending.length && this.active.size === 0) {
-      browser.downloads.onChanged.removeListener(this.onChanged);
-      this.listening = false;
+    if (this.isIdle()) {
       this.events.onDrain?.();
       return;
     }
@@ -117,12 +124,13 @@ export class DownloadQueue {
   }
 
   private pump(): void {
-    while (!this.paused && this.active.size < this.concurrency && this.pending.length) {
+    while (!this.paused && this.active.size + this.starting < this.concurrency && this.pending.length) {
       void this.start(this.pending.shift()!);
     }
   }
 
   private async start(spec: DownloadSpec): Promise<void> {
+    this.starting++;
     try {
       const id = await browser.downloads.download({
         url: spec.url,
@@ -136,6 +144,10 @@ export class DownloadQueue {
     } catch (error) {
       this.failed++;
       log.warn('download failed', spec.filename, error);
+    } finally {
+      this.starting--;
+      // Re-evaluate now that this start has resolved: pump the next spec, or
+      // drain if this was the last one and nothing is transferring.
       this.settle();
     }
   }

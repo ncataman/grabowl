@@ -25,13 +25,25 @@ export const DEFAULT_SETTINGS: Settings = {
   gridButton: 'hover',
 };
 
+/** Drop keys whose value is undefined so they cannot overwrite a default. */
+function defined<T extends object>(obj: T | undefined): Partial<T> {
+  if (!obj) return {};
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, value]) => value !== undefined),
+  ) as Partial<T>;
+}
+
 export async function loadSettings(): Promise<Settings> {
   const stored = await browser.storage.sync.get('settings');
-  return { ...DEFAULT_SETTINGS, ...(stored.settings as Partial<Settings> | undefined) };
+  // An explicit `undefined` in stored settings must not shadow a default:
+  // Firefox's structured clone keeps such keys, and one stored under
+  // filenamePattern used to make every later download throw.
+  return { ...DEFAULT_SETTINGS, ...defined(stored.settings as Partial<Settings> | undefined) };
 }
 
 export async function saveSettings(patch: Partial<Settings>): Promise<Settings> {
-  const next = { ...(await loadSettings()), ...patch };
+  // defined() guards the store against an undefined slipping through a caller.
+  const next = { ...(await loadSettings()), ...defined(patch) };
   await browser.storage.sync.set({ settings: next });
   return next;
 }

@@ -3,6 +3,7 @@
  * on Firefox) because it needs fetch + Blob + URL.createObjectURL.
  */
 import { zip } from 'fflate';
+import { isTrustedAsset } from '../core/media-index';
 
 /** Fetch each file, archive it, and return an object URL for downloads.download. */
 export async function zipFiles(files: { url: string; name: string }[]): Promise<string> {
@@ -11,6 +12,8 @@ export async function zipFiles(files: { url: string; name: string }[]): Promise<
   // Sequential on purpose: a bulk zip of hundreds of files must not hold hundreds
   // of responses in memory at once.
   for (const file of files) {
+    // Defense in depth: only Instagram CDN URLs are fetched, even here.
+    if (!isTrustedAsset(file.url)) continue;
     try {
       const response = await fetch(file.url);
       if (!response.ok) continue;

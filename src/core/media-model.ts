@@ -31,6 +31,5 @@ export interface DownloadSpec {
   filename: string;
 }
 
-export const MEDIA_TYPE_IMAGE = 1;
 export const MEDIA_TYPE_VIDEO = 2;
 export const MEDIA_TYPE_CAROUSEL = 8;

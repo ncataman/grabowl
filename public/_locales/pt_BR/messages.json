@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Baixar tudo"
   },
+  "profileDownloadPfp": {
+    "message": "Foto do perfil"
+  },
   "profileCollecting": {
     "message": "Coletando…"
-  },
-  "profileStarted": {
-    "message": "Iniciado — veja o progresso no ícone da extensão"
   },
   "errorThumbnailOnly": {
     "message": "Aqui só há uma prévia; abra a publicação para salvar o original"

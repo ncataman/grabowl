@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Скачать всё"
   },
+  "profileDownloadPfp": {
+    "message": "Фото профиля"
+  },
   "profileCollecting": {
     "message": "Сбор…"
-  },
-  "profileStarted": {
-    "message": "Запущено — прогресс виден на значке расширения"
   },
   "errorThumbnailOnly": {
     "message": "Здесь доступен только предпросмотр; откройте публикацию, чтобы сохранить оригинал"

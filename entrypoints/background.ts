@@ -4,10 +4,11 @@
  */
 import { browser } from '../src/lib/browser';
 import { log } from '../src/lib/logger';
-import { buildFilename } from '../src/core/filename';
+import { buildFilename, sanitizeSegment } from '../src/core/filename';
 import { loadSettings } from '../src/core/settings';
+import { isTrustedAsset } from '../src/core/media-index';
 import { DownloadQueue } from '../src/download/queue';
-import { buildZip } from '../src/download/zip-client';
+import { buildZip, releaseZip } from '../src/download/zip-client';
 import { fail, ok, type BulkProgress, type Message } from '../src/core/messaging';
 import type { DownloadSpec, MediaItem } from '../src/core/media-model';
 
@@ -15,6 +16,16 @@ export default defineBackground(() => {
   let queue: DownloadQueue | undefined;
   let adhoc: DownloadQueue | undefined;
   let bulk: BulkProgress | undefined;
+  /** The tab whose profile button (if any) started the current bulk run. */
+  let bulkTabId: number | undefined;
+
+  // Single, eval-time downloads listener. A per-queue listener registered later
+  // would not revive an evicted MV3 worker; this one does, and forwards each
+  // change to whichever queue owns that download.
+  browser.downloads.onChanged.addListener((delta) => {
+    queue?.handleChange(delta);
+    adhoc?.handleChange(delta);
+  });
 
   /**
    * Identifies the current bulk run. A cancelled queue's in-flight downloads
@@ -40,42 +51,76 @@ export default defineBackground(() => {
     await browser.storage.session.set({ [SESSION_KEY]: state });
   }
 
+  /**
+   * Reads the persisted run. Unlike a guard on `bulk`, it always returns the
+   * stored state so Resume can rebuild the queue even after the popup already
+   * repopulated `bulk` via BULK_STATUS.
+   */
   async function restore(): Promise<{ progress: BulkProgress; pending: DownloadSpec[] } | undefined> {
-    if (bulk) return undefined;
     const stored = await browser.storage.session.get(SESSION_KEY);
     const state = stored[SESSION_KEY] as { progress: BulkProgress; pending: DownloadSpec[] } | undefined;
     if (!state?.progress) return undefined;
-    bulk = state.progress;
+    bulk ??= state.progress;
     return state;
   }
 
   function publishProgress() {
     if (!bulk) return;
-    // The popup may be closed; a rejected sendMessage here is expected and harmless.
+    // Reaches the popup (an extension page). A closed popup rejects — harmless.
     browser.runtime.sendMessage({ t: 'BULK_PROGRESS', progress: bulk }).catch(() => {});
+    // runtime.sendMessage does not reach content scripts, so the profile button's
+    // progress must be delivered to its tab explicitly.
+    if (bulkTabId !== undefined) {
+      browser.tabs.sendMessage(bulkTabId, { t: 'BULK_PROGRESS', progress: bulk }).catch(() => {});
+    }
     void persist();
   }
+
+  /**
+   * On worker startup, resume a bulk run that was still running when the
+   * previous worker was evicted. In-flight files (ids lost with the worker) are
+   * re-downloaded — uniquify keeps them from clobbering — the rest continue.
+   */
+  async function resumeIfRunning() {
+    if (queue) return;
+    const state = await restore();
+    if (state?.progress.status === 'running' && state.pending.length) {
+      queue = await rebuildQueue(state.pending);
+      queue.resume();
+    }
+  }
+  void resumeIfRunning();
 
   /** Expand every slide of every item into concrete download specs. */
   function specsFor(items: MediaItem[], pattern: string): DownloadSpec[] {
     return items.flatMap((item) =>
-      item.slides.map((slide, index) => ({
-        url: slide.url,
-        filename: buildFilename(pattern, item, slide, index),
-      })),
+      item.slides
+        .filter((slide) => isTrustedAsset(slide.url))
+        .map((slide, index) => ({
+          url: slide.url,
+          filename: buildFilename(pattern, item, slide, index),
+        })),
     );
   }
 
-  async function startBulk(username: string, items: MediaItem[], useZip: boolean) {
-    // Retire any previous run before touching shared state.
-    queue?.cancel();
-    const mine = ++session;
-    baseDone = 0;
-    baseFailed = 0;
-
+  async function startBulk(
+    username: string,
+    items: MediaItem[],
+    useZip: boolean,
+    tabId: number | undefined,
+  ) {
     const settings = await loadSettings();
     const specs = specsFor(items, settings.filenamePattern);
+    // Bail before mutating any shared state, so a no-op start cannot strand the
+    // previous run's bulk object with a cancelled queue.
     if (!specs.length) return fail('nothing to download');
+
+    // Retire any previous run.
+    queue?.cancel();
+    const mine = ++session;
+    bulkTabId = tabId;
+    baseDone = 0;
+    baseFailed = 0;
 
     bulk = {
       username,
@@ -90,27 +135,42 @@ export default defineBackground(() => {
 
     if (useZip) {
       queue = undefined;
-      try {
-        const url = await buildZip({
-          files: specs.map((spec) => ({ url: spec.url, name: spec.filename.split('/').pop()! })),
-        });
-        await browser.downloads.download({
-          url,
-          filename: `Grabowl/${username}.zip`,
-          conflictAction: 'uniquify',
-        });
-        if (session === mine) bulk = { ...bulk, status: 'done', done: specs.length };
-      } catch (error) {
-        log.error('zip bulk failed', error);
-        if (session === mine) bulk = { ...bulk, status: 'error', message: String(error) };
-      }
-      if (session === mine) publishProgress();
+      // Fire-and-forget: awaiting the whole archive here would hold the
+      // BULK_START message channel open for minutes and Chrome would tear it
+      // down. Completion is reported through publishProgress instead.
+      void runZip(specs, username, mine);
       return ok(bulk);
     }
 
     queue = makeQueue(settings.concurrency, mine);
     queue.enqueue(specs);
     return ok(bulk);
+  }
+
+  async function runZip(specs: DownloadSpec[], username: string, mine: number) {
+    try {
+      const url = await buildZip({
+        files: specs.map((spec) => ({ url: spec.url, name: spec.filename.split('/').pop()! })),
+      });
+      // A superseded run must not still write its archive to disk.
+      if (session !== mine) {
+        await releaseZip(url);
+        return;
+      }
+      await browser.downloads.download({
+        url,
+        filename: `Grabowl/${sanitizeSegment(username)}.zip`,
+        conflictAction: 'uniquify',
+      });
+      // Free the archive once the browser has taken it, so it does not sit in
+      // the offscreen document's memory for the rest of the session.
+      await releaseZip(url);
+      if (session === mine && bulk) bulk = { ...bulk, status: 'done', done: specs.length };
+    } catch (error) {
+      log.error('zip bulk failed', error);
+      if (session === mine && bulk) bulk = { ...bulk, status: 'error', message: String(error) };
+    }
+    if (session === mine) publishProgress();
   }
 
   function makeQueue(concurrency: number, mine: number): DownloadQueue {
@@ -142,7 +202,16 @@ export default defineBackground(() => {
   }
 
   browser.runtime.onMessage.addListener(
-    (raw: unknown, _sender: unknown, sendResponse: (r: unknown) => void) => {
+    (
+      raw: unknown,
+      sender: { id?: string; tab?: { id?: number } },
+      sendResponse: (r: unknown) => void,
+    ) => {
+      // Only our own content scripts and pages may drive downloads. Nothing
+      // external is reachable today, but this keeps the RPC closed if a broader
+      // match or externally_connectable is ever added.
+      if (sender.id !== browser.runtime.id) return false;
+
       const message = raw as Message;
       // The offscreen document answers ZIP_BUILD itself.
       if (!message?.t || message.t === 'ZIP_BUILD') return false;
@@ -154,7 +223,7 @@ export default defineBackground(() => {
             const { item, slideIndices } = message;
             const chosen = slideIndices ?? item.slides.map((_, i) => i);
             const specs = chosen
-              .filter((i) => item.slides[i])
+              .filter((i) => item.slides[i] && isTrustedAsset(item.slides[i].url))
               .map((i) => ({
                 url: item.slides[i].url,
                 filename: buildFilename(settings.filenamePattern, item, item.slides[i], i),
@@ -168,7 +237,12 @@ export default defineBackground(() => {
             return failed ? fail(`${failed} of ${specs.length} downloads failed`) : ok(done);
           }
           case 'BULK_START':
-            return await startBulk(message.username, message.items, message.options.zip);
+            return await startBulk(
+              message.username,
+              message.items,
+              message.options.zip,
+              sender.tab?.id,
+            );
           case 'BULK_PAUSE':
             if (!queue || !bulk) return fail('nothing to pause');
             queue.pause();
@@ -178,8 +252,10 @@ export default defineBackground(() => {
           case 'BULK_RESUME': {
             // The worker was probably evicted while paused, taking the queue
             // with it; rebuild it from what was persisted.
-            const restored = await restore();
-            if (restored && restored.pending.length) queue = await rebuildQueue(restored.pending);
+            if (!queue) {
+              const restored = await restore();
+              if (restored && restored.pending.length) queue = await rebuildQueue(restored.pending);
+            }
             if (!queue || !bulk) return fail('nothing to resume');
             queue.resume();
             bulk = { ...bulk, status: 'running' };

@@ -2,7 +2,7 @@
 import type { MediaItem } from './media-model';
 
 /** window.postMessage envelope, MAIN world -> ISOLATED content script. */
-export const PAGE_BRIDGE_SOURCE = 'insdown';
+export const PAGE_BRIDGE_SOURCE = 'grabowl';
 
 export type PageBridgeMessage =
   | { source: typeof PAGE_BRIDGE_SOURCE; kind: 'MEDIA_FOUND'; items: MediaItem[] }

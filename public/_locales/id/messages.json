@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Unduh semua"
   },
+  "profileDownloadPfp": {
+    "message": "Foto profil"
+  },
   "profileCollecting": {
     "message": "Mengumpulkan…"
-  },
-  "profileStarted": {
-    "message": "Dimulai — lihat progres di ikon ekstensi"
   },
   "errorThumbnailOnly": {
     "message": "Di sini hanya tersedia pratinjau; buka postingannya untuk menyimpan file asli"

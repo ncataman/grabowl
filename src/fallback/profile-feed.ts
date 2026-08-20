@@ -27,6 +27,23 @@ export async function fetchUserId(username: string): Promise<string> {
   return String(id);
 }
 
+/**
+ * The account's profile picture at the largest size Instagram exposes. Uses the
+ * same web_profile_info endpoint and the user's own session — no extra HTTP path.
+ */
+export async function fetchProfilePicUrl(username: string): Promise<string> {
+  const response = await fetch(
+    `https://www.instagram.com/api/v1/users/web_profile_info/?username=${encodeURIComponent(username)}`,
+    { headers: privateApiHeaders(), credentials: 'include' },
+  );
+  if (!response.ok) throw new Error(`profile lookup failed (${response.status})`);
+  const payload = await response.json();
+  const user = payload?.data?.user;
+  const url: unknown = user?.hd_profile_pic_url_info?.url ?? user?.profile_pic_url_hd;
+  if (typeof url !== 'string' || !url) throw new Error('profile picture not found');
+  return url;
+}
+
 async function fetchFeedPage(userId: string, maxId?: string): Promise<FeedPage> {
   const params = new URLSearchParams({ count: '12' });
   if (maxId) params.set('max_id', maxId);

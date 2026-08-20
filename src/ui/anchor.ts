@@ -10,7 +10,7 @@ import { pickAdapter, resetAdapter } from '../adapters/registry';
 import type { MediaSurface } from '../adapters/selectors';
 import { mountCornerButton, mountOverlay, type OverlayActions, type OverlayHandle } from './overlay';
 
-const MOUNTED_ATTR = 'data-insdown-mounted';
+const MOUNTED_ATTR = 'data-grabowl-mounted';
 
 export interface AnchorControllerOptions {
   /** Builds the click handlers for a surface; return undefined to skip mounting. */
@@ -69,7 +69,6 @@ export class AnchorController {
       log.warn('findSurfaces failed', error);
       return;
     }
-    document.documentElement.setAttribute('data-insdown-surfaces', String(surfaces.length));
 
     for (const surface of surfaces) {
       // The button hangs off the action bar where there is one, and off the tile
@@ -85,7 +84,7 @@ export class AnchorController {
       const stamp = `${surface.kind}:${actions.slideCount}`;
       if (
         anchor.getAttribute(MOUNTED_ATTR) === stamp &&
-        anchor.querySelector('[data-insdown-button]')
+        anchor.querySelector('[data-grabowl-button]')
       ) {
         continue;
       }

@@ -13,7 +13,7 @@ import { collectMedia } from '../src/core/parse-media';
 import { PAGE_BRIDGE_SOURCE, type PageBridgeMessage } from '../src/core/messaging';
 import type { MediaItem } from '../src/core/media-model';
 
-const INSTALLED_FLAG = '__insdown_installed__';
+const INSTALLED_FLAG = '__grabowl_installed__';
 
 /** Whichever JSON.parse existed before we touched it. */
 const nativeParse = JSON.parse;
@@ -123,7 +123,7 @@ function installXhrHook() {
   const originalOpen = proto.open;
   if (typeof originalOpen !== 'function') return;
 
-  const URL_KEY = '__insdownUrl';
+  const URL_KEY = '__grabowlUrl';
   try {
     proto.open = function (this: any, ...args: any[]) {
       this[URL_KEY] = urlOf(args[1]);

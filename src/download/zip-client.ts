@@ -52,3 +52,20 @@ export async function buildZip({ files }: ZipRequest): Promise<string> {
   const { zipFiles } = await import('./zip-worker');
   return zipFiles(files);
 }
+
+/**
+ * Release the archive after the download has taken it. On Chromium, closing the
+ * offscreen document tears down every object URL it created; on Firefox the blob
+ * URL was made in this context, so revoke it here.
+ */
+export async function releaseZip(url: string): Promise<void> {
+  if (hasOffscreen) {
+    await (browser as any).offscreen?.closeDocument?.().catch?.(() => {});
+    return;
+  }
+  try {
+    URL.revokeObjectURL(url);
+  } catch {
+    /* already gone */
+  }
+}

@@ -33,23 +33,23 @@ function minActionIcons(): number {
 }
 
 function findActionBars(root: ParentNode): HTMLElement[] {
-  const candidates = new Set<HTMLElement>();
   const minimum = minActionIcons();
 
+  // Count icon buttons per ancestor in a single pass over each button's chain.
+  // The old version ran a full querySelectorAll for every ancestor of every
+  // button — O(buttons × depth × page) — which stalled scrolling on long feeds.
+  const counts = new Map<HTMLElement, number>();
   for (const button of iconButtons(root)) {
     let node = button.parentElement;
     for (let depth = 0; node && depth < 7; depth++) {
-      if (iconButtons(node).length >= minimum) {
-        candidates.add(node);
-        break;
-      }
+      counts.set(node, (counts.get(node) ?? 0) + 1);
       node = node.parentElement;
     }
   }
 
+  const bars = [...counts].filter(([, n]) => n >= minimum).map(([el]) => el);
   // Keep the innermost cluster of any nested pair, otherwise a container holding
   // every reel on the page would qualify as one enormous bar.
-  const bars = [...candidates];
   return bars.filter((bar) => !bars.some((other) => other !== bar && bar.contains(other)));
 }
 
@@ -108,8 +108,13 @@ function shortcodeOf(container: HTMLElement): string | undefined {
  * cheap even though it reads computed style.
  */
 function hasBackgroundImage(tile: HTMLElement): boolean {
-  for (const el of tile.querySelectorAll<HTMLElement>('*')) {
-    if (getComputedStyle(el).backgroundImage !== 'none') return true;
+  // getComputedStyle forces a style recalc, so cap the walk: reels-tab covers
+  // sit within the first handful of descendants, and scanning an entire tile
+  // subtree on every sweep is what made the grid janky.
+  const candidates = tile.querySelectorAll<HTMLElement>('*');
+  const limit = Math.min(candidates.length, 12);
+  for (let i = 0; i < limit; i++) {
+    if (getComputedStyle(candidates[i]).backgroundImage !== 'none') return true;
   }
   return false;
 }
@@ -150,6 +155,13 @@ export const adapter202608: SelectorSet = {
     const byContainer = new Map<HTMLElement, MediaSurface>();
 
     for (const bar of findActionBars(root)) {
+      // A profile header has its own row of icon buttons (follow, message, more)
+      // and a large avatar above it, so it looks exactly like a post to the
+      // detector. A feed post's author row is a header too, but it lives inside
+      // an <article>; the profile one does not.
+      const header = bar.closest('header');
+      if (header && !header.closest('article')) continue;
+
       const owner = ownerOf(bar);
       if (!owner) continue;
       const { container, mediaEl } = owner;

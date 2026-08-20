@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Alle laden"
   },
+  "profileDownloadPfp": {
+    "message": "Profilbild"
+  },
   "profileCollecting": {
     "message": "Wird gesammelt…"
-  },
-  "profileStarted": {
-    "message": "Gestartet — Fortschritt siehe Erweiterungssymbol"
   },
   "errorThumbnailOnly": {
     "message": "Hier gibt es nur eine Vorschau; öffne den Beitrag, um das Original zu speichern"

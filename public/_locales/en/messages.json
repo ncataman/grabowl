@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "Download all"
   },
+  "profileDownloadPfp": {
+    "message": "Profile picture"
+  },
   "profileCollecting": {
     "message": "Collecting…"
-  },
-  "profileStarted": {
-    "message": "Started — see the extension icon for progress"
   },
   "errorThumbnailOnly": {
     "message": "Only a preview is available here; open the post to save the original"

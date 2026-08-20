@@ -23,7 +23,7 @@ import { mountProfileButton, type ProfileButtonHandle } from '../src/ui/profile-
 import { loadSettings } from '../src/core/settings';
 import { fetchMediaByShortcode } from '../src/fallback/info-api';
 import { scrapeSurface } from '../src/fallback/dom-scrape';
-import { paginateProfile } from '../src/fallback/profile-feed';
+import { paginateProfile, fetchProfilePicUrl } from '../src/fallback/profile-feed';
 import { t } from '../src/ui/i18n-dom';
 import type { MediaItem } from '../src/core/media-model';
 
@@ -31,8 +31,6 @@ export default defineContentScript({
   matches: ['*://www.instagram.com/*'],
   runAt: 'document_start',
   main() {
-    // Proof of injection, readable from the page for diagnosis.
-    document.documentElement.setAttribute('data-insdown', 'ready');
     const index = new MediaIndex();
 
     window.addEventListener('message', (event) => {
@@ -119,17 +117,20 @@ export default defineContentScript({
      * post directly and keep whichever is larger. The result is cached in the
      * index, so this costs at most one request per post.
      */
-    const FULL_SIZE_PIXELS = 1080 * 1080;
+    // Instagram's full renditions are 1080 on the long edge. Judging by the long
+    // edge, not by area, stops a 1080×608 landscape video or a portrait reel from
+    // needlessly triggering a throttled private-API call on every download.
+    const FULL_SIZE_EDGE = 1080;
 
     async function ensureBestQuality(item: MediaItem): Promise<MediaItem> {
       const code = item.shortcode;
       if (!code) return item;
 
-      const pixels = Math.max(
+      const longestEdge = Math.max(
         0,
-        ...item.slides.map((s) => (s.width ?? 0) * (s.height ?? 0)),
+        ...item.slides.map((s) => Math.max(s.width ?? 0, s.height ?? 0)),
       );
-      if (pixels >= FULL_SIZE_PIXELS) return item;
+      if (longestEdge >= FULL_SIZE_EDGE) return item;
 
       try {
         const fetched = await fetchMediaByShortcode(code);
@@ -170,23 +171,36 @@ export default defineContentScript({
         return;
       }
 
-      if (profileButtonFor === username && header.querySelector('[data-insdown-profile]')) return;
+      if (profileButtonFor === username && header.querySelector('[data-grabowl-profile]')) return;
 
       profileButton?.destroy();
       profileButtonFor = username;
-      profileButton = mountProfileButton(header, async () => {
-        const settings = await loadSettings();
-        const items = await collectBulk(username, settings.activePagination, settings.bulkCap);
-        if (!items.length) throw new Error(t('popupNothingFound'));
+      profileButton = mountProfileButton(header, {
+        async onDownloadAll() {
+          const settings = await loadSettings();
+          const items = await collectBulk(username, settings.activePagination, settings.bulkCap);
+          if (!items.length) throw new Error(t('popupNothingFound'));
 
-        const result = (await browser.runtime.sendMessage({
-          t: 'BULK_START',
-          username,
-          items,
-          options: { zip: settings.zipBulk },
-        } as Message)) as MessageResult | undefined;
+          const result = (await browser.runtime.sendMessage({
+            t: 'BULK_START',
+            username,
+            items,
+            options: { zip: settings.zipBulk },
+          } as Message)) as MessageResult | undefined;
 
-        if (!result?.ok) throw new Error(result?.error ?? t('errorDownloadFailed'));
+          if (!result?.ok) throw new Error(result?.error ?? t('errorDownloadFailed'));
+        },
+        async onDownloadPfp() {
+          const url = await fetchProfilePicUrl(username);
+          const item: MediaItem = {
+            pk: `pfp_${username}`,
+            shortcode: `${username}_profile`,
+            type: 'image',
+            username,
+            slides: [{ kind: 'image', url }],
+          };
+          await download(item);
+        },
       });
     }
 
@@ -210,8 +224,8 @@ export default defineContentScript({
       if (!next || next === gridButton) return;
       gridButton = next;
       document
-        .querySelectorAll('[data-insdown-button]')
-        .forEach((el) => el.parentElement?.removeAttribute('data-insdown-mounted'));
+        .querySelectorAll('[data-grabowl-button]')
+        .forEach((el) => el.parentElement?.removeAttribute('data-grabowl-mounted'));
       controller.sweep();
     });
 
@@ -285,7 +299,6 @@ export default defineContentScript({
     );
 
     function startUi() {
-      document.documentElement.setAttribute('data-insdown', 'ui');
       controller.start();
 
       // Mount buttons that only became possible once a payload arrived — a post

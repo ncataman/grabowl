@@ -53,4 +53,23 @@ describe('buildFilename', () => {
       '{nope}_C1imAge01.jpg',
     );
   });
+
+  it('strips unicode bidi overrides from token values', () => {
+    const spoof = { ...item, username: 'na\u202etest' };
+    const out = buildFilename('{username}/{shortcode}.{ext}', spoof, item.slides[0], 0);
+    expect(out).not.toMatch(/[\u202a-\u202e\u2066-\u2069]/);
+  });
+
+  it('prefixes Windows reserved device names', () => {
+    const con = { ...item, username: 'con' };
+    const out = buildFilename('{username}/x.{ext}', con, item.slides[0], 0);
+    expect(out.startsWith('_con/')).toBe(true);
+  });
+
+  it('never lets a token inject a path separator', () => {
+    const evil = { ...item, username: 'a/../../etc' };
+    const out = buildFilename('{username}/x.{ext}', evil, item.slides[0], 0);
+    expect(out.split('/').length).toBe(2);
+  });
+
 });

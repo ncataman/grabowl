@@ -135,3 +135,24 @@ is under Developer Dashboard → the item → Analytics.
 2. Edge Partner Center and Firefox AMO accounts — both free.
 3. The one-time manual listing creation on Chrome and Edge.
 4. API credentials added as repository secrets; see `.github/workflows/release.yml`.
+
+## Reviewer notes (submit with the listing)
+
+Grabowl reads the media data Instagram already delivers to the page and saves it
+to the user's Downloads folder. Points a reviewer will want stated plainly:
+
+- **Only the user's own session is used.** When a post is not already captured,
+  the extension asks Instagram's own web endpoints (`/api/v1/media/{pk}/info/`,
+  `/api/v1/users/web_profile_info/`) from the page context with the cookies the
+  user is already signed in with. No credentials are read, stored, or sent
+  anywhere; the CSRF token and app id are the values the Instagram web app itself
+  uses, needed only so the request is accepted.
+- **Active timeline pagination is opt-in and off by default** (`activePagination`
+  in settings), and throttled to one request every few seconds to protect the
+  account. Every single download otherwise makes at most one lookup, only on a
+  cache miss.
+- **No data collection.** No analytics, no telemetry, no servers, no external
+  requests beyond Instagram and its CDN. Install counts come from the store
+  dashboards. See PRIVACY.md.
+- **Permissions** are limited to `downloads`, `storage`, `offscreen` and the four
+  Instagram/CDN hosts; justifications are in the table above.

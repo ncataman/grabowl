@@ -3,14 +3,27 @@ import type { MediaItem, MediaSlide } from './media-model';
 
 export const DEFAULT_PATTERN = 'Grabowl/{username}/{date}_{shortcode}_{index}.{ext}';
 
-/** Strip characters Chrome rejects in downloads.filename, keeping the path separators. */
-function sanitizeSegment(value: string): string {
-  return value
+/** Windows refuses these as file or directory names, with or without extension. */
+const WINDOWS_RESERVED = /^(con|prn|aux|nul|com[1-9]|lpt[1-9])(\.|$)/i;
+
+/**
+ * Make one path segment safe for downloads.filename.
+ * Also strips Unicode bidi overrides: a username or shortcode comes straight
+ * from the (possibly forged) payload, and an embedded RTL override could spoof
+ * how the name reads on the download shelf.
+ */
+export function sanitizeSegment(value: string): string {
+  const cleaned = value
+    .replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, '')
     .replace(/[<>:"/\\|?*\x00-\x1f]/g, '_')
     .replace(/^\.+/, '_')
+    .replace(/[. ]+$/, '')
     .replace(/\s+/g, ' ')
     .trim()
-    .slice(0, 80) || 'unknown';
+    .slice(0, 80)
+    .trim();
+  if (!cleaned) return 'unknown';
+  return WINDOWS_RESERVED.test(cleaned) ? `_${cleaned}` : cleaned;
 }
 
 function extensionOf(slide: MediaSlide): string {
@@ -57,6 +70,6 @@ export function buildFilename(
   return expanded
     .split('/')
     .filter(Boolean)
-    .map((segment, i, all) => (i === all.length - 1 ? segment.replace(/[<>:"\\|?*\x00-\x1f]/g, '_') : sanitizeSegment(segment)))
+    .map((segment) => sanitizeSegment(segment))
     .join('/');
 }

@@ -26,11 +26,11 @@
   "profileDownloadAll": {
     "message": "सभी डाउनलोड करें"
   },
+  "profileDownloadPfp": {
+    "message": "प्रोफ़ाइल फ़ोटो"
+  },
   "profileCollecting": {
     "message": "एकत्र किया जा रहा है…"
-  },
-  "profileStarted": {
-    "message": "शुरू हुआ — प्रगति एक्सटेंशन आइकॉन पर देखें"
   },
   "errorThumbnailOnly": {
     "message": "यहाँ केवल झलक उपलब्ध है; मूल फ़ाइल सहेजने के लिए पोस्ट खोलें"
