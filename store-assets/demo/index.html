@@ -443,7 +443,9 @@
       break;
     case '5': // settings + popup
       show('scene-settings');
-      annotate('.bar');
+      // The primary button, not the progress bar: a ring over the bar covers
+      // the counts underneath it.
+      annotate('.btn.primary');
       break;
     case '6': // reels tab grid (portrait tiles)
       show('scene-profile');
