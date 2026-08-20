@@ -98,6 +98,7 @@ src/
   fallback/   media lookup, DOM scraping, profile pagination
   download/   queue and zip
   ui/         overlay button, anchoring, i18n helper
+store-assets/ screenshots, promo tiles, listing copy, privacy policy page
 ```
 
 ### Design notes worth knowing before changing things
@@ -137,6 +138,21 @@ Buttons stop appearing when Instagram's markup shifts. Every DOM assumption live
 in `src/adapters/`; add a new dated adapter implementing `SelectorSet`, register it
 at the front of the list in `src/adapters/registry.ts`, and the rest of the code is
 untouched. Media parsing is unaffected — that follows the API payloads, not the DOM.
+
+## Store assets
+
+`store-assets/` holds everything the three listings need, and regenerates from
+source:
+
+```bash
+./store-assets/generate.sh --all
+```
+
+That renders 1280×800 screenshots for all ten languages from
+`store-assets/demo/index.html` — a reproduction of Instagram's layout with
+invented accounts and generated artwork, so no real person's photos or handle
+ends up in our listing. Listing text lives in `store-assets/listing.json` and is
+checked against every store's limits by `npm test`. See [STORE.md](STORE.md).
 
 ## Privacy
 

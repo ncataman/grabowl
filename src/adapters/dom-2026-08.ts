@@ -170,9 +170,7 @@ export const adapter202608: SelectorSet = {
     }
 
     surfaces.push(...byContainer.values());
-    const grid = findGridTiles(root);
-    document.documentElement.setAttribute('data-insdown-grid', String(grid.length));
-    surfaces.push(...grid);
+    surfaces.push(...findGridTiles(root));
     return surfaces;
   },
 
