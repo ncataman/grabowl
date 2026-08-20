@@ -1,0 +1,75 @@
+{
+  "extName": { "message": "InsDown — Pengunduh untuk Instagram" },
+  "extDescription": {
+    "message": "Simpan foto, video, reels, carousel, dan story Instagram dengan kualitas asli. Gratis, tanpa akun, tanpa batas."
+  },
+
+  "overlayDownload": { "message": "Unduh" },
+  "overlayDownloadAll": { "message": "Semua" },
+  "overlayDownloadAllTitle": { "message": "Unduh semua gambar dalam carousel" },
+  "overlaySaved": { "message": "Tersimpan" },
+  "errorNoMedia": { "message": "Tidak ada media yang bisa diunduh di sini" },
+  "errorDownloadFailed": { "message": "Unduhan gagal" },
+  "profileDownloadAll": { "message": "Unduh semua" },
+  "profileCollecting": { "message": "Mengumpulkan…" },
+  "profileStarted": { "message": "Dimulai — lihat progres di ikon ekstensi" },
+  "errorThumbnailOnly": { "message": "Di sini hanya tersedia pratinjau; buka postingannya untuk menyimpan file asli" },
+
+  "popupTitle": { "message": "InsDown" },
+  "popupSettings": { "message": "Pengaturan" },
+  "popupDetected": { "message": "media ditemukan di tab ini" },
+  "popupNoProfile": { "message": "Buka sebuah profil untuk mengunduh sekaligus." },
+  "popupOpenInstagram": { "message": "Buka instagram.com untuk memulai." },
+  "popupProfileFound": {
+    "message": "@$USERNAME$ — $COUNT$ postingan siap dari yang sudah Anda gulir.",
+    "placeholders": {
+      "username": { "content": "$1" },
+      "count": { "content": "$2" }
+    }
+  },
+  "popupStartBulk": { "message": "Unduh profil ini" },
+  "popupCollecting": { "message": "Mengumpulkan postingan…" },
+  "popupNothingFound": {
+    "message": "Belum ada yang ditemukan — gulir profilnya dulu, atau aktifkan pengambilan postingan lama."
+  },
+  "popupActivePagination": {
+    "message": "Ambil juga postingan lama dari Instagram (lebih lambat, gunakan seperlunya)"
+  },
+  "popupZip": { "message": "Simpan sebagai satu file .zip" },
+  "popupProgress": {
+    "message": "$DONE$ dari $TOTAL$ tersimpan, $FAILED$ gagal",
+    "placeholders": {
+      "done": { "content": "$1" },
+      "total": { "content": "$2" },
+      "failed": { "content": "$3" }
+    }
+  },
+  "popupPause": { "message": "Jeda" },
+  "popupResume": { "message": "Lanjutkan" },
+  "popupCancel": { "message": "Batal" },
+
+  "optionsTitle": { "message": "Pengaturan InsDown" },
+  "optionsPattern": { "message": "Pola nama file" },
+  "optionsPatternHelp": {
+    "message": "Variabel: {username} {shortcode} {pk} {date} {index} {ext}. Garis miring membuat folder."
+  },
+  "optionsPreview": { "message": "Pratinjau" },
+  "optionsConcurrency": { "message": "Unduhan bersamaan" },
+  "optionsCap": { "message": "Maksimum media per sesi unduhan massal" },
+  "optionsCapHelp": {
+    "message": "Instagram memblokir sementara akun yang meminta terlalu banyak dalam waktu singkat. Jaga angka ini tetap rendah."
+  },
+  "optionsActive": { "message": "Ambil postingan lama dari Instagram saat mengunduh massal" },
+  "optionsZip": { "message": "Gabungkan unduhan massal menjadi satu .zip" },
+  "optionsGridButton": { "message": "Tombol unduh pada thumbnail" },
+  "optionsGridHover": { "message": "Tampilkan saat kursor di atasnya" },
+  "optionsGridAlways": { "message": "Selalu tampilkan" },
+  "optionsSave": { "message": "Simpan" },
+  "optionsSaved": { "message": "Tersimpan." },
+  "optionsPrivacy": {
+    "message": "InsDown tidak mengumpulkan apa pun. Tanpa akun, tanpa analitik, tanpa server — media langsung dari Instagram ke komputer Anda."
+  },
+  "optionsDisclaimer": {
+    "message": "Tidak berafiliasi dengan, didukung, atau disponsori oleh Instagram maupun Meta."
+  }
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsDown</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 data-i18n="popupTitle">InsDown</h1>
+      <button id="options" class="link" data-i18n="popupSettings">Settings</button>
+    </header>
+
+    <section id="detected">
+      <p class="muted"><span id="count">0</span> <span data-i18n="popupDetected">media detected on this tab</span></p>
+    </section>
+
+    <section id="bulk">
+      <p id="profile-line" class="muted" data-i18n="popupNoProfile">Open a profile to download in bulk.</p>
+      <button id="start" class="primary" hidden></button>
+      <label class="row" hidden id="active-row">
+        <input type="checkbox" id="active" />
+        <span data-i18n="popupActivePagination">Also fetch older posts from Instagram (slower, use sparingly)</span>
+      </label>
+      <label class="row" hidden id="zip-row">
+        <input type="checkbox" id="zip" />
+        <span data-i18n="popupZip">Save as a single .zip</span>
+      </label>
+    </section>
+
+    <section id="progress" hidden>
+      <div class="bar"><div id="fill"></div></div>
+      <p class="muted"><span id="progress-text"></span></p>
+      <div class="row">
+        <button id="pause" data-i18n="popupPause">Pause</button>
+        <button id="cancel" data-i18n="popupCancel">Cancel</button>
+      </div>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

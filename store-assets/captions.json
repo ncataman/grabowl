@@ -1,0 +1,74 @@
+{
+  "_comment": "Screenshot captions per locale. Chrome and Firefox both allow localized screenshots, and a caption in the reader's own language is the single highest-leverage part of a listing. Each entry is [title, subtitle] per scene 1-5. Claims must match across languages: Chrome flags cross-locale metadata inconsistency.",
+
+  "en": {
+    "1": ["Download any post in one click", "The button sits in Instagram's own row — nothing to learn"],
+    "2": ["Carousels: this slide, or all of them", "Saves the slide you are actually looking at"],
+    "3": ["Save from the grid without opening a post", "Hover a thumbnail, click, done"],
+    "4": ["Reels download from the player too", "Original video quality, never a preview"],
+    "5": ["Whole profiles, your filenames, no limits", "Free, no account, and nothing is collected about you"]
+  },
+  "tr": {
+    "1": ["Her gönderiyi tek tıkla indir", "Buton Instagram'ın kendi sırasında — öğrenecek bir şey yok"],
+    "2": ["Galeriler: bu kare ya da hepsi", "Baktığın kareyi indirir, ilkini değil"],
+    "3": ["Gönderiyi açmadan grid'den kaydet", "Küçük resmin üstüne gel, tıkla, bitti"],
+    "4": ["Reels'i oynatıcıdan da indir", "Orijinal video kalitesi, asla önizleme değil"],
+    "5": ["Tüm profil, senin dosya adlarınla, sınırsız", "Ücretsiz, hesap yok, hiçbir veri toplanmıyor"]
+  },
+  "pt_BR": {
+    "1": ["Baixe qualquer publicação com um clique", "O botão fica na própria barra do Instagram"],
+    "2": ["Carrosséis: esta imagem ou todas", "Salva exatamente a imagem que você está vendo"],
+    "3": ["Salve pela grade sem abrir a publicação", "Passe o mouse na miniatura, clique, pronto"],
+    "4": ["Reels também baixam pelo player", "Qualidade original do vídeo, nunca uma prévia"],
+    "5": ["Perfis inteiros, seus nomes de arquivo, sem limites", "Grátis, sem conta e sem coletar nada sobre você"]
+  },
+  "es": {
+    "1": ["Descarga cualquier publicación con un clic", "El botón está en la propia barra de Instagram"],
+    "2": ["Carruseles: esta imagen o todas", "Guarda justo la imagen que estás viendo"],
+    "3": ["Guarda desde la cuadrícula sin abrir la publicación", "Pasa el cursor por la miniatura, haz clic y listo"],
+    "4": ["Los reels también se descargan desde el reproductor", "Calidad de vídeo original, nunca una vista previa"],
+    "5": ["Perfiles enteros, tus nombres de archivo, sin límites", "Gratis, sin cuenta y sin recopilar nada sobre ti"]
+  },
+  "id": {
+    "1": ["Unduh postingan apa pun dengan satu klik", "Tombolnya ada di baris milik Instagram sendiri"],
+    "2": ["Carousel: gambar ini, atau semuanya", "Menyimpan gambar yang sedang Anda lihat"],
+    "3": ["Simpan dari grid tanpa membuka postingan", "Arahkan kursor ke thumbnail, klik, selesai"],
+    "4": ["Reels juga bisa diunduh dari pemutar", "Kualitas video asli, bukan pratinjau"],
+    "5": ["Seluruh profil, nama file Anda sendiri, tanpa batas", "Gratis, tanpa akun, dan tidak mengumpulkan data Anda"]
+  },
+  "hi": {
+    "1": ["कोई भी पोस्ट एक क्लिक में डाउनलोड करें", "बटन Instagram की अपनी पंक्ति में ही है"],
+    "2": ["कैरोसेल: यह तस्वीर, या सभी", "आप जो तस्वीर देख रहे हैं वही सहेजता है"],
+    "3": ["पोस्ट खोले बिना ग्रिड से सहेजें", "थंबनेल पर कर्सर ले जाएँ, क्लिक करें, हो गया"],
+    "4": ["रील प्लेयर से भी डाउनलोड होती हैं", "मूल वीडियो गुणवत्ता, कभी झलक नहीं"],
+    "5": ["पूरी प्रोफ़ाइल, आपके फ़ाइल नाम, कोई सीमा नहीं", "मुफ़्त, बिना खाते के, और आपका कोई डेटा एकत्र नहीं"]
+  },
+  "ar": {
+    "1": ["نزّل أي منشور بنقرة واحدة", "الزر داخل شريط إنستغرام نفسه"],
+    "2": ["الألبومات: هذه الصورة أو كلها", "يحفظ الصورة التي تنظر إليها فعلًا"],
+    "3": ["احفظ من الشبكة دون فتح المنشور", "مرّر المؤشر على الصورة المصغّرة ثم انقر"],
+    "4": ["الريلز تُنزَّل من المشغّل أيضًا", "جودة الفيديو الأصلية، وليست معاينة"],
+    "5": ["حسابات كاملة، بأسماء ملفاتك، وبلا حدود", "مجاني، بدون حساب، ولا يجمع عنك أي بيانات"]
+  },
+  "ru": {
+    "1": ["Скачивайте любую публикацию одним щелчком", "Кнопка стоит в самой панели Instagram"],
+    "2": ["Карусели: этот кадр или все сразу", "Сохраняет именно тот кадр, который вы смотрите"],
+    "3": ["Сохраняйте из сетки, не открывая публикацию", "Наведите курсор на миниатюру и нажмите"],
+    "4": ["Reels скачиваются и из плеера", "Исходное качество видео, а не превью"],
+    "5": ["Целые профили, ваши имена файлов, без лимитов", "Бесплатно, без аккаунта и без сбора ваших данных"]
+  },
+  "de": {
+    "1": ["Jeden Beitrag mit einem Klick laden", "Die Schaltfläche sitzt in Instagrams eigener Leiste"],
+    "2": ["Karussells: dieses Bild oder alle", "Speichert genau das Bild, das du gerade siehst"],
+    "3": ["Aus dem Raster speichern, ohne den Beitrag zu öffnen", "Auf das Vorschaubild zeigen, klicken, fertig"],
+    "4": ["Reels laden auch aus dem Player", "Originale Videoqualität, nie eine Vorschau"],
+    "5": ["Ganze Profile, deine Dateinamen, ohne Limit", "Kostenlos, ohne Konto, und ohne Daten über dich zu sammeln"]
+  },
+  "fr": {
+    "1": ["Téléchargez n’importe quelle publication en un clic", "Le bouton se place dans la barre d’Instagram"],
+    "2": ["Carrousels : cette image ou toutes", "Enregistre exactement l’image que vous regardez"],
+    "3": ["Enregistrez depuis la grille sans ouvrir la publication", "Survolez la miniature, cliquez, c’est fait"],
+    "4": ["Les reels se téléchargent aussi depuis le lecteur", "Qualité vidéo d’origine, jamais un aperçu"],
+    "5": ["Des profils entiers, vos noms de fichiers, sans limite", "Gratuit, sans compte, et aucune donnée collectée sur vous"]
+  }
+}

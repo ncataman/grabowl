@@ -1,0 +1,25 @@
+name: check
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # .npmrc pins --localstorage-file, which WXT needs on Node 25. Node 22 here
+      # does not need it, but installing normally keeps the file authoritative.
+      - run: npm ci
+
+      - run: npm run compile
+      - run: npm test
+      - run: npm run build:all

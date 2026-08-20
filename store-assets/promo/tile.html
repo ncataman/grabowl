@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>InsDown promo tiles</title>
+<!--
+  Promo tiles for Chrome (440x280 small, 1400x560 marquee) and Edge.
+  Google's guidance: fill the whole region, saturated colour, very little text,
+  no large light areas. Deliberately avoids Instagram's glyph and its
+  purple-orange gradient — using either invites a Meta trademark complaint,
+  which is what actually removes downloader extensions from the stores.
+-->
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { overflow: hidden; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font: 700 16px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #fff;
+    background: radial-gradient(120% 140% at 12% 0%, #2f7cf6 0%, #1546b4 42%, #0b1f52 100%);
+  }
+  .tile { position: relative; width: 100%; height: 100%; display: flex; align-items: center; overflow: hidden; }
+
+  /* Depth: soft orbs behind the content, no flat areas. */
+  .tile::before, .tile::after {
+    content: ""; position: absolute; border-radius: 50%; filter: blur(2px);
+  }
+  .tile::before {
+    width: 46%; aspect-ratio: 1; right: -8%; top: -22%;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.32), rgba(255,255,255,0) 62%);
+  }
+  .tile::after {
+    width: 60%; aspect-ratio: 1; left: -18%; bottom: -46%;
+    background: radial-gradient(circle at 60% 40%, rgba(0,229,255,.28), rgba(0,229,255,0) 62%);
+  }
+
+  .inner { position: relative; display: flex; align-items: center; gap: 5%; padding: 0 7%; width: 100%; }
+
+  .mark {
+    flex: none;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.14);
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 26%;
+    backdrop-filter: blur(6px);
+  }
+  .mark svg { stroke: #fff; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+
+  .words { min-width: 0; }
+  .name { letter-spacing: -.02em; }
+  .claim { font-weight: 600; opacity: .92; }
+
+  /* --- small tile: 440x280 --- */
+  body.small { width: 440px; height: 280px; }
+  body.small .mark { width: 96px; height: 96px; }
+  body.small .mark svg { width: 54px; height: 54px; }
+  body.small .name { font-size: 40px; }
+  body.small .claim { font-size: 15px; margin-top: 6px; }
+
+  /* --- marquee: 1400x560 --- */
+  body.marquee { width: 1400px; height: 560px; }
+  body.marquee .inner { gap: 4%; padding: 0 9%; }
+  body.marquee .mark { width: 210px; height: 210px; }
+  body.marquee .mark svg { width: 120px; height: 120px; }
+  body.marquee .name { font-size: 96px; }
+  body.marquee .claim { font-size: 33px; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="tile">
+  <div class="inner">
+    <div class="mark">
+      <svg viewBox="0 0 24 24"><path d="M12 3v13"/><path d="m6.5 11.5 5.5 5.5 5.5-5.5"/><path d="M4 21h16"/></svg>
+    </div>
+    <div class="words">
+      <div class="name">InsDown</div>
+      <div class="claim" id="claim">Save Instagram media in original quality</div>
+    </div>
+  </div>
+</div>
+<script>
+  const p = new URLSearchParams(location.search);
+  document.body.className = p.get('size') === 'marquee' ? 'marquee' : 'small';
+  const claim = p.get('claim');
+  if (claim) document.getElementById('claim').textContent = decodeURIComponent(escape(atob(claim)));
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "extName": { "message": "InsDown — Downloader para Instagram" },
+  "extDescription": {
+    "message": "Salve fotos, vídeos, reels, carrosséis e stories do Instagram na qualidade original. Grátis, sem conta, sem limites."
+  },
+
+  "overlayDownload": { "message": "Baixar" },
+  "overlayDownloadAll": { "message": "Todos" },
+  "overlayDownloadAllTitle": { "message": "Baixar todas as imagens do carrossel" },
+  "overlaySaved": { "message": "Salvo" },
+  "errorNoMedia": { "message": "Nenhuma mídia para baixar foi encontrada aqui" },
+  "errorDownloadFailed": { "message": "Falha ao baixar" },
+  "profileDownloadAll": { "message": "Baixar tudo" },
+  "profileCollecting": { "message": "Coletando…" },
+  "profileStarted": { "message": "Iniciado — veja o progresso no ícone da extensão" },
+  "errorThumbnailOnly": { "message": "Aqui só há uma prévia; abra a publicação para salvar o original" },
+
+  "popupTitle": { "message": "InsDown" },
+  "popupSettings": { "message": "Configurações" },
+  "popupDetected": { "message": "mídias encontradas nesta aba" },
+  "popupNoProfile": { "message": "Abra um perfil para baixar em lote." },
+  "popupOpenInstagram": { "message": "Abra o instagram.com para começar." },
+  "popupProfileFound": {
+    "message": "@$USERNAME$ — $COUNT$ publicações prontas do que você já rolou.",
+    "placeholders": {
+      "username": { "content": "$1" },
+      "count": { "content": "$2" }
+    }
+  },
+  "popupStartBulk": { "message": "Baixar este perfil" },
+  "popupCollecting": { "message": "Coletando publicações…" },
+  "popupNothingFound": {
+    "message": "Nada encontrado ainda — role o perfil primeiro ou ative a busca por publicações antigas."
+  },
+  "popupActivePagination": {
+    "message": "Também buscar publicações antigas no Instagram (mais lento, use com moderação)"
+  },
+  "popupZip": { "message": "Salvar como um único .zip" },
+  "popupProgress": {
+    "message": "$DONE$ de $TOTAL$ salvos, $FAILED$ com falha",
+    "placeholders": {
+      "done": { "content": "$1" },
+      "total": { "content": "$2" },
+      "failed": { "content": "$3" }
+    }
+  },
+  "popupPause": { "message": "Pausar" },
+  "popupResume": { "message": "Continuar" },
+  "popupCancel": { "message": "Cancelar" },
+
+  "optionsTitle": { "message": "Configurações do InsDown" },
+  "optionsPattern": { "message": "Padrão do nome do arquivo" },
+  "optionsPatternHelp": {
+    "message": "Variáveis: {username} {shortcode} {pk} {date} {index} {ext}. Barras criam pastas."
+  },
+  "optionsPreview": { "message": "Prévia" },
+  "optionsConcurrency": { "message": "Downloads simultâneos" },
+  "optionsCap": { "message": "Máximo de mídias por sessão em lote" },
+  "optionsCapHelp": {
+    "message": "O Instagram bloqueia temporariamente contas que fazem muitas solicitações rápidas. Mantenha um valor baixo."
+  },
+  "optionsActive": { "message": "Buscar publicações antigas no Instagram durante o download em lote" },
+  "optionsZip": { "message": "Agrupar downloads em lote em um .zip" },
+  "optionsGridButton": { "message": "Botão de download nas miniaturas" },
+  "optionsGridHover": { "message": "Mostrar ao passar o mouse" },
+  "optionsGridAlways": { "message": "Mostrar sempre" },
+  "optionsSave": { "message": "Salvar" },
+  "optionsSaved": { "message": "Salvo." },
+  "optionsPrivacy": {
+    "message": "O InsDown não coleta nada. Sem contas, sem análises, sem servidores — as mídias vão direto do Instagram para o seu computador."
+  },
+  "optionsDisclaimer": {
+    "message": "Não é afiliado, endossado nem patrocinado pelo Instagram ou pela Meta."
+  }
+}

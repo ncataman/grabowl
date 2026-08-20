@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>InsDown — store screenshot stage</title>
+<!--
+  Screenshot stage for the store listings.
+
+  Deliberately NOT a capture of the real instagram.com: publishing screenshots of
+  other people's posts would put their photos and handles in our store listing.
+  This reproduces the layout our buttons attach to, with invented accounts and
+  generated artwork, so every pixel we publish is ours.
+
+  Scenes are selected with ?scene=1..5 so each screenshot is reproducible.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000;
+    --panel: #000;
+    --text: #f5f5f5;
+    --dim: #a8a8a8;
+    --line: #262626;
+    --blue: #0095f6;
+  }
+
+  html, body { width: 1280px; height: 800px; overflow: hidden; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+  }
+
+  /* ---------- left navigation ---------- */
+  nav {
+    width: 245px;
+    flex: none;
+    border-right: 1px solid var(--line);
+    padding: 30px 12px;
+  }
+  .brand {
+    font-family: "Snell Roundhand", "Segoe Script", cursive;
+    font-size: 26px;
+    padding: 0 12px 28px;
+  }
+  .navitem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .navitem.active { font-weight: 700; }
+  .navitem svg { width: 24px; height: 24px; flex: none; }
+
+  /* ---------- generic layout ---------- */
+  main { flex: 1; display: flex; justify-content: center; padding-top: 28px; overflow: hidden; }
+  .col { width: 630px; }
+
+  /* ---------- feed post ---------- */
+  .post { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 18px; }
+  .posthead { display: flex; align-items: center; gap: 12px; padding: 8px 4px 12px; }
+  .avatar {
+    width: 34px; height: 34px; border-radius: 50%; flex: none;
+    background: conic-gradient(from 210deg, #f9ce34, #ee2a7b, #6228d7, #f9ce34);
+    padding: 2px;
+  }
+  .avatar i { display: block; width: 100%; height: 100%; border-radius: 50%; background: #262626; }
+  .handle { font-weight: 600; font-size: 14px; }
+  .dot { color: var(--dim); }
+  .follow { color: var(--blue); font-weight: 600; }
+
+  .media {
+    position: relative;
+    width: 100%;
+    height: 470px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: linear-gradient(140deg, #ff8a3d 0%, #ff3d77 45%, #8b2fd6 100%);
+  }
+  .media.sunset { background: linear-gradient(180deg, #2b1055 0%, #7597de 55%, #ffb46b 100%); }
+  .media.forest { background: linear-gradient(160deg, #0f3d2e 0%, #1f7a52 50%, #a8d5a2 100%); }
+  .media::after {
+    /* Abstract "photo" texture so the tile does not read as an empty gradient. */
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 72% 28%, rgba(255,255,255,.55) 0 6%, transparent 6.5%),
+      radial-gradient(ellipse at 20% 85%, rgba(0,0,0,.35) 0 30%, transparent 60%);
+  }
+
+  .dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 5px; }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.45); }
+  .dots i.on { background: #fff; }
+
+  /* ---------- action bar ---------- */
+  .actions { display: flex; align-items: center; padding: 10px 4px 6px; }
+  .actions .left { display: flex; gap: 14px; }
+  .actions .right { margin-inline-start: auto; display: flex; gap: 14px; }
+  .actions svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.7; }
+  .likes { font-weight: 600; padding: 2px 4px; }
+  .caption { padding: 4px 4px; }
+  .caption b { font-weight: 600; }
+  .time { color: var(--dim); font-size: 12px; padding: 6px 4px; }
+
+  /* our button, matching src/ui/overlay.ts */
+  .insdown-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0; cursor: pointer;
+  }
+  .insdown-btn svg { stroke: #fff; }
+  .insdown-pill {
+    display: inline-flex; align-items: center;
+    padding: 6px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.14);
+    font-size: 12px; font-weight: 700; margin-inline-start: 8px;
+  }
+
+  /* ---------- grid ---------- */
+  .profilehead { display: flex; gap: 76px; padding: 10px 0 34px; }
+  .bigavatar {
+    width: 150px; height: 150px; border-radius: 50%; flex: none;
+    background: conic-gradient(from 40deg, #f9ce34, #ee2a7b, #6228d7, #f9ce34);
+    padding: 4px;
+  }
+  .bigavatar i { display: block; width: 100%; height: 100%; border-radius: 50%; background: #303030; }
+  .profilemeta h2 { font-size: 20px; font-weight: 400; margin-bottom: 18px; }
+  .stats { display: flex; gap: 34px; margin-bottom: 16px; }
+  .stats b { font-weight: 600; }
+  .bio { color: var(--text); font-size: 14px; }
+
+  .dlall {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 8px 16px; border-radius: 10px;
+    background: var(--blue); color: #fff; font-weight: 700; font-size: 14px;
+  }
+  .dlall svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.2; }
+
+  .tabs { display: flex; justify-content: center; gap: 60px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .tab { display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--dim); padding-bottom: 14px; }
+  .tab.active { color: var(--text); border-top: 1px solid #fff; margin-top: -15px; padding-top: 14px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .cell { position: relative; aspect-ratio: 1/1; overflow: hidden; }
+  .cell.reel { aspect-ratio: 9/16; }
+  .cell .corner {
+    position: absolute; top: 8px; inset-inline-end: 8px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(0,0,0,.55);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cell .corner svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+
+  /* ---------- reels player ---------- */
+  .reelstage { display: flex; gap: 18px; align-items: flex-end; }
+  .reelvideo {
+    width: 340px; height: 604px; border-radius: 8px; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #1b2a4a 0%, #d95f3b 60%, #f7c873 100%);
+  }
+  .rail { display: flex; flex-direction: column; gap: 20px; align-items: center; padding-bottom: 20px; }
+  .rail svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.8; }
+  .rail .count { font-size: 12px; margin-top: -14px; }
+
+  /* ---------- options panel ---------- */
+  .options {
+    width: 620px; background: #16181c; border: 1px solid var(--line);
+    border-radius: 14px; padding: 26px;
+  }
+  .options h3 { font-size: 17px; margin-bottom: 18px; }
+  .field { display: block; font-weight: 700; margin-bottom: 6px; font-size: 13px; }
+  .input {
+    width: 100%; padding: 9px 11px; border: 1px solid var(--line);
+    border-radius: 8px; color: var(--text); background: transparent;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+  }
+  .hint { color: var(--dim); font-size: 12px; margin-top: 6px; }
+  .hint code { background: #23262b; padding: 1px 5px; border-radius: 4px; }
+  .row { display: flex; align-items: center; gap: 9px; margin-top: 14px; font-size: 13px; }
+  .check { width: 15px; height: 15px; border: 1px solid #4b5563; border-radius: 4px; flex: none; }
+  .check.on { background: var(--blue); border-color: var(--blue); }
+  select.input { font-family: inherit; }
+
+  /* ---------- popup ---------- */
+  .popup {
+    width: 320px; background: #16181c; border: 1px solid var(--line);
+    border-radius: 14px; padding: 16px;
+  }
+  .popup h4 { font-size: 15px; margin-bottom: 10px; }
+  .bar { height: 6px; border-radius: 999px; background: #2c2f36; overflow: hidden; margin: 10px 0 8px; }
+  .bar i { display: block; height: 100%; width: 62%; background: var(--blue); }
+  .btnrow { display: flex; gap: 8px; margin-top: 10px; }
+  .btn { padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; }
+  .btn.primary { background: var(--blue); border-color: var(--blue); font-weight: 700; }
+
+  [hidden] { display: none !important; }
+
+  /* ---------- store annotation layer ----------
+     A store screenshot has about one second to say what the extension does, so
+     each scene carries a caption and a ring around the control being shown. */
+  #caption {
+    position: fixed; left: 0; right: 0; top: 0;
+    padding: 26px 40px 30px;
+    background: linear-gradient(180deg, rgba(0,149,246,.22), transparent);
+    font-size: 27px; font-weight: 700; letter-spacing: -.01em;
+    text-align: center; text-wrap: balance;
+  }
+  #caption small {
+    display: block; margin-top: 7px;
+    font-size: 15px; font-weight: 500; color: #b9c0c8; letter-spacing: 0;
+  }
+  body.annotated main { padding-top: 118px; }
+
+  /*
+   * In an RTL screenshot the layout must mirror, but the English and numeric
+   * strings inside it are left-to-right runs — without isolation they render as
+   * "likes 18,204" and "HOURS AGO 2", which reads as a broken page.
+   */
+  .navitem, .handle, .likes, .caption, .time, .stats, .count, .tab, .hint, .input, .follow {
+    unicode-bidi: isolate;
+  }
+  [dir="rtl"] .navitem, [dir="rtl"] .likes, [dir="rtl"] .caption,
+  [dir="rtl"] .time, [dir="rtl"] .stats, [dir="rtl"] .hint, [dir="rtl"] .input {
+    direction: ltr;
+    text-align: end;
+  }
+
+  #ring {
+    position: fixed; width: 54px; height: 54px; border-radius: 50%;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 0 6px rgba(0,149,246,.22);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Instagram</div>
+  <div class="navitem active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 10 12 3l8 7v10a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</div>
+  <div class="navitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Search</div>
+  <div class="navitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="m4 6 4 12 4-7 4 7 4-12z"/></svg>Reels</div>
+  <div class="navitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1.5 4.5"/></svg>Messages</div>
+  <div class="navitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>Notifications</div>
+  <div class="navitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Profile</div>
+</nav>
+
+<main>
+  <!-- SCENE 1 & 2: feed post, with our button in the action bar -->
+  <section class="col" id="scene-feed" hidden>
+    <div class="post">
+      <div class="posthead">
+        <div class="avatar"><i></i></div>
+        <span class="handle">wander.lens</span><span class="dot">•</span><span class="dim">6h</span>
+        <span class="follow" style="margin-inline-start:8px">Follow</span>
+      </div>
+      <div class="media sunset">
+        <div class="dots" id="feed-dots" hidden><i></i><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="actions">
+        <div class="left">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1.5 4.5"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m22 3-10 9M22 3l-7 18-3-8-8-3z"/></svg>
+          <span class="insdown-btn">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v13"/><path d="m6.5 11.5 5.5 5.5 5.5-5.5"/><path d="M4 21h16"/></svg>
+          </span>
+          <span class="insdown-pill" id="feed-pill" hidden>All 5</span>
+        </div>
+        <div class="right">
+          <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>
+        </div>
+      </div>
+      <div class="likes">18,204 likes</div>
+      <div class="caption"><b>wander.lens</b> Golden hour on the coast road 🌅</div>
+      <div class="time">2 HOURS AGO</div>
+    </div>
+  </section>
+
+  <!-- SCENE 3: profile grid with hover button + "Download all" -->
+  <section class="col" id="scene-profile" hidden style="width:935px">
+    <div class="profilehead">
+      <div class="bigavatar"><i></i></div>
+      <div class="profilemeta">
+        <h2>studio.northlight</h2>
+        <div class="stats"><span><b>428</b> posts</span><span><b>91.4k</b> followers</span><span><b>212</b> following</span></div>
+        <div class="bio">Landscape &amp; architecture — prints available</div>
+        <div class="dlall">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v13"/><path d="m6.5 11.5 5.5 5.5 5.5-5.5"/><path d="M4 21h16"/></svg>
+          Download all
+        </div>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active">POSTS</div><div class="tab">REELS</div><div class="tab">TAGGED</div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- SCENE 4: reels player with our button at the top of the rail -->
+  <section class="col" id="scene-reel" hidden style="width:auto">
+    <div class="reelstage">
+      <div class="reelvideo"></div>
+      <div class="rail">
+        <span class="insdown-btn">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v13"/><path d="m6.5 11.5 5.5 5.5 5.5-5.5"/><path d="M4 21h16"/></svg>
+        </span>
+        <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
+        <span class="count">4.7M</span>
+        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1.5 4.5"/></svg>
+        <span class="count">7,745</span>
+        <svg viewBox="0 0 24 24"><path d="m22 3-10 9M22 3l-7 18-3-8-8-3z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 5: settings + popup side by side -->
+  <section class="col" id="scene-settings" hidden style="width:auto; display:flex; gap:26px; align-items:flex-start">
+    <div class="options">
+      <h3>InsDown settings</h3>
+      <label class="field">Filename pattern</label>
+      <div class="input">InsDown/{username}/{date}_{shortcode}_{index}.{ext}</div>
+      <div class="hint">Preview: <code>InsDown/studio.northlight/2026-08-20_C9xAmPle01_02.mp4</code></div>
+
+      <label class="field" style="margin-top:20px">Download button on grid thumbnails</label>
+      <div class="input">Show when I hover a thumbnail</div>
+
+      <div class="row"><span class="check on"></span> Bundle bulk downloads into a .zip</div>
+      <div class="row"><span class="check"></span> Fetch older posts from Instagram during bulk download</div>
+      <div class="hint" style="margin-top:18px">InsDown collects nothing. No accounts, no analytics, no servers.</div>
+    </div>
+
+    <div class="popup">
+      <h4>InsDown</h4>
+      <div class="hint">124 media detected on this tab</div>
+      <div class="hint" style="margin-top:10px">@studio.northlight — 96 posts ready</div>
+      <div class="bar"><i></i></div>
+      <div class="hint">148 of 240 saved, 0 failed</div>
+      <div class="btnrow"><span class="btn">Pause</span><span class="btn">Cancel</span></div>
+      <div class="btnrow"><span class="btn primary" style="flex:1;text-align:center">Download this profile</span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Scene selection is in the URL so each screenshot is reproducible.
+  const scene = new URLSearchParams(location.search).get('scene') || '1';
+
+  const DOWNLOAD_ICON =
+    '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M12 3v13"/><path d="m6.5 11.5 5.5 5.5 5.5-5.5"/><path d="M4 21h16"/></svg>';
+
+  // Grid artwork: generated gradients, so nothing published belongs to anyone else.
+  const PALETTES = [
+    ['#ff8a3d', '#ff3d77'], ['#2b1055', '#7597de'], ['#0f3d2e', '#1f7a52'],
+    ['#3a1c71', '#d76d77'], ['#0b486b', '#f56217'], ['#134e5e', '#71b280'],
+    ['#4b1248', '#f0c27b'], ['#1f1c2c', '#928dab'], ['#16222a', '#3a6073'],
+  ];
+
+  function buildGrid(count, reel) {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const [a, b] = PALETTES[i % PALETTES.length];
+      const cell = document.createElement('div');
+      cell.className = 'cell' + (reel ? ' reel' : '');
+      cell.style.background = `linear-gradient(${140 + i * 17}deg, ${a}, ${b})`;
+      // The second tile shows the hovered state, which is what the button does.
+      if (i === 1) cell.innerHTML = `<span class="corner">${DOWNLOAD_ICON}</span>`;
+      grid.appendChild(cell);
+    }
+  }
+
+  const show = (id) => (document.getElementById(id).hidden = false);
+
+  /**
+   * Draws the caption bar and the ring. Caption text arrives base64-encoded in
+   * the URL so the generator can pass any language without escaping trouble.
+   */
+  function annotate(targetSelector) {
+    const raw = new URLSearchParams(location.search).get('cap');
+    if (!raw) return;
+
+    const [title, sub] = JSON.parse(decodeURIComponent(escape(atob(raw))));
+    document.body.classList.add('annotated');
+
+    const bar = document.createElement('div');
+    bar.id = 'caption';
+    bar.textContent = title;
+    if (sub) {
+      const small = document.createElement('small');
+      small.textContent = sub;
+      bar.appendChild(small);
+    }
+    document.body.appendChild(bar);
+    document.documentElement.dir = new URLSearchParams(location.search).get('rtl') ? 'rtl' : 'ltr';
+
+    // The ring is placed after layout so it follows whatever the scene rendered.
+    requestAnimationFrame(() => {
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+      const r = target.getBoundingClientRect();
+      const ring = document.createElement('div');
+      ring.id = 'ring';
+      ring.style.left = `${r.left + r.width / 2 - 27}px`;
+      ring.style.top = `${r.top + r.height / 2 - 27}px`;
+      document.body.appendChild(ring);
+    });
+  }
+
+  switch (scene) {
+    case '1': // feed photo, button in the action row
+      show('scene-feed');
+      annotate('.insdown-btn');
+      break;
+    case '2': // carousel: dots + "All 5"
+      show('scene-feed');
+      document.getElementById('feed-dots').hidden = false;
+      document.getElementById('feed-pill').hidden = false;
+      annotate('#feed-pill');
+      break;
+    case '3': // profile grid, hover button + Download all
+      show('scene-profile');
+      buildGrid(9, false);
+      annotate('.cell .corner');
+      break;
+    case '4': // reels player rail
+      show('scene-reel');
+      annotate('.rail .insdown-btn');
+      break;
+    case '5': // settings + popup
+      show('scene-settings');
+      annotate('.bar');
+      break;
+    case '6': // reels tab grid (portrait tiles)
+      show('scene-profile');
+      document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === 1));
+      buildGrid(6, true);
+      annotate('.cell .corner');
+      break;
+  }
+</script>
+</body>
+</html>

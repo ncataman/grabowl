@@ -1,0 +1,10 @@
+node_modules/
+build/
+.wxt/
+stats.html
+*.log
+.DS_Store
+
+# Generated store assets — reproducible with store-assets/generate.sh
+store-assets/screenshots/
+store-assets/promo/out/

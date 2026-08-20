@@ -1,0 +1,75 @@
+{
+  "extName": { "message": "InsDown — Instagram İndirici" },
+  "extDescription": {
+    "message": "Instagram fotoğraf, video, reels, galeri ve hikâyelerini orijinal kalitede kaydedin. Ücretsiz, hesap gerekmez, sınır yok."
+  },
+
+  "overlayDownload": { "message": "İndir" },
+  "overlayDownloadAll": { "message": "Tümü" },
+  "overlayDownloadAllTitle": { "message": "Tüm kareleri indir" },
+  "overlaySaved": { "message": "Kaydedildi" },
+  "errorNoMedia": { "message": "Burada indirilebilir medya bulunamadı" },
+  "errorDownloadFailed": { "message": "İndirme başarısız" },
+  "profileDownloadAll": { "message": "Tümünü indir" },
+  "profileCollecting": { "message": "Toplanıyor…" },
+  "profileStarted": { "message": "Başladı — ilerleme için eklenti simgesine bakın" },
+  "errorThumbnailOnly": { "message": "Burada yalnızca önizleme var; orijinali kaydetmek için gönderiyi açın" },
+
+  "popupTitle": { "message": "InsDown" },
+  "popupSettings": { "message": "Ayarlar" },
+  "popupDetected": { "message": "medya bu sekmede bulundu" },
+  "popupNoProfile": { "message": "Toplu indirmek için bir profil açın." },
+  "popupOpenInstagram": { "message": "Başlamak için instagram.com'u açın." },
+  "popupProfileFound": {
+    "message": "@$USERNAME$ — kaydırdığınız kadarıyla $COUNT$ gönderi hazır.",
+    "placeholders": {
+      "username": { "content": "$1" },
+      "count": { "content": "$2" }
+    }
+  },
+  "popupStartBulk": { "message": "Bu profili indir" },
+  "popupCollecting": { "message": "Gönderiler toplanıyor…" },
+  "popupNothingFound": {
+    "message": "Henüz bir şey bulunamadı — önce profilde aşağı kaydırın ya da eski gönderileri çekmeyi açın."
+  },
+  "popupActivePagination": {
+    "message": "Eski gönderileri de Instagram'dan çek (daha yavaş, ölçülü kullanın)"
+  },
+  "popupZip": { "message": "Tek bir .zip olarak kaydet" },
+  "popupProgress": {
+    "message": "$TOTAL$ öğeden $DONE$ kaydedildi, $FAILED$ başarısız",
+    "placeholders": {
+      "done": { "content": "$1" },
+      "total": { "content": "$2" },
+      "failed": { "content": "$3" }
+    }
+  },
+  "popupPause": { "message": "Duraklat" },
+  "popupResume": { "message": "Devam et" },
+  "popupCancel": { "message": "İptal" },
+
+  "optionsTitle": { "message": "InsDown ayarları" },
+  "optionsPattern": { "message": "Dosya adı şablonu" },
+  "optionsPatternHelp": {
+    "message": "Değişkenler: {username} {shortcode} {pk} {date} {index} {ext}. Eğik çizgi klasör oluşturur."
+  },
+  "optionsPreview": { "message": "Önizleme" },
+  "optionsConcurrency": { "message": "Eşzamanlı indirme sayısı" },
+  "optionsCap": { "message": "Toplu indirmede en fazla medya" },
+  "optionsCapHelp": {
+    "message": "Instagram çok hızlı istek yapan hesapları geçici olarak engeller. Bu değeri düşük tutun."
+  },
+  "optionsActive": { "message": "Toplu indirmede eski gönderileri Instagram'dan çek" },
+  "optionsZip": { "message": "Toplu indirmeleri .zip olarak paketle" },
+  "optionsGridButton": { "message": "Küçük resimlerde indirme butonu" },
+  "optionsGridHover": { "message": "Üstüne geldiğimde göster" },
+  "optionsGridAlways": { "message": "Her zaman göster" },
+  "optionsSave": { "message": "Kaydet" },
+  "optionsSaved": { "message": "Kaydedildi." },
+  "optionsPrivacy": {
+    "message": "InsDown hiçbir veri toplamaz. Hesap yok, analitik yok, sunucu yok — medya doğrudan Instagram'dan bilgisayarınıza kaydedilir."
+  },
+  "optionsDisclaimer": {
+    "message": "Instagram veya Meta ile bağlantılı değildir, onlar tarafından onaylanmamıştır."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": false
+  },
+  "include": ["entrypoints", "src", "test", "wxt.config.ts", ".wxt/wxt.d.ts"]
+}

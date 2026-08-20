@@ -1,0 +1,92 @@
+name: release
+
+# Publishes a tagged version to all three stores via `wxt submit`
+# (publish-browser-extension under the hood).
+#
+# First submissions are NOT automatable on Chrome or Edge — Chrome's v2 API
+# removed item creation and Edge answers CreateNotAllowed — so create each
+# listing by hand once, then every later version goes out from here. Firefox is
+# different: AMO's API can create the listing too.
+#
+# Chrome uses API v2 with a service account configured in the Developer
+# Dashboard. v1.1 still works but shuts off on 15 October 2026, and its refresh
+# tokens expire in CI; the service account does not.
+#
+# Repository secrets (a store is skipped when its id secret is empty, so this
+# works from day one and gains stores as accounts come online):
+#   CHROME_EXTENSION_ID, CHROME_PUBLISHER_ID,
+#   CHROME_SERVICE_ACCOUNT_CLIENT_EMAIL, CHROME_SERVICE_ACCOUNT_PRIVATE_KEY
+#   EDGE_PRODUCT_ID, EDGE_CLIENT_ID, EDGE_API_KEY
+#   FIREFOX_EXTENSION_ID, FIREFOX_JWT_ISSUER, FIREFOX_JWT_SECRET
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Verify before publishing anything
+        run: npm run compile && npm test
+
+      - name: Confirm the tag matches package.json
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "Tag $tag does not match package.json $pkg" >&2
+            exit 1
+          fi
+
+      - name: Build every store package
+        run: |
+          npm run zip
+          npm run zip:edge
+          npm run zip:firefox
+
+      - name: Chrome Web Store
+        if: ${{ secrets.CHROME_EXTENSION_ID != '' }}
+        env:
+          CHROME_API_VERSION: v2
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+          CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+          CHROME_SERVICE_ACCOUNT_CLIENT_EMAIL: ${{ secrets.CHROME_SERVICE_ACCOUNT_CLIENT_EMAIL }}
+          CHROME_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.CHROME_SERVICE_ACCOUNT_PRIVATE_KEY }}
+        run: npx wxt submit --chrome-zip "$(ls build/*-chrome.zip)"
+
+      - name: Edge Add-ons
+        if: ${{ secrets.EDGE_PRODUCT_ID != '' }}
+        env:
+          EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
+          EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
+          EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
+        run: npx wxt submit --edge-zip "$(ls build/*-edge.zip)"
+
+      - name: Firefox Add-ons
+        if: ${{ secrets.FIREFOX_JWT_ISSUER != '' }}
+        env:
+          FIREFOX_EXTENSION_ID: ${{ secrets.FIREFOX_EXTENSION_ID }}
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
+        # AMO demands readable sources whenever the build is bundled, which ours
+        # is; `wxt zip -b firefox` writes that archive next to the package.
+        run: |
+          npx wxt submit \
+            --firefox-zip "$(ls build/*-firefox.zip)" \
+            --firefox-sources-zip "$(ls build/*-sources.zip)"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: build/*.zip
