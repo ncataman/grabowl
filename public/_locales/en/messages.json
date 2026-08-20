@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — Downloader for Instagram" },
+  "extName": {
+    "message": "Grabowl — Instagram Video Downloader: Reels, Story, Photo & Carousel"
+  },
   "extDescription": {
     "message": "Save Instagram photos, videos, reels, carousels and stories at original quality. Free, no account, no limits."
   },
-
-  "overlayDownload": { "message": "Download" },
-  "overlayDownloadAll": { "message": "All" },
-  "overlayDownloadAllTitle": { "message": "Download every slide" },
-  "overlaySaved": { "message": "Saved" },
-  "errorNoMedia": { "message": "No downloadable media found here" },
-  "errorDownloadFailed": { "message": "Download failed" },
-  "profileDownloadAll": { "message": "Download all" },
-  "profileCollecting": { "message": "Collecting…" },
-  "profileStarted": { "message": "Started — see the extension icon for progress" },
-  "errorThumbnailOnly": { "message": "Only a preview is available here; open the post to save the original" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "Settings" },
-  "popupDetected": { "message": "media detected on this tab" },
-  "popupNoProfile": { "message": "Open a profile to download in bulk." },
-  "popupOpenInstagram": { "message": "Open instagram.com to start." },
+  "overlayDownload": {
+    "message": "Download"
+  },
+  "overlayDownloadAll": {
+    "message": "All"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "Download every slide"
+  },
+  "overlaySaved": {
+    "message": "Saved"
+  },
+  "errorNoMedia": {
+    "message": "No downloadable media found here"
+  },
+  "errorDownloadFailed": {
+    "message": "Download failed"
+  },
+  "profileDownloadAll": {
+    "message": "Download all"
+  },
+  "profileCollecting": {
+    "message": "Collecting…"
+  },
+  "profileStarted": {
+    "message": "Started — see the extension icon for progress"
+  },
+  "errorThumbnailOnly": {
+    "message": "Only a preview is available here; open the post to save the original"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "Settings"
+  },
+  "popupDetected": {
+    "message": "media detected on this tab"
+  },
+  "popupNoProfile": {
+    "message": "Open a profile to download in bulk."
+  },
+  "popupOpenInstagram": {
+    "message": "Open instagram.com to start."
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — $COUNT$ posts ready from what you have scrolled past.",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "Download this profile" },
-  "popupCollecting": { "message": "Collecting posts…" },
+  "popupStartBulk": {
+    "message": "Download this profile"
+  },
+  "popupCollecting": {
+    "message": "Collecting posts…"
+  },
   "popupNothingFound": {
     "message": "Nothing found yet — scroll through the profile first, or enable fetching older posts."
   },
   "popupActivePagination": {
     "message": "Also fetch older posts from Instagram (slower, use sparingly)"
   },
-  "popupZip": { "message": "Save as a single .zip" },
+  "popupZip": {
+    "message": "Save as a single .zip"
+  },
   "popupProgress": {
     "message": "$DONE$ of $TOTAL$ saved, $FAILED$ failed",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "Pause" },
-  "popupResume": { "message": "Resume" },
-  "popupCancel": { "message": "Cancel" },
-
-  "optionsTitle": { "message": "InsDown settings" },
-  "optionsPattern": { "message": "Filename pattern" },
+  "popupPause": {
+    "message": "Pause"
+  },
+  "popupResume": {
+    "message": "Resume"
+  },
+  "popupCancel": {
+    "message": "Cancel"
+  },
+  "optionsTitle": {
+    "message": "Grabowl settings"
+  },
+  "optionsPattern": {
+    "message": "Filename pattern"
+  },
   "optionsPatternHelp": {
     "message": "Tokens: {username} {shortcode} {pk} {date} {index} {ext}. Slashes create folders."
   },
-  "optionsPreview": { "message": "Preview" },
-  "optionsConcurrency": { "message": "Simultaneous downloads" },
-  "optionsCap": { "message": "Maximum media per bulk session" },
+  "optionsPreview": {
+    "message": "Preview"
+  },
+  "optionsConcurrency": {
+    "message": "Simultaneous downloads"
+  },
+  "optionsCap": {
+    "message": "Maximum media per bulk session"
+  },
   "optionsCapHelp": {
     "message": "Instagram temporarily blocks accounts that request too much too quickly. Keep this low."
   },
-  "optionsActive": { "message": "Fetch older posts from Instagram during bulk download" },
-  "optionsZip": { "message": "Bundle bulk downloads into a .zip" },
-  "optionsGridButton": { "message": "Download button on grid thumbnails" },
-  "optionsGridHover": { "message": "Show when I hover a thumbnail" },
-  "optionsGridAlways": { "message": "Always show" },
-  "optionsSave": { "message": "Save" },
-  "optionsSaved": { "message": "Saved." },
+  "optionsActive": {
+    "message": "Fetch older posts from Instagram during bulk download"
+  },
+  "optionsZip": {
+    "message": "Bundle bulk downloads into a .zip"
+  },
+  "optionsGridButton": {
+    "message": "Download button on grid thumbnails"
+  },
+  "optionsGridHover": {
+    "message": "Show when I hover a thumbnail"
+  },
+  "optionsGridAlways": {
+    "message": "Always show"
+  },
+  "optionsSave": {
+    "message": "Save"
+  },
+  "optionsSaved": {
+    "message": "Saved."
+  },
   "optionsPrivacy": {
-    "message": "InsDown collects nothing. No accounts, no analytics, no servers — media is saved straight from Instagram to your computer."
+    "message": "Grabowl collects nothing. No accounts, no analytics, no servers — media is saved straight from Instagram to your computer."
   },
   "optionsDisclaimer": {
     "message": "Not affiliated with, endorsed by, or sponsored by Instagram or Meta."

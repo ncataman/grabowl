@@ -96,7 +96,7 @@ export default defineBackground(() => {
         });
         await browser.downloads.download({
           url,
-          filename: `InsDown/${username}.zip`,
+          filename: `Grabowl/${username}.zip`,
           conflictAction: 'uniquify',
         });
         if (session === mine) bulk = { ...bulk, status: 'done', done: specs.length };

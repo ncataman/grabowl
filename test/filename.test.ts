@@ -17,7 +17,7 @@ const item: MediaItem = {
 describe('buildFilename', () => {
   it('expands every token with the default pattern', () => {
     expect(buildFilename(DEFAULT_PATTERN, item, item.slides[0], 0)).toBe(
-      'InsDown/natgeo/2025-08-19_C1imAge01_01.jpg',
+      'Grabowl/natgeo/2025-08-19_C1imAge01_01.jpg',
     );
   });
 

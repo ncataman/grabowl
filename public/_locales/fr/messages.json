@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — Téléchargeur pour Instagram" },
+  "extName": {
+    "message": "Grabowl — Télécharger Vidéo Instagram : Reels, Stories, Photos"
+  },
   "extDescription": {
     "message": "Enregistrez photos, vidéos, reels, carrousels et stories Instagram en qualité originale. Gratuit, sans compte, sans limite."
   },
-
-  "overlayDownload": { "message": "Télécharger" },
-  "overlayDownloadAll": { "message": "Tout" },
-  "overlayDownloadAllTitle": { "message": "Télécharger toutes les images du carrousel" },
-  "overlaySaved": { "message": "Enregistré" },
-  "errorNoMedia": { "message": "Aucun média téléchargeable trouvé ici" },
-  "errorDownloadFailed": { "message": "Échec du téléchargement" },
-  "profileDownloadAll": { "message": "Tout télécharger" },
-  "profileCollecting": { "message": "Collecte…" },
-  "profileStarted": { "message": "Lancé — suivez la progression sur l’icône de l’extension" },
-  "errorThumbnailOnly": { "message": "Seul un aperçu est disponible ici ; ouvrez la publication pour enregistrer l’original" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "Paramètres" },
-  "popupDetected": { "message": "médias détectés dans cet onglet" },
-  "popupNoProfile": { "message": "Ouvrez un profil pour tout télécharger d’un coup." },
-  "popupOpenInstagram": { "message": "Ouvrez instagram.com pour commencer." },
+  "overlayDownload": {
+    "message": "Télécharger"
+  },
+  "overlayDownloadAll": {
+    "message": "Tout"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "Télécharger toutes les images du carrousel"
+  },
+  "overlaySaved": {
+    "message": "Enregistré"
+  },
+  "errorNoMedia": {
+    "message": "Aucun média téléchargeable trouvé ici"
+  },
+  "errorDownloadFailed": {
+    "message": "Échec du téléchargement"
+  },
+  "profileDownloadAll": {
+    "message": "Tout télécharger"
+  },
+  "profileCollecting": {
+    "message": "Collecte…"
+  },
+  "profileStarted": {
+    "message": "Lancé — suivez la progression sur l’icône de l’extension"
+  },
+  "errorThumbnailOnly": {
+    "message": "Seul un aperçu est disponible ici ; ouvrez la publication pour enregistrer l’original"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "Paramètres"
+  },
+  "popupDetected": {
+    "message": "médias détectés dans cet onglet"
+  },
+  "popupNoProfile": {
+    "message": "Ouvrez un profil pour tout télécharger d’un coup."
+  },
+  "popupOpenInstagram": {
+    "message": "Ouvrez instagram.com pour commencer."
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — $COUNT$ publications prêtes parmi celles que vous avez parcourues.",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "Télécharger ce profil" },
-  "popupCollecting": { "message": "Collecte des publications…" },
+  "popupStartBulk": {
+    "message": "Télécharger ce profil"
+  },
+  "popupCollecting": {
+    "message": "Collecte des publications…"
+  },
   "popupNothingFound": {
     "message": "Rien pour l’instant — faites défiler le profil ou activez la récupération des anciennes publications."
   },
   "popupActivePagination": {
     "message": "Récupérer aussi les anciennes publications depuis Instagram (plus lent, à utiliser avec parcimonie)"
   },
-  "popupZip": { "message": "Enregistrer dans un seul .zip" },
+  "popupZip": {
+    "message": "Enregistrer dans un seul .zip"
+  },
   "popupProgress": {
     "message": "$DONE$ sur $TOTAL$ enregistrés, $FAILED$ en échec",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "Pause" },
-  "popupResume": { "message": "Reprendre" },
-  "popupCancel": { "message": "Annuler" },
-
-  "optionsTitle": { "message": "Paramètres InsDown" },
-  "optionsPattern": { "message": "Modèle de nom de fichier" },
+  "popupPause": {
+    "message": "Pause"
+  },
+  "popupResume": {
+    "message": "Reprendre"
+  },
+  "popupCancel": {
+    "message": "Annuler"
+  },
+  "optionsTitle": {
+    "message": "Paramètres Grabowl"
+  },
+  "optionsPattern": {
+    "message": "Modèle de nom de fichier"
+  },
   "optionsPatternHelp": {
     "message": "Variables : {username} {shortcode} {pk} {date} {index} {ext}. Les barres obliques créent des dossiers."
   },
-  "optionsPreview": { "message": "Aperçu" },
-  "optionsConcurrency": { "message": "Téléchargements simultanés" },
-  "optionsCap": { "message": "Nombre maximal de médias par téléchargement groupé" },
+  "optionsPreview": {
+    "message": "Aperçu"
+  },
+  "optionsConcurrency": {
+    "message": "Téléchargements simultanés"
+  },
+  "optionsCap": {
+    "message": "Nombre maximal de médias par téléchargement groupé"
+  },
   "optionsCapHelp": {
     "message": "Instagram bloque temporairement les comptes qui demandent trop de contenu trop vite. Gardez une valeur basse."
   },
-  "optionsActive": { "message": "Récupérer les anciennes publications pendant le téléchargement groupé" },
-  "optionsZip": { "message": "Regrouper les téléchargements dans un .zip" },
-  "optionsGridButton": { "message": "Bouton de téléchargement sur les miniatures" },
-  "optionsGridHover": { "message": "Afficher au survol" },
-  "optionsGridAlways": { "message": "Toujours afficher" },
-  "optionsSave": { "message": "Enregistrer" },
-  "optionsSaved": { "message": "Enregistré." },
+  "optionsActive": {
+    "message": "Récupérer les anciennes publications pendant le téléchargement groupé"
+  },
+  "optionsZip": {
+    "message": "Regrouper les téléchargements dans un .zip"
+  },
+  "optionsGridButton": {
+    "message": "Bouton de téléchargement sur les miniatures"
+  },
+  "optionsGridHover": {
+    "message": "Afficher au survol"
+  },
+  "optionsGridAlways": {
+    "message": "Toujours afficher"
+  },
+  "optionsSave": {
+    "message": "Enregistrer"
+  },
+  "optionsSaved": {
+    "message": "Enregistré."
+  },
   "optionsPrivacy": {
-    "message": "InsDown ne collecte rien. Aucun compte, aucune analyse, aucun serveur — les médias vont directement d’Instagram à votre ordinateur."
+    "message": "Grabowl ne collecte rien. Aucun compte, aucune analyse, aucun serveur — les médias vont directement d’Instagram à votre ordinateur."
   },
   "optionsDisclaimer": {
     "message": "Non affilié à Instagram ou Meta, ni approuvé ni sponsorisé par eux."

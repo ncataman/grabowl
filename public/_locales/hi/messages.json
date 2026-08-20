@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — Instagram के लिए डाउनलोडर" },
+  "extName": {
+    "message": "Grabowl — Instagram Video Download: Reels, Story, Photo & DP Downloader"
+  },
   "extDescription": {
     "message": "Instagram की फ़ोटो, वीडियो, रील, कैरोसेल और स्टोरी मूल गुणवत्ता में सहेजें। मुफ़्त, बिना खाते के, बिना किसी सीमा के।"
   },
-
-  "overlayDownload": { "message": "डाउनलोड" },
-  "overlayDownloadAll": { "message": "सभी" },
-  "overlayDownloadAllTitle": { "message": "कैरोसेल की सभी तस्वीरें डाउनलोड करें" },
-  "overlaySaved": { "message": "सहेजा गया" },
-  "errorNoMedia": { "message": "यहाँ डाउनलोड करने योग्य कुछ नहीं मिला" },
-  "errorDownloadFailed": { "message": "डाउनलोड विफल" },
-  "profileDownloadAll": { "message": "सभी डाउनलोड करें" },
-  "profileCollecting": { "message": "एकत्र किया जा रहा है…" },
-  "profileStarted": { "message": "शुरू हुआ — प्रगति एक्सटेंशन आइकॉन पर देखें" },
-  "errorThumbnailOnly": { "message": "यहाँ केवल झलक उपलब्ध है; मूल फ़ाइल सहेजने के लिए पोस्ट खोलें" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "सेटिंग्स" },
-  "popupDetected": { "message": "मीडिया इस टैब पर मिले" },
-  "popupNoProfile": { "message": "एक साथ डाउनलोड करने के लिए कोई प्रोफ़ाइल खोलें।" },
-  "popupOpenInstagram": { "message": "शुरू करने के लिए instagram.com खोलें।" },
+  "overlayDownload": {
+    "message": "डाउनलोड"
+  },
+  "overlayDownloadAll": {
+    "message": "सभी"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "कैरोसेल की सभी तस्वीरें डाउनलोड करें"
+  },
+  "overlaySaved": {
+    "message": "सहेजा गया"
+  },
+  "errorNoMedia": {
+    "message": "यहाँ डाउनलोड करने योग्य कुछ नहीं मिला"
+  },
+  "errorDownloadFailed": {
+    "message": "डाउनलोड विफल"
+  },
+  "profileDownloadAll": {
+    "message": "सभी डाउनलोड करें"
+  },
+  "profileCollecting": {
+    "message": "एकत्र किया जा रहा है…"
+  },
+  "profileStarted": {
+    "message": "शुरू हुआ — प्रगति एक्सटेंशन आइकॉन पर देखें"
+  },
+  "errorThumbnailOnly": {
+    "message": "यहाँ केवल झलक उपलब्ध है; मूल फ़ाइल सहेजने के लिए पोस्ट खोलें"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "सेटिंग्स"
+  },
+  "popupDetected": {
+    "message": "मीडिया इस टैब पर मिले"
+  },
+  "popupNoProfile": {
+    "message": "एक साथ डाउनलोड करने के लिए कोई प्रोफ़ाइल खोलें।"
+  },
+  "popupOpenInstagram": {
+    "message": "शुरू करने के लिए instagram.com खोलें।"
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — आपने जितना देखा उसमें से $COUNT$ पोस्ट तैयार हैं।",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "यह प्रोफ़ाइल डाउनलोड करें" },
-  "popupCollecting": { "message": "पोस्ट एकत्र की जा रही हैं…" },
+  "popupStartBulk": {
+    "message": "यह प्रोफ़ाइल डाउनलोड करें"
+  },
+  "popupCollecting": {
+    "message": "पोस्ट एकत्र की जा रही हैं…"
+  },
   "popupNothingFound": {
     "message": "अभी कुछ नहीं मिला — पहले प्रोफ़ाइल स्क्रॉल करें, या पुरानी पोस्ट लाने का विकल्प चालू करें।"
   },
   "popupActivePagination": {
     "message": "Instagram से पुरानी पोस्ट भी लाएँ (धीमा, कम इस्तेमाल करें)"
   },
-  "popupZip": { "message": "एक ही .zip में सहेजें" },
+  "popupZip": {
+    "message": "एक ही .zip में सहेजें"
+  },
   "popupProgress": {
     "message": "$TOTAL$ में से $DONE$ सहेजे गए, $FAILED$ विफल",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "रोकें" },
-  "popupResume": { "message": "जारी रखें" },
-  "popupCancel": { "message": "रद्द करें" },
-
-  "optionsTitle": { "message": "InsDown सेटिंग्स" },
-  "optionsPattern": { "message": "फ़ाइल नाम का प्रारूप" },
+  "popupPause": {
+    "message": "रोकें"
+  },
+  "popupResume": {
+    "message": "जारी रखें"
+  },
+  "popupCancel": {
+    "message": "रद्द करें"
+  },
+  "optionsTitle": {
+    "message": "Grabowl सेटिंग्स"
+  },
+  "optionsPattern": {
+    "message": "फ़ाइल नाम का प्रारूप"
+  },
   "optionsPatternHelp": {
     "message": "वेरिएबल: {username} {shortcode} {pk} {date} {index} {ext}। स्लैश से फ़ोल्डर बनते हैं।"
   },
-  "optionsPreview": { "message": "झलक" },
-  "optionsConcurrency": { "message": "एक साथ डाउनलोड" },
-  "optionsCap": { "message": "एक बार में अधिकतम मीडिया" },
+  "optionsPreview": {
+    "message": "झलक"
+  },
+  "optionsConcurrency": {
+    "message": "एक साथ डाउनलोड"
+  },
+  "optionsCap": {
+    "message": "एक बार में अधिकतम मीडिया"
+  },
   "optionsCapHelp": {
     "message": "बहुत तेज़ी से बहुत अधिक अनुरोध करने वाले खातों को Instagram अस्थायी रूप से रोक देता है। यह संख्या कम रखें।"
   },
-  "optionsActive": { "message": "एक साथ डाउनलोड करते समय Instagram से पुरानी पोस्ट लाएँ" },
-  "optionsZip": { "message": "एक साथ डाउनलोड को .zip में रखें" },
-  "optionsGridButton": { "message": "थंबनेल पर डाउनलोड बटन" },
-  "optionsGridHover": { "message": "कर्सर ले जाने पर दिखाएँ" },
-  "optionsGridAlways": { "message": "हमेशा दिखाएँ" },
-  "optionsSave": { "message": "सहेजें" },
-  "optionsSaved": { "message": "सहेजा गया।" },
+  "optionsActive": {
+    "message": "एक साथ डाउनलोड करते समय Instagram से पुरानी पोस्ट लाएँ"
+  },
+  "optionsZip": {
+    "message": "एक साथ डाउनलोड को .zip में रखें"
+  },
+  "optionsGridButton": {
+    "message": "थंबनेल पर डाउनलोड बटन"
+  },
+  "optionsGridHover": {
+    "message": "कर्सर ले जाने पर दिखाएँ"
+  },
+  "optionsGridAlways": {
+    "message": "हमेशा दिखाएँ"
+  },
+  "optionsSave": {
+    "message": "सहेजें"
+  },
+  "optionsSaved": {
+    "message": "सहेजा गया।"
+  },
   "optionsPrivacy": {
-    "message": "InsDown कुछ भी एकत्र नहीं करता। कोई खाता नहीं, कोई एनालिटिक्स नहीं, कोई सर्वर नहीं — मीडिया सीधे Instagram से आपके कंप्यूटर पर जाता है।"
+    "message": "Grabowl कुछ भी एकत्र नहीं करता। कोई खाता नहीं, कोई एनालिटिक्स नहीं, कोई सर्वर नहीं — मीडिया सीधे Instagram से आपके कंप्यूटर पर जाता है।"
   },
   "optionsDisclaimer": {
     "message": "यह Instagram या Meta से संबद्ध, अनुमोदित या प्रायोजित नहीं है।"

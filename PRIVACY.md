@@ -1,10 +1,10 @@
-# InsDown Privacy Policy
+# Grabowl Privacy Policy
 
 _Last updated: 19 August 2026_
 
 ## Summary
 
-InsDown collects nothing. There is no account, no analytics, no telemetry, and no
+Grabowl collects nothing. There is no account, no analytics, no telemetry, and no
 server belonging to this extension. Media you download travels from Instagram's
 servers to your computer and nowhere else.
 
@@ -50,7 +50,7 @@ same as redistribution.
 
 ## Not affiliated with Instagram
 
-InsDown is an independent project. It is not affiliated with, endorsed by, or
+Grabowl is an independent project. It is not affiliated with, endorsed by, or
 sponsored by Instagram or Meta Platforms, Inc.
 
 ## Contact

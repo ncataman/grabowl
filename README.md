@@ -1,4 +1,4 @@
-# InsDown — Downloader for Instagram
+# Grabowl — Downloader for Instagram
 
 Free browser extension that saves Instagram photos, videos, reels, carousels and
 stories at original quality. No account, no limits, no paywall, and nothing is
@@ -8,7 +8,7 @@ Not affiliated with, endorsed by, or sponsored by Instagram or Meta.
 
 ## How it works
 
-Instagram already sends your browser everything it displays. InsDown reads that
+Instagram already sends your browser everything it displays. Grabowl reads that
 data as it arrives instead of scraping the page or calling Instagram's API on its
 own, which is why it keeps working when Instagram rotates its internal query ids.
 

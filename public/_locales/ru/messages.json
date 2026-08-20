@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — загрузчик для Instagram" },
+  "extName": {
+    "message": "Grabowl — Скачать видео из Instagram: Reels, истории, фото и карусели"
+  },
   "extDescription": {
     "message": "Сохраняйте фото, видео, reels, карусели и истории из Instagram в исходном качестве. Бесплатно, без аккаунта и лимитов."
   },
-
-  "overlayDownload": { "message": "Скачать" },
-  "overlayDownloadAll": { "message": "Все" },
-  "overlayDownloadAllTitle": { "message": "Скачать все кадры карусели" },
-  "overlaySaved": { "message": "Сохранено" },
-  "errorNoMedia": { "message": "Здесь не найдено файлов для скачивания" },
-  "errorDownloadFailed": { "message": "Не удалось скачать" },
-  "profileDownloadAll": { "message": "Скачать всё" },
-  "profileCollecting": { "message": "Сбор…" },
-  "profileStarted": { "message": "Запущено — прогресс виден на значке расширения" },
-  "errorThumbnailOnly": { "message": "Здесь доступен только предпросмотр; откройте публикацию, чтобы сохранить оригинал" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "Настройки" },
-  "popupDetected": { "message": "файлов найдено на этой вкладке" },
-  "popupNoProfile": { "message": "Откройте профиль, чтобы скачать всё сразу." },
-  "popupOpenInstagram": { "message": "Откройте instagram.com, чтобы начать." },
+  "overlayDownload": {
+    "message": "Скачать"
+  },
+  "overlayDownloadAll": {
+    "message": "Все"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "Скачать все кадры карусели"
+  },
+  "overlaySaved": {
+    "message": "Сохранено"
+  },
+  "errorNoMedia": {
+    "message": "Здесь не найдено файлов для скачивания"
+  },
+  "errorDownloadFailed": {
+    "message": "Не удалось скачать"
+  },
+  "profileDownloadAll": {
+    "message": "Скачать всё"
+  },
+  "profileCollecting": {
+    "message": "Сбор…"
+  },
+  "profileStarted": {
+    "message": "Запущено — прогресс виден на значке расширения"
+  },
+  "errorThumbnailOnly": {
+    "message": "Здесь доступен только предпросмотр; откройте публикацию, чтобы сохранить оригинал"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "Настройки"
+  },
+  "popupDetected": {
+    "message": "файлов найдено на этой вкладке"
+  },
+  "popupNoProfile": {
+    "message": "Откройте профиль, чтобы скачать всё сразу."
+  },
+  "popupOpenInstagram": {
+    "message": "Откройте instagram.com, чтобы начать."
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — готово публикаций: $COUNT$ из того, что вы пролистали.",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "Скачать этот профиль" },
-  "popupCollecting": { "message": "Сбор публикаций…" },
+  "popupStartBulk": {
+    "message": "Скачать этот профиль"
+  },
+  "popupCollecting": {
+    "message": "Сбор публикаций…"
+  },
   "popupNothingFound": {
     "message": "Пока ничего не найдено — сначала пролистайте профиль или включите загрузку старых публикаций."
   },
   "popupActivePagination": {
     "message": "Также запрашивать старые публикации у Instagram (медленнее, используйте умеренно)"
   },
-  "popupZip": { "message": "Сохранить одним архивом .zip" },
+  "popupZip": {
+    "message": "Сохранить одним архивом .zip"
+  },
   "popupProgress": {
     "message": "Сохранено $DONE$ из $TOTAL$, с ошибкой: $FAILED$",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "Пауза" },
-  "popupResume": { "message": "Продолжить" },
-  "popupCancel": { "message": "Отмена" },
-
-  "optionsTitle": { "message": "Настройки InsDown" },
-  "optionsPattern": { "message": "Шаблон имени файла" },
+  "popupPause": {
+    "message": "Пауза"
+  },
+  "popupResume": {
+    "message": "Продолжить"
+  },
+  "popupCancel": {
+    "message": "Отмена"
+  },
+  "optionsTitle": {
+    "message": "Настройки Grabowl"
+  },
+  "optionsPattern": {
+    "message": "Шаблон имени файла"
+  },
   "optionsPatternHelp": {
     "message": "Переменные: {username} {shortcode} {pk} {date} {index} {ext}. Косая черта создаёт папки."
   },
-  "optionsPreview": { "message": "Предпросмотр" },
-  "optionsConcurrency": { "message": "Одновременных загрузок" },
-  "optionsCap": { "message": "Максимум файлов за один массовый сеанс" },
+  "optionsPreview": {
+    "message": "Предпросмотр"
+  },
+  "optionsConcurrency": {
+    "message": "Одновременных загрузок"
+  },
+  "optionsCap": {
+    "message": "Максимум файлов за один массовый сеанс"
+  },
   "optionsCapHelp": {
     "message": "Instagram временно блокирует аккаунты, которые запрашивают слишком много и слишком быстро. Держите значение небольшим."
   },
-  "optionsActive": { "message": "Запрашивать старые публикации при массовой загрузке" },
-  "optionsZip": { "message": "Упаковывать массовую загрузку в .zip" },
-  "optionsGridButton": { "message": "Кнопка скачивания на миниатюрах" },
-  "optionsGridHover": { "message": "Показывать при наведении" },
-  "optionsGridAlways": { "message": "Показывать всегда" },
-  "optionsSave": { "message": "Сохранить" },
-  "optionsSaved": { "message": "Сохранено." },
+  "optionsActive": {
+    "message": "Запрашивать старые публикации при массовой загрузке"
+  },
+  "optionsZip": {
+    "message": "Упаковывать массовую загрузку в .zip"
+  },
+  "optionsGridButton": {
+    "message": "Кнопка скачивания на миниатюрах"
+  },
+  "optionsGridHover": {
+    "message": "Показывать при наведении"
+  },
+  "optionsGridAlways": {
+    "message": "Показывать всегда"
+  },
+  "optionsSave": {
+    "message": "Сохранить"
+  },
+  "optionsSaved": {
+    "message": "Сохранено."
+  },
   "optionsPrivacy": {
-    "message": "InsDown ничего не собирает. Нет аккаунтов, аналитики и серверов — файлы идут напрямую из Instagram на ваш компьютер."
+    "message": "Grabowl ничего не собирает. Нет аккаунтов, аналитики и серверов — файлы идут напрямую из Instagram на ваш компьютер."
   },
   "optionsDisclaimer": {
     "message": "Не связано с Instagram или Meta, не одобрено и не спонсировано ими."

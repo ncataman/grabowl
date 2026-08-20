@@ -1,11 +1,11 @@
 {
-  "name": "insdown",
-  "displayName": "InsDown",
+  "name": "grabowl",
+  "displayName": "Grabowl",
   "version": "1.0.0",
   "description": "Free downloader for Instagram photos, videos, reels, carousels and stories.",
   "author": "ncataman <info@ncataman.com>",
   "license": "MIT",
-  "homepage": "https://insdown.app",
+  "homepage": "https://grabowl.com",
   "private": true,
   "type": "module",
   "scripts": {

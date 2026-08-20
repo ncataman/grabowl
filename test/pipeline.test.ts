@@ -67,15 +67,15 @@ describe('download pipeline', () => {
     const slide = item.slides[slideIndex];
     expect(slide.url).toContain('two_hd.mp4');
     expect(buildFilename(DEFAULT_PATTERN, item, slide, slideIndex)).toBe(
-      'InsDown/natgeo/2025-08-19_C9xAmPle01_02.mp4',
+      'Grabowl/natgeo/2025-08-19_C9xAmPle01_02.mp4',
     );
   });
 
   it('numbers every slide in order when downloading the whole carousel', () => {
     const paths = item.slides.map((slide, i) => buildFilename(DEFAULT_PATTERN, item, slide, i));
     expect(paths).toEqual([
-      'InsDown/natgeo/2025-08-19_C9xAmPle01_01.jpg',
-      'InsDown/natgeo/2025-08-19_C9xAmPle01_02.mp4',
+      'Grabowl/natgeo/2025-08-19_C9xAmPle01_01.jpg',
+      'Grabowl/natgeo/2025-08-19_C9xAmPle01_02.mp4',
     ]);
   });
 

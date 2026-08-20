@@ -1,7 +1,7 @@
 /** Filename pattern expansion for downloads. */
 import type { MediaItem, MediaSlide } from './media-model';
 
-export const DEFAULT_PATTERN = 'InsDown/{username}/{date}_{shortcode}_{index}.{ext}';
+export const DEFAULT_PATTERN = 'Grabowl/{username}/{date}_{shortcode}_{index}.{ext}';
 
 /** Strip characters Chrome rejects in downloads.filename, keeping the path separators. */
 function sanitizeSegment(value: string): string {

@@ -70,7 +70,7 @@ describe('locales', () => {
     // Meta trademark complaints, not the download feature, are what historically
     // removes these extensions from the stores.
     for (const locale of locales) {
-      expect(load(locale).extName.message.startsWith('InsDown'), locale).toBe(true);
+      expect(load(locale).extName.message.startsWith('Grabowl'), locale).toBe(true);
     }
   });
 });

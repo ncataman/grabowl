@@ -11,7 +11,7 @@ export default defineConfig({
     description: '__MSG_extDescription__',
     default_locale: 'en',
     author: { email: 'info@ncataman.com' },
-    homepage_url: 'https://insdown.app',
+    homepage_url: 'https://grabowl.com',
     permissions: ['downloads', 'storage', ...(browser === 'firefox' ? [] : ['offscreen'])],
     host_permissions: [
       '*://www.instagram.com/*',
@@ -20,7 +20,7 @@ export default defineConfig({
       '*://*.fbcdn.net/*',
     ],
     ...(browser === 'firefox'
-      ? { browser_specific_settings: { gecko: { id: 'insdown@ncataman.com', strict_min_version: '121.0' } } }
+      ? { browser_specific_settings: { gecko: { id: 'grabowl@ncataman.com', strict_min_version: '121.0' } } }
       : {}),
   }),
 });

@@ -1,6 +1,6 @@
 # Store submission
 
-Everything needed to publish InsDown to the Chrome Web Store, Microsoft Edge
+Everything needed to publish Grabowl to the Chrome Web Store, Microsoft Edge
 Add-ons and Firefox AMO. All copy and artwork already exists in `store-assets/`;
 this file says where each piece goes and in what order.
 
@@ -28,7 +28,7 @@ So: create the Chrome and Edge listings by hand once, add the secrets listed in
 
 ## Naming — the rule that matters most
 
-Use **InsDown — Downloader for Instagram** (localized names are in
+Use **Grabowl — Downloader for Instagram** (localized names are in
 `store-assets/listing.json` and must stay byte-identical to `extName` in each
 `public/_locales/<locale>/messages.json`; a test enforces this).
 
@@ -131,7 +131,7 @@ is under Developer Dashboard → the item → Analytics.
 ## Still needed from the developer
 
 1. A domain, for the privacy policy URL and `homepage_url` (currently the
-   placeholder `https://insdown.app` in `wxt.config.ts` and `package.json`).
+   placeholder `https://grabowl.com` in `wxt.config.ts` and `package.json`).
 2. Edge Partner Center and Firefox AMO accounts — both free.
 3. The one-time manual listing creation on Chrome and Edge.
 4. API credentials added as repository secrets; see `.github/workflows/release.yml`.

@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — Downloader für Instagram" },
+  "extName": {
+    "message": "Grabowl — Instagram Video Herunterladen: Reels, Story, Fotos, Karussell"
+  },
   "extDescription": {
     "message": "Instagram-Fotos, -Videos, -Reels, -Karussells und -Storys in Originalqualität speichern. Kostenlos, ohne Konto, ohne Limit."
   },
-
-  "overlayDownload": { "message": "Herunterladen" },
-  "overlayDownloadAll": { "message": "Alle" },
-  "overlayDownloadAllTitle": { "message": "Alle Bilder des Karussells herunterladen" },
-  "overlaySaved": { "message": "Gespeichert" },
-  "errorNoMedia": { "message": "Hier wurden keine herunterladbaren Medien gefunden" },
-  "errorDownloadFailed": { "message": "Download fehlgeschlagen" },
-  "profileDownloadAll": { "message": "Alle laden" },
-  "profileCollecting": { "message": "Wird gesammelt…" },
-  "profileStarted": { "message": "Gestartet — Fortschritt siehe Erweiterungssymbol" },
-  "errorThumbnailOnly": { "message": "Hier gibt es nur eine Vorschau; öffne den Beitrag, um das Original zu speichern" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "Einstellungen" },
-  "popupDetected": { "message": "Medien in diesem Tab gefunden" },
-  "popupNoProfile": { "message": "Öffne ein Profil, um alles auf einmal zu laden." },
-  "popupOpenInstagram": { "message": "Öffne instagram.com, um zu beginnen." },
+  "overlayDownload": {
+    "message": "Herunterladen"
+  },
+  "overlayDownloadAll": {
+    "message": "Alle"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "Alle Bilder des Karussells herunterladen"
+  },
+  "overlaySaved": {
+    "message": "Gespeichert"
+  },
+  "errorNoMedia": {
+    "message": "Hier wurden keine herunterladbaren Medien gefunden"
+  },
+  "errorDownloadFailed": {
+    "message": "Download fehlgeschlagen"
+  },
+  "profileDownloadAll": {
+    "message": "Alle laden"
+  },
+  "profileCollecting": {
+    "message": "Wird gesammelt…"
+  },
+  "profileStarted": {
+    "message": "Gestartet — Fortschritt siehe Erweiterungssymbol"
+  },
+  "errorThumbnailOnly": {
+    "message": "Hier gibt es nur eine Vorschau; öffne den Beitrag, um das Original zu speichern"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "Einstellungen"
+  },
+  "popupDetected": {
+    "message": "Medien in diesem Tab gefunden"
+  },
+  "popupNoProfile": {
+    "message": "Öffne ein Profil, um alles auf einmal zu laden."
+  },
+  "popupOpenInstagram": {
+    "message": "Öffne instagram.com, um zu beginnen."
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — $COUNT$ Beiträge bereit aus dem, was du schon gescrollt hast.",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "Dieses Profil laden" },
-  "popupCollecting": { "message": "Beiträge werden gesammelt…" },
+  "popupStartBulk": {
+    "message": "Dieses Profil laden"
+  },
+  "popupCollecting": {
+    "message": "Beiträge werden gesammelt…"
+  },
   "popupNothingFound": {
     "message": "Noch nichts gefunden — scrolle zuerst durch das Profil oder aktiviere das Laden älterer Beiträge."
   },
   "popupActivePagination": {
     "message": "Auch ältere Beiträge von Instagram abrufen (langsamer, sparsam verwenden)"
   },
-  "popupZip": { "message": "Als eine .zip-Datei speichern" },
+  "popupZip": {
+    "message": "Als eine .zip-Datei speichern"
+  },
   "popupProgress": {
     "message": "$DONE$ von $TOTAL$ gespeichert, $FAILED$ fehlgeschlagen",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "Pause" },
-  "popupResume": { "message": "Fortsetzen" },
-  "popupCancel": { "message": "Abbrechen" },
-
-  "optionsTitle": { "message": "InsDown-Einstellungen" },
-  "optionsPattern": { "message": "Dateinamen-Muster" },
+  "popupPause": {
+    "message": "Pause"
+  },
+  "popupResume": {
+    "message": "Fortsetzen"
+  },
+  "popupCancel": {
+    "message": "Abbrechen"
+  },
+  "optionsTitle": {
+    "message": "Grabowl-Einstellungen"
+  },
+  "optionsPattern": {
+    "message": "Dateinamen-Muster"
+  },
   "optionsPatternHelp": {
     "message": "Variablen: {username} {shortcode} {pk} {date} {index} {ext}. Schrägstriche erzeugen Ordner."
   },
-  "optionsPreview": { "message": "Vorschau" },
-  "optionsConcurrency": { "message": "Gleichzeitige Downloads" },
-  "optionsCap": { "message": "Maximale Medien pro Sammel-Download" },
+  "optionsPreview": {
+    "message": "Vorschau"
+  },
+  "optionsConcurrency": {
+    "message": "Gleichzeitige Downloads"
+  },
+  "optionsCap": {
+    "message": "Maximale Medien pro Sammel-Download"
+  },
   "optionsCapHelp": {
     "message": "Instagram sperrt Konten vorübergehend, die zu viel auf einmal anfragen. Halte den Wert niedrig."
   },
-  "optionsActive": { "message": "Beim Sammel-Download ältere Beiträge von Instagram abrufen" },
-  "optionsZip": { "message": "Sammel-Downloads in einer .zip-Datei bündeln" },
-  "optionsGridButton": { "message": "Download-Schaltfläche auf Vorschaubildern" },
-  "optionsGridHover": { "message": "Beim Daraufzeigen anzeigen" },
-  "optionsGridAlways": { "message": "Immer anzeigen" },
-  "optionsSave": { "message": "Speichern" },
-  "optionsSaved": { "message": "Gespeichert." },
+  "optionsActive": {
+    "message": "Beim Sammel-Download ältere Beiträge von Instagram abrufen"
+  },
+  "optionsZip": {
+    "message": "Sammel-Downloads in einer .zip-Datei bündeln"
+  },
+  "optionsGridButton": {
+    "message": "Download-Schaltfläche auf Vorschaubildern"
+  },
+  "optionsGridHover": {
+    "message": "Beim Daraufzeigen anzeigen"
+  },
+  "optionsGridAlways": {
+    "message": "Immer anzeigen"
+  },
+  "optionsSave": {
+    "message": "Speichern"
+  },
+  "optionsSaved": {
+    "message": "Gespeichert."
+  },
   "optionsPrivacy": {
-    "message": "InsDown sammelt nichts. Keine Konten, keine Analyse, keine Server — Medien gehen direkt von Instagram auf deinen Computer."
+    "message": "Grabowl sammelt nichts. Keine Konten, keine Analyse, keine Server — Medien gehen direkt von Instagram auf deinen Computer."
   },
   "optionsDisclaimer": {
     "message": "Nicht verbunden mit, unterstützt oder gesponsert von Instagram oder Meta."

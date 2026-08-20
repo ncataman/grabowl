@@ -1,73 +1,148 @@
 {
-  "extName": { "message": "InsDown — أداة تنزيل لإنستغرام" },
+  "extName": {
+    "message": "Grabowl — تحميل فيديو انستقرام: ريلز، القصص، الصور والألبومات"
+  },
   "extDescription": {
     "message": "احفظ صور وفيديوهات وريلز وألبومات وقصص إنستغرام بالجودة الأصلية. مجاني، بدون حساب، وبلا حدود."
   },
-
-  "overlayDownload": { "message": "تنزيل" },
-  "overlayDownloadAll": { "message": "الكل" },
-  "overlayDownloadAllTitle": { "message": "تنزيل كل صور الألبوم" },
-  "overlaySaved": { "message": "تم الحفظ" },
-  "errorNoMedia": { "message": "لا توجد ملفات قابلة للتنزيل هنا" },
-  "errorDownloadFailed": { "message": "فشل التنزيل" },
-  "profileDownloadAll": { "message": "تنزيل الكل" },
-  "profileCollecting": { "message": "جارٍ الجمع…" },
-  "profileStarted": { "message": "بدأ التنزيل — تابع التقدّم من أيقونة الإضافة" },
-  "errorThumbnailOnly": { "message": "لا تتوفر هنا سوى معاينة؛ افتح المنشور لحفظ الملف الأصلي" },
-
-  "popupTitle": { "message": "InsDown" },
-  "popupSettings": { "message": "الإعدادات" },
-  "popupDetected": { "message": "ملفًا تم العثور عليه في هذه التبويبة" },
-  "popupNoProfile": { "message": "افتح حسابًا لتنزيل محتواه دفعة واحدة." },
-  "popupOpenInstagram": { "message": "افتح instagram.com للبدء." },
+  "overlayDownload": {
+    "message": "تنزيل"
+  },
+  "overlayDownloadAll": {
+    "message": "الكل"
+  },
+  "overlayDownloadAllTitle": {
+    "message": "تنزيل كل صور الألبوم"
+  },
+  "overlaySaved": {
+    "message": "تم الحفظ"
+  },
+  "errorNoMedia": {
+    "message": "لا توجد ملفات قابلة للتنزيل هنا"
+  },
+  "errorDownloadFailed": {
+    "message": "فشل التنزيل"
+  },
+  "profileDownloadAll": {
+    "message": "تنزيل الكل"
+  },
+  "profileCollecting": {
+    "message": "جارٍ الجمع…"
+  },
+  "profileStarted": {
+    "message": "بدأ التنزيل — تابع التقدّم من أيقونة الإضافة"
+  },
+  "errorThumbnailOnly": {
+    "message": "لا تتوفر هنا سوى معاينة؛ افتح المنشور لحفظ الملف الأصلي"
+  },
+  "popupTitle": {
+    "message": "Grabowl"
+  },
+  "popupSettings": {
+    "message": "الإعدادات"
+  },
+  "popupDetected": {
+    "message": "ملفًا تم العثور عليه في هذه التبويبة"
+  },
+  "popupNoProfile": {
+    "message": "افتح حسابًا لتنزيل محتواه دفعة واحدة."
+  },
+  "popupOpenInstagram": {
+    "message": "افتح instagram.com للبدء."
+  },
   "popupProfileFound": {
     "message": "@$USERNAME$ — $COUNT$ منشورًا جاهزًا مما تصفّحته.",
     "placeholders": {
-      "username": { "content": "$1" },
-      "count": { "content": "$2" }
+      "username": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
     }
   },
-  "popupStartBulk": { "message": "تنزيل هذا الحساب" },
-  "popupCollecting": { "message": "جارٍ جمع المنشورات…" },
+  "popupStartBulk": {
+    "message": "تنزيل هذا الحساب"
+  },
+  "popupCollecting": {
+    "message": "جارٍ جمع المنشورات…"
+  },
   "popupNothingFound": {
     "message": "لم يُعثر على شيء بعد — مرّر في الحساب أولًا، أو فعّل جلب المنشورات القديمة."
   },
   "popupActivePagination": {
     "message": "اجلب أيضًا المنشورات القديمة من إنستغرام (أبطأ، استخدمه باعتدال)"
   },
-  "popupZip": { "message": "الحفظ في ملف ‎.zip واحد" },
+  "popupZip": {
+    "message": "الحفظ في ملف ‎.zip واحد"
+  },
   "popupProgress": {
     "message": "تم حفظ $DONE$ من $TOTAL$، وفشل $FAILED$",
     "placeholders": {
-      "done": { "content": "$1" },
-      "total": { "content": "$2" },
-      "failed": { "content": "$3" }
+      "done": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "failed": {
+        "content": "$3"
+      }
     }
   },
-  "popupPause": { "message": "إيقاف مؤقت" },
-  "popupResume": { "message": "متابعة" },
-  "popupCancel": { "message": "إلغاء" },
-
-  "optionsTitle": { "message": "إعدادات InsDown" },
-  "optionsPattern": { "message": "نمط اسم الملف" },
+  "popupPause": {
+    "message": "إيقاف مؤقت"
+  },
+  "popupResume": {
+    "message": "متابعة"
+  },
+  "popupCancel": {
+    "message": "إلغاء"
+  },
+  "optionsTitle": {
+    "message": "إعدادات Grabowl"
+  },
+  "optionsPattern": {
+    "message": "نمط اسم الملف"
+  },
   "optionsPatternHelp": {
     "message": "المتغيرات: {username} {shortcode} {pk} {date} {index} {ext}. الشرطة المائلة تُنشئ مجلدات."
   },
-  "optionsPreview": { "message": "معاينة" },
-  "optionsConcurrency": { "message": "التنزيلات المتزامنة" },
-  "optionsCap": { "message": "الحد الأقصى للملفات في الجلسة الواحدة" },
+  "optionsPreview": {
+    "message": "معاينة"
+  },
+  "optionsConcurrency": {
+    "message": "التنزيلات المتزامنة"
+  },
+  "optionsCap": {
+    "message": "الحد الأقصى للملفات في الجلسة الواحدة"
+  },
   "optionsCapHelp": {
     "message": "يحظر إنستغرام مؤقتًا الحسابات التي تطلب الكثير بسرعة. أبقِ هذا الرقم منخفضًا."
   },
-  "optionsActive": { "message": "جلب المنشورات القديمة من إنستغرام أثناء التنزيل الجماعي" },
-  "optionsZip": { "message": "تجميع التنزيلات في ملف ‎.zip" },
-  "optionsGridButton": { "message": "زر التنزيل على الصور المصغّرة" },
-  "optionsGridHover": { "message": "إظهاره عند مرور المؤشر" },
-  "optionsGridAlways": { "message": "إظهاره دائمًا" },
-  "optionsSave": { "message": "حفظ" },
-  "optionsSaved": { "message": "تم الحفظ." },
+  "optionsActive": {
+    "message": "جلب المنشورات القديمة من إنستغرام أثناء التنزيل الجماعي"
+  },
+  "optionsZip": {
+    "message": "تجميع التنزيلات في ملف ‎.zip"
+  },
+  "optionsGridButton": {
+    "message": "زر التنزيل على الصور المصغّرة"
+  },
+  "optionsGridHover": {
+    "message": "إظهاره عند مرور المؤشر"
+  },
+  "optionsGridAlways": {
+    "message": "إظهاره دائمًا"
+  },
+  "optionsSave": {
+    "message": "حفظ"
+  },
+  "optionsSaved": {
+    "message": "تم الحفظ."
+  },
   "optionsPrivacy": {
-    "message": "لا يجمع InsDown أي بيانات. بلا حسابات ولا تحليلات ولا خوادم — تُحفظ الملفات مباشرة من إنستغرام إلى جهازك."
+    "message": "لا يجمع Grabowl أي بيانات. بلا حسابات ولا تحليلات ولا خوادم — تُحفظ الملفات مباشرة من إنستغرام إلى جهازك."
   },
   "optionsDisclaimer": {
     "message": "غير تابع لإنستغرام أو Meta، وغير معتمد أو مموّل منهما."
