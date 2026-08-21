@@ -22,6 +22,12 @@ toplamaz. **1.0.0 kod olarak hazır; mağazaya gönderim alan adı bekliyor.**
 - [06 — Kalan işler](06-kalan.md) — açık maddeler, doğrulanmamış yüzeyler
 - [07 — Değişiklik günlüğü](07-degisiklik.md) — kronolojik, commit'lerle
 
+## İlgili ürün
+
+Bu depo **Grabowl tarayıcı eklentisini** anlatır. Aynı hesabın ikinci ürünü olan
+**GP Newsdesk WordPress haber teması** ayrı bir wiki'de:
+`/Users/ncataman/Desktop/insdown-web/wiki/index.md`
+
 ## Depo gerçekleri (hızlı referans)
 
 - Konum: `/Users/ncataman/Desktop/insdown/` (tarihsel klasör adı "insdown"; ürün adı **Grabowl**)

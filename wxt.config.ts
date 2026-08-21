@@ -11,7 +11,7 @@ export default defineConfig({
     description: '__MSG_extDescription__',
     default_locale: 'en',
     author: { email: 'info@ncataman.com' },
-    homepage_url: 'https://grabowl.com',
+    homepage_url: 'https://ncataman.github.io/grabowl',
     permissions: ['downloads', 'storage', ...(browser === 'firefox' ? [] : ['offscreen'])],
     host_permissions: [
       '*://www.instagram.com/*',

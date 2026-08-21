@@ -5,7 +5,7 @@
   "description": "Free downloader for Instagram photos, videos, reels, carousels and stories.",
   "author": "ncataman <info@ncataman.com>",
   "license": "MIT",
-  "homepage": "https://grabowl.com",
+  "homepage": "https://ncataman.github.io/grabowl",
   "private": true,
   "type": "module",
   "scripts": {
