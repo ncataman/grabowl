@@ -1,0 +1,38 @@
+# Publishes the privacy policy to GitHub Pages, giving the store listings a free
+# public URL until grabowl.com is registered. The site root is the privacy page.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['store-assets/privacy/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; never cancel a run mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site (privacy at root and /privacy/)
+        run: |
+          mkdir -p _site/privacy
+          cp store-assets/privacy/index.html _site/index.html
+          cp store-assets/privacy/index.html _site/privacy/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
