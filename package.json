@@ -21,7 +21,9 @@
     "compile": "wxt prepare && tsc --noEmit",
     "test": "vitest run",
     "check": "npm run compile && npm test && npm run build",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "amo:submit": "node scripts/amo-submit.mjs",
+    "amo:check": "node scripts/amo-submit.mjs --dry-run"
   },
   "dependencies": {
     "fflate": "^0.8.3"
