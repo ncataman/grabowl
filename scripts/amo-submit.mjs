@@ -31,11 +31,16 @@ const PKG = `${ROOT}build/grabowl-1.0.0-firefox.zip`;
 const SOURCES = `${ROOT}build/grabowl-1.0.0-sources.zip`;
 const SLUG = 'grabowl';
 
-// _locales code -> AMO/BCP-47 code.
+// _locales code -> AMO/BCP-47 code. Indonesian ('id') is not a valid AMO listing
+// locale, so it is omitted; those users fall back to en-US on Firefox.
 const LOCALE = {
-  en: 'en-US', tr: 'tr', pt_BR: 'pt-BR', es: 'es-ES', id: 'id',
-  hi: 'hi-IN', ar: 'ar', ru: 'ru', de: 'de', fr: 'fr',
+  en: 'en-US', tr: 'tr', pt_BR: 'pt-BR', es: 'es-ES',
+  ar: 'ar', ru: 'ru', de: 'de', fr: 'fr',
 };
+
+// AMO caps the add-on name at 50 characters, far below the 75 the Chrome/Edge
+// SEO titles use, so the listing name is the short brand form.
+const AMO_NAME = { 'en-US': 'Grabowl — Downloader for Instagram' };
 
 const b64url = (buf) =>
   Buffer.from(buf).toString('base64').replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -51,7 +56,8 @@ function jwt() {
   return `${header}.${payload}.${sig}`;
 }
 
-async function api(path, { method = 'GET', json, form } = {}) {
+async function api(path, opts = {}, throttleRetries = 4) {
+  const { method = 'GET', json, form } = opts;
   const headers = { Authorization: `JWT ${jwt()}` };
   let body;
   if (json) {
@@ -64,8 +70,18 @@ async function api(path, { method = 'GET', json, form } = {}) {
   const text = await res.text();
   let data;
   try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
+  // AMO throttles preview uploads hard; wait the stated time and retry.
+  if (res.status === 429 && throttleRetries > 0) {
+    const secs = Number(/(\d+)\s*seconds/.exec(data.detail ?? '')?.[1] ?? 30) + 3;
+    console.log(`  hız sınırı, ${secs}s bekleniyor…`);
+    await new Promise((r) => setTimeout(r, secs * 1000));
+    return api(path, opts, throttleRetries - 1);
+  }
   if (!res.ok) {
-    throw new Error(`${method} ${path} → ${res.status}\n${JSON.stringify(data, null, 2).slice(0, 1500)}`);
+    const err = new Error(`${method} ${path} → ${res.status}\n${JSON.stringify(data, null, 2).slice(0, 1500)}`);
+    err.status = res.status;
+    err.data = data;
+    throw err;
   }
   return data;
 }
@@ -105,13 +121,13 @@ async function main() {
   if (!status.valid) throw new Error('Paket doğrulaması geçmedi:\n' + JSON.stringify(status.validation?.messages ?? status, null, 2).slice(0, 1500));
   console.log('  paket geçerli.');
 
-  // Pick real Firefox category slugs from AMO rather than guessing.
+  // Pick real category slugs from AMO rather than guessing. The category objects
+  // carry no `application` field, only `type`, so filter on that.
   const cats = await api('/addons/categories/');
-  const ffExt = cats.filter((c) => c.application === 'firefox' && c.type === 'extension');
-  const pick = ['download-management', 'social-communication', 'photos-music']
-    .filter((slug) => ffExt.some((c) => c.slug === slug))
-    .slice(0, 2);
-  const categories = pick.length ? pick : [ffExt[0]?.slug].filter(Boolean);
+  const extSlugs = new Set(cats.filter((c) => c.type === 'extension').map((c) => c.slug));
+  const wanted = ['download-management', 'social-communication', 'photos-music-videos'];
+  const categories = wanted.filter((slug) => extSlugs.has(slug)).slice(0, 2);
+  if (!categories.length) throw new Error('AMO kategori slug eşleşmedi: ' + [...extSlugs].join(', '));
   console.log('• Kategori:', categories.join(', '));
 
   if (DRY) {
@@ -119,39 +135,85 @@ async function main() {
     return;
   }
 
-  console.log('• Add-on oluşturuluyor (10 dil metin)…');
-  const created = await api('/addons/addon/', {
-    method: 'POST',
-    json: {
-      slug: SLUG,
-      categories,
-      name: translations(listing, 'name'),
-      summary: translations(listing, 'summary'),
-      description: translations(listing, 'description'),
-      is_experimental: false,
-      version: { upload: up.uuid, license: 'MIT' },
-    },
-  });
+  console.log('• Add-on oluşturuluyor…');
+  const name = { ...AMO_NAME };
+  const summary = translations(listing, 'summary');
+  const description = translations(listing, 'description');
+
+  // AMO validates listing locales against its own (smaller) set and rejects the
+  // rest one at a time. Rather than hard-code that set, strip whatever code it
+  // reports invalid and retry until only accepted locales remain.
+  let created;
+  for (let attempt = 0; attempt < 12; attempt++) {
+    try {
+      created = await api('/addons/addon/', {
+        method: 'POST',
+        json: {
+          slug: SLUG,
+          categories,
+          name,
+          summary,
+          description,
+          is_experimental: false,
+          version: { upload: up.uuid, license: 'MIT' },
+        },
+      });
+      break;
+    } catch (e) {
+      // Already created on a previous run: adopt the existing listing and
+      // continue (idempotent), so a rate-limited run can be resumed.
+      const strings = Object.values(e.data ?? {}).flat().filter((s) => typeof s === 'string');
+      if (strings.some((s) => /already exists|already used/i.test(s)) || e.status === 409) {
+        created = await api(`/addons/addon/${SLUG}/`);
+        console.log('  var olan ilan bulundu, devam ediliyor.');
+        break;
+      }
+      // Read the invalid codes from the structured error, not the message text
+      // (whose quotes are backslash-escaped by JSON.stringify).
+      const bad = [
+        ...new Set(strings.flatMap((s) => [...s.matchAll(/code "?([a-zA-Z-]+)"? is invalid/g)].map((m) => m[1]))),
+      ];
+      if (!bad.length) throw e;
+      for (const code of bad) {
+        delete name[code];
+        delete summary[code];
+        delete description[code];
+      }
+      console.log('  AMO kabul etmedi, çıkarıldı:', bad.join(', '));
+    }
+  }
+  if (!created) throw new Error('Add-on oluşturulamadı (dil ayıklama tükendi).');
+  console.log('  diller:', Object.keys(summary).join(', '));
   const id = created.id ?? created.slug ?? SLUG;
   const versionId = created.version?.id ?? created.current_version?.id;
   console.log(`  oluşturuldu: ${created.slug} (id ${id})`);
 
   // Sources are required whenever the build is bundled (ours is).
   if (versionId) {
-    console.log('• Kaynak arşivi ekleniyor…');
-    const sform = new FormData();
-    sform.append('source', await fileBlob(SOURCES), basename(SOURCES));
-    await api(`/addons/addon/${id}/versions/${versionId}/`, { method: 'PATCH', form: sform });
-    console.log('  kaynak eklendi.');
+    try {
+      console.log('• Kaynak arşivi ekleniyor…');
+      const sform = new FormData();
+      sform.append('source', await fileBlob(SOURCES), basename(SOURCES));
+      await api(`/addons/addon/${id}/versions/${versionId}/`, { method: 'PATCH', form: sform });
+      console.log('  kaynak eklendi.');
+    } catch (e) {
+      console.log('  kaynak atlandı (muhtemelen zaten ekli):', (e.message || '').split('\n')[0]);
+    }
   }
 
-  console.log('• Ekran görüntüleri yükleniyor…');
-  for (let n = 1; n <= 5; n++) {
+  const already = created.previews?.length ?? 0;
+  if (already >= 5) {
+    console.log(`• Ekran görüntüleri zaten yüklü (${already}), atlanıyor.`);
+  } else
+  for (let n = 1 + already; n <= 5; n++) {
     const pform = new FormData();
     pform.append('image', await fileBlob(`${ROOT}store-assets/screenshots/en/${n}.png`), `${n}.png`);
-    // AMO keeps one screenshot set; caption localizes per language.
+    // AMO keeps one screenshot set; caption localizes per language. Only the
+    // locales AMO accepted for the listing (survived the create loop) are used.
+    const accepted = new Set(Object.keys(summary));
     const caption = {};
     for (const [code, amo] of Object.entries(LOCALE)) {
+      if (!accepted.has(amo)) continue;
       const c = captions[code]?.[String(n)];
       if (c) caption[amo] = c[0];
     }
