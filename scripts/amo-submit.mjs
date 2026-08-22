@@ -206,18 +206,10 @@ async function main() {
     console.log(`• Ekran görüntüleri zaten yüklü (${already}), atlanıyor.`);
   } else
   for (let n = 1 + already; n <= 5; n++) {
+    // Image only. AMO won't take a caption dict through multipart, and captions
+    // are optional; the screenshots themselves are what the listing needs.
     const pform = new FormData();
     pform.append('image', await fileBlob(`${ROOT}store-assets/screenshots/en/${n}.png`), `${n}.png`);
-    // AMO keeps one screenshot set; caption localizes per language. Only the
-    // locales AMO accepted for the listing (survived the create loop) are used.
-    const accepted = new Set(Object.keys(summary));
-    const caption = {};
-    for (const [code, amo] of Object.entries(LOCALE)) {
-      if (!accepted.has(amo)) continue;
-      const c = captions[code]?.[String(n)];
-      if (c) caption[amo] = c[0];
-    }
-    pform.append('caption', JSON.stringify(caption));
     await api(`/addons/addon/${id}/previews/`, { method: 'POST', form: pform });
     console.log(`  ekran ${n}/5`);
   }
