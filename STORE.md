@@ -49,7 +49,7 @@ they are gitignored because they are reproducible.
 
 | File | Size | Used by |
 |---|---|---|
-| `store-assets/screenshots/<locale>/1..5.png` | 1280×800 | Chrome (max 5), Edge (max 6), Firefox. Chrome and Firefox both accept per-locale sets. |
+| `store-assets/screenshots/<locale>/1..5.png` | 1280×800 | Chrome (max 5) and Edge (max 6) accept a **per-locale** set each. Firefox/AMO keeps **one global set** for all languages (only captions localize), so it gets a single set. |
 | `store-assets/promo/out/small-440x280.png` | 440×280 | Chrome small tile (listings without one are shown less prominently), Edge |
 | `store-assets/promo/out/marquee-1400x560.png` | 1400×560 | Chrome marquee (featuring eligibility), Edge large tile |
 | `store-assets/icons/store-icon-128.png` | 128×128, artwork 96×96 with 16px transparent padding | Chrome store icon, Firefox |
