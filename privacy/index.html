@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grabowl — Privacy Policy</title>
+<meta name="description" content="Grabowl collects no data. No accounts, no analytics, no servers.">
+<!--
+  Single-file privacy policy for all three store listings.
+  Every store requires a publicly reachable URL; upload this as
+  https://<domain>/privacy/ and paste that URL into each listing.
+  Ten languages in one page so a single URL serves every localized listing.
+-->
+<style>
+  :root { --bg:#0d1117; --fg:#e6edf3; --dim:#9198a1; --line:#22272e; --accent:#4493f8; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#fff; --fg:#1f2328; --dim:#59636e; --line:#d1d9e0; --accent:#0969da; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 48px 20px 90px;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 30px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .updated { color: var(--dim); font-size: 14px; margin-bottom: 28px; }
+  h2 { font-size: 19px; margin: 32px 0 8px; }
+  p { margin-bottom: 12px; }
+  ul { margin: 0 0 12px 22px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  .lede {
+    border-inline-start: 3px solid var(--accent);
+    padding: 12px 16px; background: color-mix(in srgb, var(--accent) 9%, transparent);
+    border-radius: 0 8px 8px 0; margin-bottom: 8px;
+  }
+  nav.langs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
+  nav.langs button {
+    font: inherit; font-size: 13px; padding: 5px 11px; cursor: pointer;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--line); border-radius: 999px;
+  }
+  nav.langs button[aria-current="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; }
+  section[hidden] { display: none; }
+  [dir="rtl"] { text-align: right; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="langs" id="langs" aria-label="Language"></nav>
+  <div id="content"></div>
+  <footer>
+    <p>Grabowl — <a href="mailto:info@ncataman.com">info@ncataman.com</a></p>
+    <p>Not affiliated with, endorsed by, or sponsored by Instagram or Meta Platforms, Inc.</p>
+  </footer>
+</main>
+
+<script>
+const UPDATED = '20 August 2026';
+
+/* Each language repeats the same commitments; the stores check that a policy is
+   reachable and that it matches the declared data practices ("no data
+   collected"), so the substance must be identical in every translation. */
+const DOC = {
+  en: { name:'English', dir:'ltr', title:'Privacy Policy',
+    lede:'Grabowl collects nothing. No account, no analytics, no telemetry, and no server belongs to this extension.',
+    sections:[
+      ['What the extension accesses, and why', [
+        'instagram.com pages — it reads the media data Instagram already sends to your browser, so it can offer a download button and find the original-quality file. This happens entirely inside your browser.',
+        'Instagram’s CDN (cdninstagram.com, fbcdn.net) — download links point here. Your browser fetches the file exactly as it would if you saved it by hand.',
+        'Your Instagram session — when the extension needs details about a post it has not already seen, it asks Instagram using the session you are already signed in with. It never reads, stores or transmits your password or session cookies.']],
+      ['What is stored', ['Only your own settings: the filename pattern, download concurrency, bulk limits, and the thumbnail-button preference. They live in your browser’s extension storage. If you have browser sync enabled, your browser may sync those settings between your own devices. Nothing else is stored, and nothing is stored outside your browser.']],
+      ['What is transmitted', ['Nothing. No usage data, no download counts, no page addresses, no identifiers. The extension has no backend to send anything to.','Aggregate install and active-user counts shown to the developer come from the Chrome Web Store, Microsoft Edge Add-ons and Firefox Add-ons dashboards. Those are produced by the stores themselves and contain no information about individual users or their activity.']],
+      ['Third parties', ['None. All code is bundled with the extension; nothing is loaded from a remote server at runtime.']],
+      ['Your responsibility for downloaded content', ['Downloaded media belongs to whoever created it. Use it in line with Instagram’s terms and applicable copyright law — personal archiving is not the same as redistribution.']],
+      ['Changes to this policy', ['If the extension ever begins collecting data, this page will be updated before that version ships, and the change will be disclosed in the store listing.']]]},
+
+  tr: { name:'Türkçe', dir:'ltr', title:'Gizlilik Politikası',
+    lede:'Grabowl hiçbir veri toplamaz. Hesap yok, analitik yok, telemetri yok ve bu eklentiye ait hiçbir sunucu yok.',
+    sections:[
+      ['Eklenti neye erişiyor ve neden', [
+        'instagram.com sayfaları — Instagram’ın tarayıcınıza zaten gönderdiği medya verisini okur; indirme butonunu sunabilmek ve orijinal kalitedeki dosyayı bulabilmek için. Bunun tamamı tarayıcınızın içinde olur.',
+        'Instagram’ın CDN’i (cdninstagram.com, fbcdn.net) — indirme bağlantıları buraya işaret eder. Tarayıcınız dosyayı, elle kaydetseydiniz nasıl indirecekse aynı şekilde indirir.',
+        'Instagram oturumunuz — eklenti daha önce görmediği bir gönderinin ayrıntısına ihtiyaç duyduğunda, zaten açık olan oturumunuzla Instagram’a sorar. Parolanızı veya oturum çerezlerinizi asla okumaz, saklamaz ya da göndermez.']],
+      ['Ne saklanıyor', ['Yalnızca kendi ayarlarınız: dosya adı şablonu, eşzamanlı indirme sayısı, toplu indirme sınırı ve küçük resim butonu tercihi. Bunlar tarayıcınızın eklenti deposunda durur. Tarayıcı senkronizasyonunuz açıksa, tarayıcınız bu ayarları kendi cihazlarınız arasında eşitleyebilir. Başka hiçbir şey saklanmaz ve hiçbir şey tarayıcınızın dışına çıkmaz.']],
+      ['Ne gönderiliyor', ['Hiçbir şey. Kullanım verisi yok, indirme sayacı yok, sayfa adresi yok, kimlik bilgisi yok. Eklentinin veri gönderebileceği bir sunucusu yoktur.','Geliştiricinin gördüğü toplam kurulum ve aktif kullanıcı sayıları Chrome Web Store, Microsoft Edge Add-ons ve Firefox Add-ons panellerinden gelir. Bunları mağazalar üretir ve tek tek kullanıcılar hakkında hiçbir bilgi içermez.']],
+      ['Üçüncü taraflar', ['Yok. Tüm kod eklentiyle birlikte paketlenmiştir; çalışma anında uzaktan hiçbir şey yüklenmez.']],
+      ['İndirilen içerik konusunda sorumluluğunuz', ['İndirilen medya onu üreten kişiye aittir. Instagram’ın koşullarına ve telif hakkı mevzuatına uygun kullanın — kişisel arşivleme ile yeniden yayımlamak aynı şey değildir.']],
+      ['Bu politikadaki değişiklikler', ['Eklenti ileride veri toplamaya başlarsa, o sürüm yayınlanmadan önce bu sayfa güncellenecek ve değişiklik mağaza ilanında açıkça belirtilecektir.']]]},
+
+  pt_BR: { name:'Português', dir:'ltr', title:'Política de Privacidade',
+    lede:'O Grabowl não coleta nada. Sem conta, sem análises, sem telemetria e sem nenhum servidor pertencente a esta extensão.',
+    sections:[
+      ['O que a extensão acessa e por quê', [
+        'Páginas do instagram.com — lê os dados de mídia que o Instagram já envia ao seu navegador, para oferecer o botão de download e encontrar o arquivo na qualidade original. Tudo acontece dentro do seu navegador.',
+        'CDN do Instagram (cdninstagram.com, fbcdn.net) — os links de download apontam para lá. Seu navegador baixa o arquivo exatamente como faria se você salvasse manualmente.',
+        'Sua sessão do Instagram — quando a extensão precisa de detalhes de uma publicação que ainda não viu, ela pergunta ao Instagram usando a sessão em que você já está conectado. Nunca lê, armazena nem envia sua senha ou cookies de sessão.']],
+      ['O que é armazenado', ['Apenas suas próprias configurações: padrão de nome de arquivo, downloads simultâneos, limites de lote e a preferência do botão nas miniaturas. Ficam no armazenamento da extensão no seu navegador. Se a sincronização do navegador estiver ativa, ele pode sincronizá-las entre os seus dispositivos. Nada mais é armazenado, e nada sai do seu navegador.']],
+      ['O que é transmitido', ['Nada. Sem dados de uso, sem contagem de downloads, sem endereços de páginas, sem identificadores. A extensão não tem servidor para onde enviar algo.','As contagens agregadas de instalações e usuários ativas vistas pelo desenvolvedor vêm dos painéis da Chrome Web Store, Microsoft Edge Add-ons e Firefox Add-ons. São produzidas pelas próprias lojas e não contêm informações sobre usuários individuais.']],
+      ['Terceiros', ['Nenhum. Todo o código é empacotado com a extensão; nada é carregado de servidor remoto em tempo de execução.']],
+      ['Sua responsabilidade sobre o conteúdo baixado', ['A mídia baixada pertence a quem a criou. Use-a de acordo com os termos do Instagram e a legislação de direitos autorais — arquivar para uso pessoal não é o mesmo que redistribuir.']],
+      ['Alterações nesta política', ['Se a extensão algum dia passar a coletar dados, esta página será atualizada antes do lançamento dessa versão e a mudança será informada na página da loja.']]]},
+
+  es: { name:'Español', dir:'ltr', title:'Política de Privacidad',
+    lede:'Grabowl no recopila nada. Sin cuenta, sin analíticas, sin telemetría y sin ningún servidor propio de esta extensión.',
+    sections:[
+      ['A qué accede la extensión y por qué', [
+        'Páginas de instagram.com — lee los datos multimedia que Instagram ya envía a tu navegador para ofrecer el botón de descarga y localizar el archivo en calidad original. Todo ocurre dentro de tu navegador.',
+        'CDN de Instagram (cdninstagram.com, fbcdn.net) — los enlaces de descarga apuntan ahí. Tu navegador obtiene el archivo igual que si lo guardaras a mano.',
+        'Tu sesión de Instagram — cuando la extensión necesita datos de una publicación que aún no ha visto, se los pide a Instagram con la sesión en la que ya has iniciado sesión. Nunca lee, guarda ni envía tu contraseña ni tus cookies de sesión.']],
+      ['Qué se almacena', ['Solo tus ajustes: el formato del nombre de archivo, las descargas simultáneas, los límites por lote y la preferencia del botón en miniaturas. Se guardan en el almacenamiento de extensiones de tu navegador. Si tienes activada la sincronización, tu navegador puede sincronizarlos entre tus propios dispositivos. No se almacena nada más, ni nada fuera de tu navegador.']],
+      ['Qué se transmite', ['Nada. Ni datos de uso, ni recuentos de descargas, ni direcciones de páginas, ni identificadores. La extensión no tiene servidor al que enviar nada.','Los recuentos agregados de instalaciones y usuarios activos que ve el desarrollador provienen de los paneles de Chrome Web Store, Microsoft Edge Add-ons y Firefox Add-ons. Los generan las propias tiendas y no contienen información sobre usuarios concretos.']],
+      ['Terceros', ['Ninguno. Todo el código va incluido en la extensión; no se carga nada desde un servidor remoto en tiempo de ejecución.']],
+      ['Tu responsabilidad sobre el contenido descargado', ['El contenido descargado pertenece a quien lo creó. Úsalo conforme a las condiciones de Instagram y a la legislación de derechos de autor: archivar para uso personal no es lo mismo que redistribuir.']],
+      ['Cambios en esta política', ['Si la extensión llegara a recopilar datos, esta página se actualizará antes de publicar esa versión y el cambio se indicará en la ficha de la tienda.']]]},
+
+  id: { name:'Indonesia', dir:'ltr', title:'Kebijakan Privasi',
+    lede:'Grabowl tidak mengumpulkan apa pun. Tanpa akun, tanpa analitik, tanpa telemetri, dan tanpa server milik ekstensi ini.',
+    sections:[
+      ['Apa yang diakses ekstensi, dan mengapa', [
+        'Halaman instagram.com — membaca data media yang memang sudah dikirim Instagram ke peramban Anda, agar dapat menampilkan tombol unduh dan menemukan berkas kualitas asli. Semuanya terjadi di dalam peramban Anda.',
+        'CDN Instagram (cdninstagram.com, fbcdn.net) — tautan unduhan mengarah ke sana. Peramban Anda mengambil berkas persis seperti jika Anda menyimpannya secara manual.',
+        'Sesi Instagram Anda — bila ekstensi memerlukan detail postingan yang belum pernah dilihatnya, ia menanyakannya ke Instagram memakai sesi yang sudah Anda gunakan. Kata sandi dan cookie sesi Anda tidak pernah dibaca, disimpan, atau dikirim.']],
+      ['Apa yang disimpan', ['Hanya pengaturan Anda sendiri: pola nama berkas, jumlah unduhan bersamaan, batas unduhan massal, dan preferensi tombol pada thumbnail. Semuanya tersimpan di penyimpanan ekstensi peramban Anda. Jika sinkronisasi peramban aktif, pengaturan itu dapat disinkronkan antar perangkat Anda sendiri. Tidak ada yang lain yang disimpan, dan tidak ada yang disimpan di luar peramban Anda.']],
+      ['Apa yang dikirim', ['Tidak ada. Tanpa data penggunaan, tanpa hitungan unduhan, tanpa alamat halaman, tanpa pengenal. Ekstensi ini tidak punya server tujuan pengiriman.','Jumlah pemasangan dan pengguna aktif yang dilihat pengembang berasal dari dasbor Chrome Web Store, Microsoft Edge Add-ons, dan Firefox Add-ons. Angka itu dibuat oleh toko masing-masing dan tidak memuat informasi tentang pengguna perorangan.']],
+      ['Pihak ketiga', ['Tidak ada. Seluruh kode dipaketkan bersama ekstensi; tidak ada yang dimuat dari server jauh saat berjalan.']],
+      ['Tanggung jawab Anda atas konten yang diunduh', ['Media yang diunduh tetap milik pembuatnya. Gunakan sesuai ketentuan Instagram dan hukum hak cipta — mengarsipkan untuk diri sendiri tidak sama dengan menyebarkan ulang.']],
+      ['Perubahan kebijakan ini', ['Jika suatu saat ekstensi mulai mengumpulkan data, halaman ini akan diperbarui sebelum versi tersebut dirilis dan perubahannya diumumkan di halaman toko.']]]},
+
+  hi: { name:'हिन्दी', dir:'ltr', title:'गोपनीयता नीति',
+    lede:'Grabowl कुछ भी एकत्र नहीं करता। कोई खाता नहीं, कोई एनालिटिक्स नहीं, कोई टेलीमेट्री नहीं, और इस एक्सटेंशन का कोई सर्वर नहीं है।',
+    sections:[
+      ['एक्सटेंशन किस चीज़ तक पहुँचता है और क्यों', [
+        'instagram.com के पन्ने — Instagram जो मीडिया डेटा पहले से आपके ब्राउज़र को भेजता है, उसे पढ़ता है ताकि डाउनलोड बटन दिखा सके और मूल गुणवत्ता वाली फ़ाइल ढूँढ सके। यह सब आपके ब्राउज़र के भीतर ही होता है।',
+        'Instagram का CDN (cdninstagram.com, fbcdn.net) — डाउनलोड लिंक यहीं की ओर इशारा करते हैं। आपका ब्राउज़र फ़ाइल वैसे ही लाता है जैसे आप उसे हाथ से सहेजते।',
+        'आपका Instagram सत्र — जब एक्सटेंशन को किसी ऐसी पोस्ट का विवरण चाहिए जो उसने पहले नहीं देखी, तो वह आपके पहले से लॉग-इन सत्र से Instagram से पूछता है। यह आपका पासवर्ड या सत्र कुकीज़ कभी नहीं पढ़ता, सहेजता या भेजता।']],
+      ['क्या संग्रहीत होता है', ['केवल आपकी अपनी सेटिंग्स: फ़ाइल नाम का प्रारूप, एक साथ डाउनलोड की संख्या, बल्क सीमाएँ और थंबनेल बटन की पसंद। ये आपके ब्राउज़र के एक्सटेंशन स्टोरेज में रहती हैं। यदि ब्राउज़र सिंक चालू है तो ये आपके अपने उपकरणों के बीच सिंक हो सकती हैं। इसके अलावा कुछ भी संग्रहीत नहीं होता, और कुछ भी आपके ब्राउज़र से बाहर नहीं जाता।']],
+      ['क्या भेजा जाता है', ['कुछ भी नहीं। कोई उपयोग डेटा नहीं, कोई डाउनलोड गिनती नहीं, कोई पृष्ठ पता नहीं, कोई पहचानकर्ता नहीं। एक्सटेंशन का कोई सर्वर ही नहीं है जहाँ कुछ भेजा जा सके।','डेवलपर को दिखने वाली कुल इंस्टॉल और सक्रिय उपयोगकर्ता संख्या Chrome Web Store, Microsoft Edge Add-ons और Firefox Add-ons के डैशबोर्ड से आती है। ये स्टोर स्वयं बनाते हैं और इनमें किसी व्यक्ति की जानकारी नहीं होती।']],
+      ['तृतीय पक्ष', ['कोई नहीं। सारा कोड एक्सटेंशन के साथ ही पैक है; चलते समय कुछ भी दूरस्थ सर्वर से लोड नहीं होता।']],
+      ['डाउनलोड की गई सामग्री पर आपकी ज़िम्मेदारी', ['डाउनलोड किया गया मीडिया उसे बनाने वाले का है। इसे Instagram की शर्तों और कॉपीराइट कानून के अनुसार उपयोग करें — निजी संग्रह करना और पुनः प्रकाशित करना एक बात नहीं है।']],
+      ['इस नीति में बदलाव', ['यदि एक्सटेंशन कभी डेटा एकत्र करना शुरू करे, तो वह संस्करण जारी होने से पहले यह पृष्ठ अपडेट किया जाएगा और बदलाव स्टोर पर बताया जाएगा।']]]},
+
+  ar: { name:'العربية', dir:'rtl', title:'سياسة الخصوصية',
+    lede:'لا يجمع Grabowl أي بيانات. لا حساب، ولا تحليلات، ولا قياس عن بُعد، ولا خادم يخص هذه الإضافة.',
+    sections:[
+      ['إلى ماذا تصل الإضافة ولماذا', [
+        'صفحات instagram.com — تقرأ بيانات الوسائط التي يرسلها إنستغرام أصلًا إلى متصفحك، لتعرض زر التنزيل وتجد الملف بالجودة الأصلية. يحدث ذلك كله داخل متصفحك.',
+        'شبكة إنستغرام (cdninstagram.com، fbcdn.net) — روابط التنزيل تشير إليها. يجلب متصفحك الملف تمامًا كما لو حفظته يدويًا.',
+        'جلستك في إنستغرام — عندما تحتاج الإضافة تفاصيل منشور لم ترَه بعد، تسأل إنستغرام عبر الجلسة التي سجّلت دخولك بها. لا تقرأ كلمة مرورك أو ملفات ارتباط الجلسة ولا تخزّنها ولا ترسلها أبدًا.']],
+      ['ما الذي يُخزَّن', ['إعداداتك وحدها: نمط اسم الملف، وعدد التنزيلات المتزامنة، وحدود التنزيل الجماعي، وتفضيل الزر على الصور المصغّرة. تُحفظ في تخزين الإضافات داخل متصفحك. وإذا كانت المزامنة مفعّلة فقد يزامنها متصفحك بين أجهزتك أنت. لا يُخزَّن شيء آخر، ولا شيء خارج متصفحك.']],
+      ['ما الذي يُرسَل', ['لا شيء. لا بيانات استخدام، ولا عدد تنزيلات، ولا عناوين صفحات، ولا معرّفات. لا يملك الامتداد خادمًا يرسل إليه شيئًا.','أعداد التثبيت والمستخدمين النشطين التي يراها المطوّر تأتي من لوحات Chrome Web Store وMicrosoft Edge Add-ons وFirefox Add-ons. تنتجها المتاجر نفسها ولا تتضمن أي معلومات عن مستخدمين بعينهم.']],
+      ['أطراف ثالثة', ['لا يوجد. كل الشيفرة مرفقة مع الإضافة، ولا يُحمَّل شيء من خادم بعيد أثناء التشغيل.']],
+      ['مسؤوليتك عن المحتوى المُنزَّل', ['الوسائط المُنزَّلة ملك لمن أنشأها. استخدمها وفق شروط إنستغرام وقوانين حقوق النشر — فالأرشفة الشخصية ليست كإعادة النشر.']],
+      ['تغييرات هذه السياسة', ['إذا بدأت الإضافة يومًا بجمع بيانات، فستُحدَّث هذه الصفحة قبل إصدار تلك النسخة وسيُذكر التغيير في صفحة المتجر.']]]},
+
+  ru: { name:'Русский', dir:'ltr', title:'Политика конфиденциальности',
+    lede:'Grabowl ничего не собирает. Ни аккаунтов, ни аналитики, ни телеметрии, и у расширения нет собственных серверов.',
+    sections:[
+      ['К чему обращается расширение и зачем', [
+        'Страницы instagram.com — читает данные о медиафайлах, которые Instagram и так отправляет вашему браузеру, чтобы показать кнопку скачивания и найти файл в исходном качестве. Всё происходит внутри вашего браузера.',
+        'CDN Instagram (cdninstagram.com, fbcdn.net) — сюда ведут ссылки на файлы. Браузер загружает файл так же, как если бы вы сохранили его вручную.',
+        'Ваша сессия Instagram — когда расширению нужны данные о публикации, которую оно ещё не видело, оно запрашивает их у Instagram под уже открытой сессией. Пароль и куки сессии никогда не читаются, не сохраняются и не передаются.']],
+      ['Что хранится', ['Только ваши настройки: шаблон имени файла, число одновременных загрузок, лимиты массовой загрузки и режим кнопки на миниатюрах. Они лежат в хранилище расширений вашего браузера. Если включена синхронизация, браузер может синхронизировать их между вашими устройствами. Больше ничего не хранится и ничего не покидает браузер.']],
+      ['Что передаётся', ['Ничего. Ни данных об использовании, ни счётчиков загрузок, ни адресов страниц, ни идентификаторов. Расширению попросту некуда их отправлять.','Сводные числа установок и активных пользователей разработчик видит в панелях Chrome Web Store, Microsoft Edge Add-ons и Firefox Add-ons. Их формируют сами магазины, и они не содержат сведений об отдельных пользователях.']],
+      ['Третьи стороны', ['Отсутствуют. Весь код входит в состав расширения; во время работы ничего не загружается с удалённых серверов.']],
+      ['Ваша ответственность за скачанное', ['Скачанные материалы принадлежат их авторам. Используйте их в соответствии с правилами Instagram и авторским правом: личный архив — не то же самое, что распространение.']],
+      ['Изменения политики', ['Если расширение когда-нибудь начнёт собирать данные, эта страница будет обновлена до выхода такой версии, а изменение будет указано в описании в магазине.']]]},
+
+  de: { name:'Deutsch', dir:'ltr', title:'Datenschutzerklärung',
+    lede:'Grabowl sammelt nichts. Kein Konto, keine Analyse, keine Telemetrie und kein Server, der zu dieser Erweiterung gehört.',
+    sections:[
+      ['Worauf die Erweiterung zugreift – und warum', [
+        'instagram.com-Seiten — sie liest die Mediendaten, die Instagram ohnehin an deinen Browser sendet, um die Download-Schaltfläche anzubieten und die Datei in Originalqualität zu finden. Das geschieht vollständig in deinem Browser.',
+        'Instagrams CDN (cdninstagram.com, fbcdn.net) — dorthin zeigen die Download-Links. Dein Browser lädt die Datei genauso, wie wenn du sie von Hand speicherst.',
+        'Deine Instagram-Sitzung — braucht die Erweiterung Angaben zu einem Beitrag, den sie noch nicht gesehen hat, fragt sie Instagram über die Sitzung, in der du bereits angemeldet bist. Passwort und Sitzungscookies werden nie gelesen, gespeichert oder übertragen.']],
+      ['Was gespeichert wird', ['Nur deine eigenen Einstellungen: Dateinamen-Muster, gleichzeitige Downloads, Grenzwerte für Sammel-Downloads und die Einstellung der Schaltfläche auf Vorschaubildern. Sie liegen im Erweiterungsspeicher deines Browsers. Bei aktivierter Browser-Synchronisierung kann dein Browser sie zwischen deinen eigenen Geräten abgleichen. Sonst wird nichts gespeichert, und nichts verlässt deinen Browser.']],
+      ['Was übertragen wird', ['Nichts. Keine Nutzungsdaten, keine Download-Zähler, keine Seitenadressen, keine Kennungen. Die Erweiterung hat kein Backend, an das etwas gehen könnte.','Die aggregierten Installations- und Nutzerzahlen, die der Entwickler sieht, stammen aus den Dashboards von Chrome Web Store, Microsoft Edge Add-ons und Firefox Add-ons. Sie werden von den Stores erstellt und enthalten keine Angaben zu einzelnen Nutzern.']],
+      ['Dritte', ['Keine. Der gesamte Code ist mit der Erweiterung ausgeliefert; zur Laufzeit wird nichts von einem entfernten Server geladen.']],
+      ['Deine Verantwortung für heruntergeladene Inhalte', ['Heruntergeladene Medien gehören denen, die sie erstellt haben. Nutze sie im Rahmen der Instagram-Bedingungen und des Urheberrechts — privates Archivieren ist nicht dasselbe wie Weiterverbreiten.']],
+      ['Änderungen dieser Erklärung', ['Sollte die Erweiterung jemals Daten erheben, wird diese Seite vor Veröffentlichung einer solchen Version aktualisiert und die Änderung im Store-Eintrag offengelegt.']]]},
+
+  fr: { name:'Français', dir:'ltr', title:'Politique de confidentialité',
+    lede:'Grabowl ne collecte rien. Aucun compte, aucune analyse, aucune télémétrie et aucun serveur appartenant à cette extension.',
+    sections:[
+      ['Ce à quoi l’extension accède, et pourquoi', [
+        'Les pages instagram.com — elle lit les données média qu’Instagram envoie déjà à votre navigateur, afin de proposer le bouton de téléchargement et de trouver le fichier en qualité d’origine. Tout se passe dans votre navigateur.',
+        'Le CDN d’Instagram (cdninstagram.com, fbcdn.net) — les liens de téléchargement y pointent. Votre navigateur récupère le fichier exactement comme si vous l’enregistriez à la main.',
+        'Votre session Instagram — lorsque l’extension a besoin des détails d’une publication qu’elle n’a pas encore vue, elle les demande à Instagram avec la session où vous êtes déjà connecté. Votre mot de passe et vos cookies de session ne sont jamais lus, stockés ni transmis.']],
+      ['Ce qui est stocké', ['Uniquement vos réglages : modèle de nom de fichier, téléchargements simultanés, limites de téléchargement groupé et préférence du bouton sur les miniatures. Ils résident dans le stockage d’extensions de votre navigateur. Si la synchronisation est activée, votre navigateur peut les synchroniser entre vos propres appareils. Rien d’autre n’est stocké, et rien ne sort de votre navigateur.']],
+      ['Ce qui est transmis', ['Rien. Aucune donnée d’usage, aucun compteur de téléchargements, aucune adresse de page, aucun identifiant. L’extension n’a aucun serveur vers lequel envoyer quoi que ce soit.','Les totaux d’installations et d’utilisateurs actifs que voit le développeur proviennent des tableaux de bord du Chrome Web Store, de Microsoft Edge Add-ons et de Firefox Add-ons. Ils sont produits par les boutiques elles-mêmes et ne contiennent aucune information sur des utilisateurs individuels.']],
+      ['Tiers', ['Aucun. Tout le code est fourni avec l’extension ; rien n’est chargé depuis un serveur distant à l’exécution.']],
+      ['Votre responsabilité sur les contenus téléchargés', ['Les médias téléchargés appartiennent à leurs auteurs. Utilisez-les conformément aux conditions d’Instagram et au droit d’auteur : archiver pour soi n’est pas rediffuser.']],
+      ['Modifications de cette politique', ['Si l’extension venait à collecter des données, cette page serait mise à jour avant la publication de cette version et le changement serait indiqué sur la fiche de la boutique.']]]}
+};
+
+const ORDER = ['en','tr','pt_BR','es','id','hi','ar','ru','de','fr'];
+const nav = document.getElementById('langs');
+const content = document.getElementById('content');
+
+function render(code) {
+  const doc = DOC[code];
+  document.documentElement.lang = code.replace('_', '-');
+  document.documentElement.dir = doc.dir;
+  document.title = `Grabowl — ${doc.title}`;
+
+  content.innerHTML = '';
+  const h1 = document.createElement('h1');
+  h1.textContent = doc.title;
+  const updated = document.createElement('div');
+  updated.className = 'updated';
+  updated.textContent = UPDATED;
+  const lede = document.createElement('p');
+  lede.className = 'lede';
+  lede.textContent = doc.lede;
+  content.append(h1, updated, lede);
+
+  for (const [heading, paras] of doc.sections) {
+    const h2 = document.createElement('h2');
+    h2.textContent = heading;
+    content.append(h2);
+    if (paras.length > 1 && heading === doc.sections[0][0]) {
+      const ul = document.createElement('ul');
+      for (const text of paras) {
+        const li = document.createElement('li');
+        li.textContent = text;
+        ul.append(li);
+      }
+      content.append(ul);
+    } else {
+      for (const text of paras) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        content.append(p);
+      }
+    }
+  }
+
+  for (const button of nav.children) {
+    button.setAttribute('aria-current', String(button.dataset.code === code));
+  }
+  history.replaceState(null, '', `#${code}`);
+}
+
+for (const code of ORDER) {
+  const button = document.createElement('button');
+  button.textContent = DOC[code].name;
+  button.dataset.code = code;
+  button.addEventListener('click', () => render(code));
+  nav.append(button);
+}
+
+// Open in the reader's own language when we have it, otherwise English.
+const wanted = location.hash.slice(1);
+const browserLang = (navigator.language || 'en').toLowerCase();
+const guess =
+  ORDER.find((c) => c.toLowerCase() === browserLang) ||
+  ORDER.find((c) => c.toLowerCase() === browserLang.split('-')[0]) ||
+  'en';
+render(DOC[wanted] ? wanted : guess);
+</script>
+</body>
+</html>

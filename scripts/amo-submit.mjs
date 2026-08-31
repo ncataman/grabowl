@@ -27,8 +27,8 @@ if (!ISSUER || !SECRET) {
   process.exit(1);
 }
 
-const PKG = `${ROOT}build/grabowl-1.0.0-firefox.zip`;
-const SOURCES = `${ROOT}build/grabowl-1.0.0-sources.zip`;
+const PKG = `${ROOT}build/grabowl-1.0.1-firefox.zip`;
+const SOURCES = `${ROOT}build/grabowl-1.0.1-sources.zip`;
 const SLUG = 'grabowl';
 
 // _locales code -> AMO/BCP-47 code. Indonesian ('id') is not a valid AMO listing

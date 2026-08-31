@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grabowl FADS — Privacy Policy</title>
+<meta name="description" content="Grabowl FADS — Privacy Policy. It collects no data. No accounts, no analytics, no servers.">
+<!--
+  Single-file privacy policy for all store listings.
+  Every store requires a publicly reachable URL; upload this as
+  https://<domain>/privacy/ and paste that URL into each listing.
+  Ten languages in one page so a single URL serves every localized listing.
+-->
+<style>
+  :root { --bg:#0d1117; --fg:#e6edf3; --dim:#9198a1; --line:#22272e; --accent:#4493f8; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#fff; --fg:#1f2328; --dim:#59636e; --line:#d1d9e0; --accent:#0969da; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 48px 20px 90px;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 30px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .updated { color: var(--dim); font-size: 14px; margin-bottom: 28px; }
+  h2 { font-size: 19px; margin: 32px 0 8px; }
+  p { margin-bottom: 12px; }
+  ul { margin: 0 0 12px 22px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  .lede {
+    border-inline-start: 3px solid var(--accent);
+    padding: 12px 16px; background: color-mix(in srgb, var(--accent) 9%, transparent);
+    border-radius: 0 8px 8px 0; margin-bottom: 8px;
+  }
+  nav.langs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
+  nav.langs button {
+    font: inherit; font-size: 13px; padding: 5px 11px; cursor: pointer;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--line); border-radius: 999px;
+  }
+  nav.langs button[aria-current="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; }
+  section[hidden] { display: none; }
+  [dir="rtl"] { text-align: right; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="langs" id="langs" aria-label="Language"></nav>
+  <div id="content"></div>
+  <footer>
+    <p>Grabowl FADS — <a href="mailto:info@ncataman.com">info@ncataman.com</a></p>
+    <p>Not affiliated with, endorsed by, or sponsored by Facebook or Meta Platforms, Inc.</p>
+  </footer>
+</main>
+
+<script>
+const UPDATED = '31 August 2026';
+
+/* Each language repeats the same commitments; the stores check that a policy is
+   reachable and that it matches the declared data practices ("no data
+   collected"), so the substance must be identical in every translation. */
+const DOC = {
+  en: { name:'English', dir:'ltr', title:'Privacy Policy',
+    lede:'Grabowl FADS collects nothing. No account, no analytics, no telemetry, and no server belongs to this extension.',
+    sections:[
+      ['What the extension accesses, and why', [
+        'Facebook Ad Library pages (facebook.com/ads/library, web.facebook.com/ads/library) — it reads the ad data Facebook already sends to your browser, so it can add a “Download HD” button and find the HD video file. This happens entirely inside your browser.',
+        'Facebook’s CDN (*.fbcdn.net) — the download links point here. Ad video URLs are signed by the CDN, so downloads need no cookies and no credentials. Your browser fetches the video file exactly as it would if you saved it by hand.',
+        'Not your Facebook account — the extension has no “cookies” permission and never reads your login. It only uses the ad data the public Ad Library page already delivers.']],
+      ['What is stored', ['Only your own settings: the filename pattern, how many downloads run at once, the zip toggle, whether to also save image ads, and button visibility. They live in your browser’s extension storage. If you have browser sync enabled, your browser may sync those settings between your own devices. Nothing else is stored, and nothing is stored outside your browser.']],
+      ['What is transmitted', ['Nothing. No usage data, no download counts, no page addresses, no identifiers. The extension has no backend to send anything to, and makes no external requests beyond Facebook and its CDN.','Aggregate install and active-user counts shown to the developer come from the Chrome Web Store, Microsoft Edge Add-ons and Firefox Add-ons dashboards. Those are produced by the stores themselves and contain no information about individual users or their activity.']],
+      ['Permissions used', ['downloads — to save video files to your Downloads folder. storage — to remember your own settings. offscreen (Chromium browsers only) — to build a .zip locally, since MV3 service workers cannot create blob URLs. Host access to facebook.com/ads/library, web.facebook.com/ads/library and *.fbcdn.net — to read the ad data the page delivers and download the video files.']],
+      ['Third parties', ['None. All code is bundled with the extension; nothing is loaded from a remote server at runtime.']],
+      ['Your responsibility for downloaded content', ['Downloaded ad videos belong to whoever created them. Use them in line with Facebook’s terms and applicable copyright law — personal archiving or research is not the same as redistribution.']],
+      ['Changes to this policy', ['If the extension ever begins collecting data, this page will be updated before that version ships, and the change will be disclosed in the store listing.']]]},
+
+  tr: { name:'Türkçe', dir:'ltr', title:'Gizlilik Politikası',
+    lede:'Grabowl FADS hiçbir veri toplamaz. Hesap yok, analitik yok, telemetri yok ve bu eklentiye ait hiçbir sunucu yok.',
+    sections:[
+      ['Eklenti neye erişiyor ve neden', [
+        'Facebook Reklam Kütüphanesi sayfaları (facebook.com/ads/library, web.facebook.com/ads/library) — Facebook’un tarayıcınıza zaten gönderdiği reklam verisini okur; “HD İndir” butonunu ekleyebilmek ve HD video dosyasını bulabilmek için. Bunun tamamı tarayıcınızın içinde olur.',
+        'Facebook’un CDN’i (*.fbcdn.net) — indirme bağlantıları buraya işaret eder. Reklam videosu adresleri CDN tarafından imzalıdır, bu yüzden indirmeler için çerez ya da kimlik bilgisi gerekmez. Tarayıcınız video dosyasını, elle kaydetseydiniz nasıl indirecekse aynı şekilde indirir.',
+        'Facebook hesabınıza değil — eklentinin “cookies” izni yoktur ve oturumunuzu asla okumaz. Yalnızca herkese açık Reklam Kütüphanesi sayfasının zaten sunduğu reklam verisini kullanır.']],
+      ['Ne saklanıyor', ['Yalnızca kendi ayarlarınız: dosya adı şablonu, aynı anda çalışan indirme sayısı, zip seçeneği, görsel reklamların da kaydedilip kaydedilmeyeceği ve buton görünürlüğü. Bunlar tarayıcınızın eklenti deposunda durur. Tarayıcı senkronizasyonunuz açıksa, tarayıcınız bu ayarları kendi cihazlarınız arasında eşitleyebilir. Başka hiçbir şey saklanmaz ve hiçbir şey tarayıcınızın dışına çıkmaz.']],
+      ['Ne gönderiliyor', ['Hiçbir şey. Kullanım verisi yok, indirme sayacı yok, sayfa adresi yok, kimlik bilgisi yok. Eklentinin veri gönderebileceği bir sunucusu yoktur ve Facebook ile CDN’i dışında hiçbir dış isteği yoktur.','Geliştiricinin gördüğü toplam kurulum ve aktif kullanıcı sayıları Chrome Web Store, Microsoft Edge Add-ons ve Firefox Add-ons panellerinden gelir. Bunları mağazalar üretir ve tek tek kullanıcılar hakkında hiçbir bilgi içermez.']],
+      ['Kullanılan izinler', ['downloads — video dosyalarını İndirilenler klasörünüze kaydetmek için. storage — kendi ayarlarınızı hatırlamak için. offscreen (yalnızca Chromium tabanlı tarayıcılar) — .zip dosyasını yerel olarak oluşturmak için; çünkü MV3 servis çalışanları blob URL üretemez. facebook.com/ads/library, web.facebook.com/ads/library ve *.fbcdn.net erişimi — sayfanın sunduğu reklam verisini okumak ve video dosyalarını indirmek için.']],
+      ['Üçüncü taraflar', ['Yok. Tüm kod eklentiyle birlikte paketlenmiştir; çalışma anında uzaktan hiçbir şey yüklenmez.']],
+      ['İndirilen içerik konusunda sorumluluğunuz', ['İndirilen reklam videoları onu üreten kişiye aittir. Facebook’un koşullarına ve telif hakkı mevzuatına uygun kullanın — kişisel arşivleme veya araştırma ile yeniden yayımlamak aynı şey değildir.']],
+      ['Bu politikadaki değişiklikler', ['Eklenti ileride veri toplamaya başlarsa, o sürüm yayınlanmadan önce bu sayfa güncellenecek ve değişiklik mağaza ilanında açıkça belirtilecektir.']]]},
+
+  pt_BR: { name:'Português', dir:'ltr', title:'Política de Privacidade',
+    lede:'O Grabowl FADS não coleta nada. Sem conta, sem análises, sem telemetria e sem nenhum servidor pertencente a esta extensão.',
+    sections:[
+      ['O que a extensão acessa e por quê', [
+        'Páginas da Biblioteca de Anúncios do Facebook (facebook.com/ads/library, web.facebook.com/ads/library) — lê os dados de anúncio que o Facebook já envia ao seu navegador, para adicionar um botão “Baixar HD” e encontrar o arquivo de vídeo em HD. Tudo acontece dentro do seu navegador.',
+        'CDN do Facebook (*.fbcdn.net) — os links de download apontam para lá. As URLs dos vídeos de anúncio são assinadas pelo CDN, então os downloads não precisam de cookies nem de credenciais. Seu navegador baixa o arquivo exatamente como faria se você salvasse manualmente.',
+        'Não a sua conta do Facebook — a extensão não tem permissão de “cookies” e nunca lê o seu login. Ela usa apenas os dados de anúncio que a página pública da Biblioteca de Anúncios já entrega.']],
+      ['O que é armazenado', ['Apenas suas próprias configurações: o padrão de nome de arquivo, quantos downloads rodam ao mesmo tempo, a opção de zip, se deve também salvar anúncios em imagem e a visibilidade do botão. Ficam no armazenamento da extensão no seu navegador. Se a sincronização do navegador estiver ativa, ele pode sincronizá-las entre os seus dispositivos. Nada mais é armazenado, e nada sai do seu navegador.']],
+      ['O que é transmitido', ['Nada. Sem dados de uso, sem contagem de downloads, sem endereços de páginas, sem identificadores. A extensão não tem servidor para onde enviar algo e não faz requisições externas além do Facebook e seu CDN.','As contagens agregadas de instalações e usuários ativos vistas pelo desenvolvedor vêm dos painéis da Chrome Web Store, Microsoft Edge Add-ons e Firefox Add-ons. São produzidas pelas próprias lojas e não contêm informações sobre usuários individuais.']],
+      ['Permissões usadas', ['downloads — para salvar os arquivos de vídeo na sua pasta de Downloads. storage — para lembrar suas próprias configurações. offscreen (apenas navegadores Chromium) — para montar um .zip localmente, já que os service workers do MV3 não conseguem criar URLs de blob. Acesso a facebook.com/ads/library, web.facebook.com/ads/library e *.fbcdn.net — para ler os dados de anúncio que a página entrega e baixar os arquivos de vídeo.']],
+      ['Terceiros', ['Nenhum. Todo o código é empacotado com a extensão; nada é carregado de servidor remoto em tempo de execução.']],
+      ['Sua responsabilidade sobre o conteúdo baixado', ['Os vídeos de anúncio baixados pertencem a quem os criou. Use-os de acordo com os termos do Facebook e a legislação de direitos autorais — arquivar para uso pessoal ou pesquisa não é o mesmo que redistribuir.']],
+      ['Alterações nesta política', ['Se a extensão algum dia passar a coletar dados, esta página será atualizada antes do lançamento dessa versão e a mudança será informada na página da loja.']]]},
+
+  es: { name:'Español', dir:'ltr', title:'Política de Privacidad',
+    lede:'Grabowl FADS no recopila nada. Sin cuenta, sin analíticas, sin telemetría y sin ningún servidor propio de esta extensión.',
+    sections:[
+      ['A qué accede la extensión y por qué', [
+        'Páginas de la Biblioteca de Anuncios de Facebook (facebook.com/ads/library, web.facebook.com/ads/library) — lee los datos de anuncio que Facebook ya envía a tu navegador para añadir un botón “Descargar HD” y localizar el archivo de vídeo en HD. Todo ocurre dentro de tu navegador.',
+        'CDN de Facebook (*.fbcdn.net) — los enlaces de descarga apuntan ahí. Las URL de los vídeos de anuncio están firmadas por el CDN, así que las descargas no necesitan cookies ni credenciales. Tu navegador obtiene el archivo igual que si lo guardaras a mano.',
+        'No tu cuenta de Facebook — la extensión no tiene el permiso de “cookies” y nunca lee tu sesión. Solo usa los datos de anuncio que la página pública de la Biblioteca de Anuncios ya entrega.']],
+      ['Qué se almacena', ['Solo tus ajustes: el formato del nombre de archivo, cuántas descargas se ejecutan a la vez, la opción de zip, si guardar también los anuncios en imagen y la visibilidad del botón. Se guardan en el almacenamiento de extensiones de tu navegador. Si tienes activada la sincronización, tu navegador puede sincronizarlos entre tus propios dispositivos. No se almacena nada más, ni nada fuera de tu navegador.']],
+      ['Qué se transmite', ['Nada. Ni datos de uso, ni recuentos de descargas, ni direcciones de páginas, ni identificadores. La extensión no tiene servidor al que enviar nada ni hace peticiones externas más allá de Facebook y su CDN.','Los recuentos agregados de instalaciones y usuarios activos que ve el desarrollador provienen de los paneles de Chrome Web Store, Microsoft Edge Add-ons y Firefox Add-ons. Los generan las propias tiendas y no contienen información sobre usuarios concretos.']],
+      ['Permisos utilizados', ['downloads — para guardar los archivos de vídeo en tu carpeta de Descargas. storage — para recordar tus propios ajustes. offscreen (solo navegadores Chromium) — para crear un .zip localmente, ya que los service workers de MV3 no pueden generar URL de blob. Acceso a facebook.com/ads/library, web.facebook.com/ads/library y *.fbcdn.net — para leer los datos de anuncio que entrega la página y descargar los archivos de vídeo.']],
+      ['Terceros', ['Ninguno. Todo el código va incluido en la extensión; no se carga nada desde un servidor remoto en tiempo de ejecución.']],
+      ['Tu responsabilidad sobre el contenido descargado', ['Los vídeos de anuncio descargados pertenecen a quien los creó. Úsalos conforme a las condiciones de Facebook y a la legislación de derechos de autor: archivar para uso personal o investigación no es lo mismo que redistribuir.']],
+      ['Cambios en esta política', ['Si la extensión llegara a recopilar datos, esta página se actualizará antes de publicar esa versión y el cambio se indicará en la ficha de la tienda.']]]},
+
+  id: { name:'Indonesia', dir:'ltr', title:'Kebijakan Privasi',
+    lede:'Grabowl FADS tidak mengumpulkan apa pun. Tanpa akun, tanpa analitik, tanpa telemetri, dan tanpa server milik ekstensi ini.',
+    sections:[
+      ['Apa yang diakses ekstensi, dan mengapa', [
+        'Halaman Pustaka Iklan Facebook (facebook.com/ads/library, web.facebook.com/ads/library) — membaca data iklan yang memang sudah dikirim Facebook ke peramban Anda, agar dapat menambahkan tombol “Unduh HD” dan menemukan berkas video HD. Semuanya terjadi di dalam peramban Anda.',
+        'CDN Facebook (*.fbcdn.net) — tautan unduhan mengarah ke sana. URL video iklan ditandatangani oleh CDN, sehingga unduhan tidak memerlukan cookie maupun kredensial. Peramban Anda mengambil berkas persis seperti jika Anda menyimpannya secara manual.',
+        'Bukan akun Facebook Anda — ekstensi ini tidak memiliki izin “cookies” dan tidak pernah membaca sesi login Anda. Ia hanya memakai data iklan yang memang sudah disediakan halaman publik Pustaka Iklan.']],
+      ['Apa yang disimpan', ['Hanya pengaturan Anda sendiri: pola nama berkas, jumlah unduhan yang berjalan bersamaan, sakelar zip, apakah iklan gambar juga disimpan, dan visibilitas tombol. Semuanya tersimpan di penyimpanan ekstensi peramban Anda. Jika sinkronisasi peramban aktif, pengaturan itu dapat disinkronkan antar perangkat Anda sendiri. Tidak ada yang lain yang disimpan, dan tidak ada yang disimpan di luar peramban Anda.']],
+      ['Apa yang dikirim', ['Tidak ada. Tanpa data penggunaan, tanpa hitungan unduhan, tanpa alamat halaman, tanpa pengenal. Ekstensi ini tidak punya server tujuan pengiriman dan tidak membuat permintaan eksternal selain ke Facebook dan CDN-nya.','Jumlah pemasangan dan pengguna aktif yang dilihat pengembang berasal dari dasbor Chrome Web Store, Microsoft Edge Add-ons, dan Firefox Add-ons. Angka itu dibuat oleh toko masing-masing dan tidak memuat informasi tentang pengguna perorangan.']],
+      ['Izin yang digunakan', ['downloads — untuk menyimpan berkas video ke folder Unduhan Anda. storage — untuk mengingat pengaturan Anda sendiri. offscreen (hanya peramban Chromium) — untuk membangun berkas .zip secara lokal, karena service worker MV3 tidak dapat membuat URL blob. Akses ke facebook.com/ads/library, web.facebook.com/ads/library, dan *.fbcdn.net — untuk membaca data iklan yang disediakan halaman dan mengunduh berkas video.']],
+      ['Pihak ketiga', ['Tidak ada. Seluruh kode dipaketkan bersama ekstensi; tidak ada yang dimuat dari server jauh saat berjalan.']],
+      ['Tanggung jawab Anda atas konten yang diunduh', ['Video iklan yang diunduh tetap milik pembuatnya. Gunakan sesuai ketentuan Facebook dan hukum hak cipta — mengarsipkan untuk diri sendiri atau riset tidak sama dengan menyebarkan ulang.']],
+      ['Perubahan kebijakan ini', ['Jika suatu saat ekstensi mulai mengumpulkan data, halaman ini akan diperbarui sebelum versi tersebut dirilis dan perubahannya diumumkan di halaman toko.']]]},
+
+  hi: { name:'हिन्दी', dir:'ltr', title:'गोपनीयता नीति',
+    lede:'Grabowl FADS कुछ भी एकत्र नहीं करता। कोई खाता नहीं, कोई एनालिटिक्स नहीं, कोई टेलीमेट्री नहीं, और इस एक्सटेंशन का कोई सर्वर नहीं है।',
+    sections:[
+      ['एक्सटेंशन किस चीज़ तक पहुँचता है और क्यों', [
+        'Facebook Ad Library के पन्ने (facebook.com/ads/library, web.facebook.com/ads/library) — Facebook जो विज्ञापन डेटा पहले से आपके ब्राउज़र को भेजता है, उसे पढ़ता है ताकि “Download HD” बटन जोड़ सके और HD वीडियो फ़ाइल ढूँढ सके। यह सब आपके ब्राउज़र के भीतर ही होता है।',
+        'Facebook का CDN (*.fbcdn.net) — डाउनलोड लिंक यहीं की ओर इशारा करते हैं। विज्ञापन वीडियो के पते CDN द्वारा हस्ताक्षरित होते हैं, इसलिए डाउनलोड के लिए कोई कुकीज़ या क्रेडेंशियल नहीं चाहिए। आपका ब्राउज़र फ़ाइल वैसे ही लाता है जैसे आप उसे हाथ से सहेजते।',
+        'आपका Facebook खाता नहीं — एक्सटेंशन के पास “cookies” अनुमति नहीं है और वह आपका लॉग-इन कभी नहीं पढ़ता। यह केवल उस विज्ञापन डेटा का उपयोग करता है जो सार्वजनिक Ad Library पृष्ठ पहले से देता है।']],
+      ['क्या संग्रहीत होता है', ['केवल आपकी अपनी सेटिंग्स: फ़ाइल नाम का प्रारूप, एक साथ चलने वाले डाउनलोड की संख्या, ज़िप विकल्प, क्या छवि विज्ञापन भी सहेजने हैं, और बटन की दृश्यता। ये आपके ब्राउज़र के एक्सटेंशन स्टोरेज में रहती हैं। यदि ब्राउज़र सिंक चालू है तो ये आपके अपने उपकरणों के बीच सिंक हो सकती हैं। इसके अलावा कुछ भी संग्रहीत नहीं होता, और कुछ भी आपके ब्राउज़र से बाहर नहीं जाता।']],
+      ['क्या भेजा जाता है', ['कुछ भी नहीं। कोई उपयोग डेटा नहीं, कोई डाउनलोड गिनती नहीं, कोई पृष्ठ पता नहीं, कोई पहचानकर्ता नहीं। एक्सटेंशन का कोई सर्वर ही नहीं है जहाँ कुछ भेजा जा सके, और Facebook तथा उसके CDN के अलावा कोई बाहरी अनुरोध नहीं करता।','डेवलपर को दिखने वाली कुल इंस्टॉल और सक्रिय उपयोगकर्ता संख्या Chrome Web Store, Microsoft Edge Add-ons और Firefox Add-ons के डैशबोर्ड से आती है। ये स्टोर स्वयं बनाते हैं और इनमें किसी व्यक्ति की जानकारी नहीं होती।']],
+      ['उपयोग की गई अनुमतियाँ', ['downloads — वीडियो फ़ाइलें आपके Downloads फ़ोल्डर में सहेजने के लिए। storage — आपकी अपनी सेटिंग्स याद रखने के लिए। offscreen (केवल Chromium ब्राउज़र) — .zip फ़ाइल स्थानीय रूप से बनाने के लिए, क्योंकि MV3 सर्विस वर्कर ब्लॉब URL नहीं बना सकते। facebook.com/ads/library, web.facebook.com/ads/library और *.fbcdn.net तक पहुँच — पृष्ठ द्वारा दिए गए विज्ञापन डेटा को पढ़ने और वीडियो फ़ाइलें डाउनलोड करने के लिए।']],
+      ['तृतीय पक्ष', ['कोई नहीं। सारा कोड एक्सटेंशन के साथ ही पैक है; चलते समय कुछ भी दूरस्थ सर्वर से लोड नहीं होता।']],
+      ['डाउनलोड की गई सामग्री पर आपकी ज़िम्मेदारी', ['डाउनलोड किए गए विज्ञापन वीडियो उन्हें बनाने वाले के हैं। इन्हें Facebook की शर्तों और कॉपीराइट कानून के अनुसार उपयोग करें — निजी संग्रह या शोध करना और पुनः प्रकाशित करना एक बात नहीं है।']],
+      ['इस नीति में बदलाव', ['यदि एक्सटेंशन कभी डेटा एकत्र करना शुरू करे, तो वह संस्करण जारी होने से पहले यह पृष्ठ अपडेट किया जाएगा और बदलाव स्टोर पर बताया जाएगा।']]]},
+
+  ar: { name:'العربية', dir:'rtl', title:'سياسة الخصوصية',
+    lede:'لا يجمع Grabowl FADS أي بيانات. لا حساب، ولا تحليلات، ولا قياس عن بُعد، ولا خادم يخص هذه الإضافة.',
+    sections:[
+      ['إلى ماذا تصل الإضافة ولماذا', [
+        'صفحات مكتبة إعلانات فيسبوك (facebook.com/ads/library، web.facebook.com/ads/library) — تقرأ بيانات الإعلان التي يرسلها فيسبوك أصلًا إلى متصفحك، لتضيف زر “تنزيل HD” وتجد ملف الفيديو بجودة HD. يحدث ذلك كله داخل متصفحك.',
+        'شبكة فيسبوك (*.fbcdn.net) — روابط التنزيل تشير إليها. عناوين فيديوهات الإعلانات موقّعة من الشبكة، لذا لا تحتاج عمليات التنزيل إلى ملفات ارتباط أو بيانات اعتماد. يجلب متصفحك الملف تمامًا كما لو حفظته يدويًا.',
+        'ليس حسابك في فيسبوك — لا تملك الإضافة إذن “cookies” ولا تقرأ تسجيل دخولك أبدًا. تستخدم فقط بيانات الإعلان التي تقدّمها صفحة مكتبة الإعلانات العامة أصلًا.']],
+      ['ما الذي يُخزَّن', ['إعداداتك وحدها: نمط اسم الملف، وعدد التنزيلات المتزامنة، ومفتاح الـ zip، وما إذا كنت تريد حفظ الإعلانات المصوّرة أيضًا، وظهور الزر. تُحفظ في تخزين الإضافات داخل متصفحك. وإذا كانت المزامنة مفعّلة فقد يزامنها متصفحك بين أجهزتك أنت. لا يُخزَّن شيء آخر، ولا شيء خارج متصفحك.']],
+      ['ما الذي يُرسَل', ['لا شيء. لا بيانات استخدام، ولا عدد تنزيلات، ولا عناوين صفحات، ولا معرّفات. لا يملك الامتداد خادمًا يرسل إليه شيئًا، ولا يجري أي طلبات خارجية عدا فيسبوك وشبكته.','أعداد التثبيت والمستخدمين النشطين التي يراها المطوّر تأتي من لوحات Chrome Web Store وMicrosoft Edge Add-ons وFirefox Add-ons. تنتجها المتاجر نفسها ولا تتضمن أي معلومات عن مستخدمين بعينهم.']],
+      ['الأذونات المستخدمة', ['downloads — لحفظ ملفات الفيديو في مجلد التنزيلات لديك. storage — لتذكّر إعداداتك الخاصة. offscreen (متصفحات Chromium فقط) — لبناء ملف .zip محليًا، لأن عمّال الخدمة في MV3 لا يمكنهم إنشاء عناوين blob. الوصول إلى facebook.com/ads/library وweb.facebook.com/ads/library و*.fbcdn.net — لقراءة بيانات الإعلان التي تقدّمها الصفحة وتنزيل ملفات الفيديو.']],
+      ['أطراف ثالثة', ['لا يوجد. كل الشيفرة مرفقة مع الإضافة، ولا يُحمَّل شيء من خادم بعيد أثناء التشغيل.']],
+      ['مسؤوليتك عن المحتوى المُنزَّل', ['فيديوهات الإعلانات المُنزَّلة ملك لمن أنشأها. استخدمها وفق شروط فيسبوك وقوانين حقوق النشر — فالأرشفة الشخصية أو البحث ليست كإعادة النشر.']],
+      ['تغييرات هذه السياسة', ['إذا بدأت الإضافة يومًا بجمع بيانات، فستُحدَّث هذه الصفحة قبل إصدار تلك النسخة وسيُذكر التغيير في صفحة المتجر.']]]},
+
+  ru: { name:'Русский', dir:'ltr', title:'Политика конфиденциальности',
+    lede:'Grabowl FADS ничего не собирает. Ни аккаунтов, ни аналитики, ни телеметрии, и у расширения нет собственных серверов.',
+    sections:[
+      ['К чему обращается расширение и зачем', [
+        'Страницы Библиотеки рекламы Facebook (facebook.com/ads/library, web.facebook.com/ads/library) — читает данные объявлений, которые Facebook и так отправляет вашему браузеру, чтобы добавить кнопку «Download HD» и найти видеофайл в качестве HD. Всё происходит внутри вашего браузера.',
+        'CDN Facebook (*.fbcdn.net) — сюда ведут ссылки на файлы. Адреса рекламных видео подписаны CDN, поэтому для скачивания не нужны ни куки, ни учётные данные. Браузер загружает файл так же, как если бы вы сохранили его вручную.',
+        'Не ваш аккаунт Facebook — у расширения нет разрешения «cookies», и оно никогда не читает вашу сессию. Оно использует только те данные объявлений, которые уже отдаёт публичная страница Библиотеки рекламы.']],
+      ['Что хранится', ['Только ваши настройки: шаблон имени файла, число одновременных загрузок, переключатель zip, сохранять ли также графические объявления и видимость кнопки. Они лежат в хранилище расширений вашего браузера. Если включена синхронизация, браузер может синхронизировать их между вашими устройствами. Больше ничего не хранится и ничего не покидает браузер.']],
+      ['Что передаётся', ['Ничего. Ни данных об использовании, ни счётчиков загрузок, ни адресов страниц, ни идентификаторов. Расширению попросту некуда их отправлять, и оно не делает внешних запросов, кроме как к Facebook и его CDN.','Сводные числа установок и активных пользователей разработчик видит в панелях Chrome Web Store, Microsoft Edge Add-ons и Firefox Add-ons. Их формируют сами магазины, и они не содержат сведений об отдельных пользователях.']],
+      ['Используемые разрешения', ['downloads — чтобы сохранять видеофайлы в вашу папку «Загрузки». storage — чтобы запоминать ваши собственные настройки. offscreen (только браузеры на Chromium) — чтобы собрать .zip локально, поскольку сервис-воркеры MV3 не могут создавать blob-URL. Доступ к facebook.com/ads/library, web.facebook.com/ads/library и *.fbcdn.net — чтобы читать данные объявлений, отдаваемые страницей, и скачивать видеофайлы.']],
+      ['Третьи стороны', ['Отсутствуют. Весь код входит в состав расширения; во время работы ничего не загружается с удалённых серверов.']],
+      ['Ваша ответственность за скачанное', ['Скачанные рекламные видео принадлежат их авторам. Используйте их в соответствии с правилами Facebook и авторским правом: личный архив или исследование — не то же самое, что распространение.']],
+      ['Изменения политики', ['Если расширение когда-нибудь начнёт собирать данные, эта страница будет обновлена до выхода такой версии, а изменение будет указано в описании в магазине.']]]},
+
+  de: { name:'Deutsch', dir:'ltr', title:'Datenschutzerklärung',
+    lede:'Grabowl FADS sammelt nichts. Kein Konto, keine Analyse, keine Telemetrie und kein Server, der zu dieser Erweiterung gehört.',
+    sections:[
+      ['Worauf die Erweiterung zugreift – und warum', [
+        'Seiten der Facebook-Werbebibliothek (facebook.com/ads/library, web.facebook.com/ads/library) — sie liest die Anzeigendaten, die Facebook ohnehin an deinen Browser sendet, um eine „Download HD“-Schaltfläche hinzuzufügen und die Videodatei in HD zu finden. Das geschieht vollständig in deinem Browser.',
+        'Facebooks CDN (*.fbcdn.net) — dorthin zeigen die Download-Links. Die URLs der Anzeigenvideos sind vom CDN signiert, daher brauchen Downloads keine Cookies und keine Anmeldedaten. Dein Browser lädt die Datei genauso, wie wenn du sie von Hand speicherst.',
+        'Nicht dein Facebook-Konto — die Erweiterung hat keine „cookies“-Berechtigung und liest deine Anmeldung nie. Sie nutzt nur die Anzeigendaten, die die öffentliche Werbebibliothek-Seite ohnehin liefert.']],
+      ['Was gespeichert wird', ['Nur deine eigenen Einstellungen: Dateinamen-Muster, wie viele Downloads gleichzeitig laufen, der Zip-Schalter, ob auch Bildanzeigen gespeichert werden, und die Sichtbarkeit der Schaltfläche. Sie liegen im Erweiterungsspeicher deines Browsers. Bei aktivierter Browser-Synchronisierung kann dein Browser sie zwischen deinen eigenen Geräten abgleichen. Sonst wird nichts gespeichert, und nichts verlässt deinen Browser.']],
+      ['Was übertragen wird', ['Nichts. Keine Nutzungsdaten, keine Download-Zähler, keine Seitenadressen, keine Kennungen. Die Erweiterung hat kein Backend, an das etwas gehen könnte, und stellt außer zu Facebook und seinem CDN keine externen Anfragen.','Die aggregierten Installations- und Nutzerzahlen, die der Entwickler sieht, stammen aus den Dashboards von Chrome Web Store, Microsoft Edge Add-ons und Firefox Add-ons. Sie werden von den Stores erstellt und enthalten keine Angaben zu einzelnen Nutzern.']],
+      ['Verwendete Berechtigungen', ['downloads — um Videodateien in deinem Download-Ordner zu speichern. storage — um deine eigenen Einstellungen zu merken. offscreen (nur Chromium-Browser) — um eine .zip lokal zu erstellen, da MV3-Service-Worker keine Blob-URLs anlegen können. Zugriff auf facebook.com/ads/library, web.facebook.com/ads/library und *.fbcdn.net — um die von der Seite gelieferten Anzeigendaten zu lesen und die Videodateien herunterzuladen.']],
+      ['Dritte', ['Keine. Der gesamte Code ist mit der Erweiterung ausgeliefert; zur Laufzeit wird nichts von einem entfernten Server geladen.']],
+      ['Deine Verantwortung für heruntergeladene Inhalte', ['Heruntergeladene Anzeigenvideos gehören denen, die sie erstellt haben. Nutze sie im Rahmen der Facebook-Bedingungen und des Urheberrechts — privates Archivieren oder Recherche ist nicht dasselbe wie Weiterverbreiten.']],
+      ['Änderungen dieser Erklärung', ['Sollte die Erweiterung jemals Daten erheben, wird diese Seite vor Veröffentlichung einer solchen Version aktualisiert und die Änderung im Store-Eintrag offengelegt.']]]},
+
+  fr: { name:'Français', dir:'ltr', title:'Politique de confidentialité',
+    lede:'Grabowl FADS ne collecte rien. Aucun compte, aucune analyse, aucune télémétrie et aucun serveur appartenant à cette extension.',
+    sections:[
+      ['Ce à quoi l’extension accède, et pourquoi', [
+        'Les pages de la Bibliothèque publicitaire de Facebook (facebook.com/ads/library, web.facebook.com/ads/library) — elle lit les données publicitaires que Facebook envoie déjà à votre navigateur, afin d’ajouter un bouton « Download HD » et de trouver le fichier vidéo en HD. Tout se passe dans votre navigateur.',
+        'Le CDN de Facebook (*.fbcdn.net) — les liens de téléchargement y pointent. Les URL des vidéos publicitaires sont signées par le CDN, donc les téléchargements n’ont besoin ni de cookies ni d’identifiants. Votre navigateur récupère le fichier exactement comme si vous l’enregistriez à la main.',
+        'Pas votre compte Facebook — l’extension n’a pas la permission « cookies » et ne lit jamais votre session. Elle n’utilise que les données publicitaires que la page publique de la Bibliothèque publicitaire fournit déjà.']],
+      ['Ce qui est stocké', ['Uniquement vos réglages : modèle de nom de fichier, nombre de téléchargements simultanés, bascule zip, faut-il aussi enregistrer les publicités en image, et visibilité du bouton. Ils résident dans le stockage d’extensions de votre navigateur. Si la synchronisation est activée, votre navigateur peut les synchroniser entre vos propres appareils. Rien d’autre n’est stocké, et rien ne sort de votre navigateur.']],
+      ['Ce qui est transmis', ['Rien. Aucune donnée d’usage, aucun compteur de téléchargements, aucune adresse de page, aucun identifiant. L’extension n’a aucun serveur vers lequel envoyer quoi que ce soit et ne fait aucune requête externe au-delà de Facebook et de son CDN.','Les totaux d’installations et d’utilisateurs actifs que voit le développeur proviennent des tableaux de bord du Chrome Web Store, de Microsoft Edge Add-ons et de Firefox Add-ons. Ils sont produits par les boutiques elles-mêmes et ne contiennent aucune information sur des utilisateurs individuels.']],
+      ['Autorisations utilisées', ['downloads — pour enregistrer les fichiers vidéo dans votre dossier Téléchargements. storage — pour mémoriser vos propres réglages. offscreen (navigateurs Chromium uniquement) — pour construire un .zip localement, car les service workers MV3 ne peuvent pas créer d’URL blob. Accès à facebook.com/ads/library, web.facebook.com/ads/library et *.fbcdn.net — pour lire les données publicitaires fournies par la page et télécharger les fichiers vidéo.']],
+      ['Tiers', ['Aucun. Tout le code est fourni avec l’extension ; rien n’est chargé depuis un serveur distant à l’exécution.']],
+      ['Votre responsabilité sur les contenus téléchargés', ['Les vidéos publicitaires téléchargées appartiennent à leurs auteurs. Utilisez-les conformément aux conditions de Facebook et au droit d’auteur : archiver pour soi ou faire de la recherche n’est pas rediffuser.']],
+      ['Modifications de cette politique', ['Si l’extension venait à collecter des données, cette page serait mise à jour avant la publication de cette version et le changement serait indiqué sur la fiche de la boutique.']]]}
+};
+
+const ORDER = ['en','tr','pt_BR','es','id','hi','ar','ru','de','fr'];
+const nav = document.getElementById('langs');
+const content = document.getElementById('content');
+
+function render(code) {
+  const doc = DOC[code];
+  document.documentElement.lang = code.replace('_', '-');
+  document.documentElement.dir = doc.dir;
+  document.title = `Grabowl FADS — ${doc.title}`;
+
+  content.innerHTML = '';
+  const h1 = document.createElement('h1');
+  h1.textContent = doc.title;
+  const updated = document.createElement('div');
+  updated.className = 'updated';
+  updated.textContent = UPDATED;
+  const lede = document.createElement('p');
+  lede.className = 'lede';
+  lede.textContent = doc.lede;
+  content.append(h1, updated, lede);
+
+  for (const [heading, paras] of doc.sections) {
+    const h2 = document.createElement('h2');
+    h2.textContent = heading;
+    content.append(h2);
+    if (paras.length > 1 && heading === doc.sections[0][0]) {
+      const ul = document.createElement('ul');
+      for (const text of paras) {
+        const li = document.createElement('li');
+        li.textContent = text;
+        ul.append(li);
+      }
+      content.append(ul);
+    } else {
+      for (const text of paras) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        content.append(p);
+      }
+    }
+  }
+
+  for (const button of nav.children) {
+    button.setAttribute('aria-current', String(button.dataset.code === code));
+  }
+  history.replaceState(null, '', `#${code}`);
+}
+
+for (const code of ORDER) {
+  const button = document.createElement('button');
+  button.textContent = DOC[code].name;
+  button.dataset.code = code;
+  button.addEventListener('click', () => render(code));
+  nav.append(button);
+}
+
+// Open in the reader's own language when we have it, otherwise English.
+const wanted = location.hash.slice(1);
+const browserLang = (navigator.language || 'en').toLowerCase();
+const guess =
+  ORDER.find((c) => c.toLowerCase() === browserLang) ||
+  ORDER.find((c) => c.toLowerCase() === browserLang.split('-')[0]) ||
+  'en';
+render(DOC[wanted] ? wanted : guess);
+</script>
+</body>
+</html>
